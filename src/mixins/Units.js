@@ -1,28 +1,35 @@
-import { createApp } from "vue";
-import App from "../App.vue";
+// import Swal from "sweetalert2";
+const test = () => { console.log(100) }
+export default { test }
+// export const test = () => {
+	// const swalSetting = {
+	// 	title: "title",
+	// 	text: "text",
+	// 	icon: "success",
+	// 	showConfirmButton: true,
+	// 	showCancelButton: false,
+	// 	heightAuto: false,
+	// };
+	// Swal.fire(swalSetting);
+// };
 
-import VueSweetalert2 from "vue-sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+// export default {
+//   methods: {
+// 		swalAlert(title, text, icon, html, button, timer) {
+// 			const swalSetting = {
+// 				title: title,
+// 				text: text,
+// 				icon: icon,
+// 				html: html,
+// 				showConfirmButton: button,
+// 				showCancelButton: false,
+// 				heightAuto: false,
+// 			};
+// 			if (timer !== -1) {
+// 				swalSetting.timer = timer;
+// 			}
+// 			this.$swal.fire(swalSetting);
+// 		}
+// 	}
+// };
 
-const app = createApp(App);
-app.use(VueSweetalert2);
-
-export default {
-  methods: {
-		swalAlert(title, text, icon, html, button, timer) {
-			const swalSetting = {
-				title: title,	
-				text: text,
-				icon: icon,
-				html: html,
-				showConfirmButton: button,
-				showCancelButton: false,
-				heightAuto: false,
-			};
-			if (timer !== -1) {
-				swalSetting.timer = timer;
-			}
-			this.$swal.fire(swalSetting);
-		}
-	}
-};
