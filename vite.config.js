@@ -1,9 +1,9 @@
 import { fileURLToPath, URL } from "node:url";
-
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
-import { dirResolver, DirResolverHelper } from "vite-auto-import-resolvers";
+import { dirResolver } from "vite-auto-import-resolvers";
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -11,6 +11,7 @@ export default defineConfig({
       imports: [
         "vue",
         "vue-router",
+        "vuex"
       ],
       dts:"src/auto-import.d.ts",
       resolvers: [
