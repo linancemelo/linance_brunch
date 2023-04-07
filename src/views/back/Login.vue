@@ -46,11 +46,11 @@ const store = useStore();
 const userInfo = ref({
   account: "liangvuepractice@mail.com",
   password: "liangxu04vu6"
-})
+});
 const login = () => {
   console.log(import.meta.env.VITE_MY_API);
   store.commit("setToken", "123456");
-}
+};
 </script>
 
 <style>
