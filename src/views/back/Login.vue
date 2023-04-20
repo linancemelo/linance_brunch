@@ -49,7 +49,7 @@ const router = useRouter();
 const userInfo = ref({
   username: "liangvuepractice@mail.com",
   password: "liangxu04vu6"
-})
+});
 
 // 登入
 const login = () => {
@@ -66,7 +66,7 @@ const login = () => {
       console.log(error);
   });
   router.push({ name: "Manage" });
-}
+};
 </script>
 
 <style>

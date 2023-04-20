@@ -12,7 +12,7 @@ export default {
           Authorization: `Bearer ${token}`
         },
         data: data
-      }
+      };
       return new Promise((resolve, reject) => {
         axios(url, config)
             .then(response => {
