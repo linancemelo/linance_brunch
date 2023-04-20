@@ -13,9 +13,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 
 const app = createApp(App);
 
-app.use(router);
-app.use(VueAxios, axios);
-app.use(store);
-app.use(VueSweetalert2);
-
-app.mount("#app");
+app.use(router)
+    .use(store)
+    .use(VueAxios, axios)
+    .use(VueSweetalert2)
+    .mount("#app");

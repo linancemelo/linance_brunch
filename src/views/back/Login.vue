@@ -11,7 +11,7 @@
             class="form-control rounded-pill"
             placeholder="Email address"
             required
-            v-model.trim="userInfo.account"
+            v-model.trim="userInfo.username"
           />
         </div>
         <div class="mb-4">
@@ -42,14 +42,30 @@
 </template>
 
 <script setup>
+import {useRouter} from "vue-router";
+import axios from "axios";
 const store = useStore();
+const router = useRouter();
 const userInfo = ref({
-  account: "liangvuepractice@mail.com",
+  username: "liangvuepractice@mail.com",
   password: "liangxu04vu6"
 })
+
+// 登入
 const login = () => {
-  console.log(import.meta.env.VITE_MY_API);
-  store.commit("setToken", "123456");
+  const url = import.meta.env.VITE_MY_API;
+  axios(`${url}admin/signin`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      data: userInfo.value
+  }).then(response => {
+      console.log(response);
+  }).catch(error => {
+      console.log(error);
+  });
+  router.push({ name: "Manage" });
 }
 </script>
 
