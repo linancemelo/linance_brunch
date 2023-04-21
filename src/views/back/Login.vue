@@ -23,6 +23,7 @@
             placeholder="Password"
             required
             v-model.trim="userInfo.password"
+            @keydown.enter="login"
           />
         </div>
         <div class="text-center">
@@ -42,30 +43,38 @@
 </template>
 
 <script setup>
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
+
 const store = useStore();
 const router = useRouter();
-const userInfo = ref({
-  username: "liangvuepractice@mail.com",
-  password: "liangxu04vu6"
-});
+const { cookies } = useCookies();
 
-// 登入
-const login = () => {
+const userInfo = ref({
+  username: "",
+  password: ""
+});
+const login = async() => {
   const url = import.meta.env.VITE_MY_API;
-  axios(`${url}admin/signin`, {
+  console.log("登入中");
+  await axios(`${url}admin/signin`, {
       method: "POST",
       headers: {
           "Content-Type": "application/json",
       },
       data: userInfo.value
   }).then(response => {
-      console.log(response);
+      if (response.data.success) {
+        console.log("登入成功");
+        console.log(response.data);
+        const token = response.data.token;
+        cookies.set("ltkob", token, "1d");
+        router.push({ name: "Manage" });
+      }
   }).catch(error => {
       console.log(error);
   });
-  router.push({ name: "Manage" });
 };
 </script>
 
