@@ -15,7 +15,7 @@ export default defineConfig({
       ],
       dts:"src/auto-import.d.ts",
       resolvers: [
-        dirResolver({ target: "src/mixins" })
+        dirResolver({ target: "src/composable" })
       ]
     })
   ],

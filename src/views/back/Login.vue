@@ -71,6 +71,7 @@ const login = async() => {
         const token = response.data.token;
         cookies.set("ltkob", token, "1d");
         router.push({ name: "Manage" });
+        callApi()
       }
   }).catch(error => {
       console.log(error);
