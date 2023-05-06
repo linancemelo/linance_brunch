@@ -26,4 +26,8 @@ const router = createRouter({
   routes
 });
 
+router.beforeEach((to, from) => {
+  console.log(to, from);
+});
+
 export default router;

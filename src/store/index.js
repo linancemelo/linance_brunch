@@ -1,10 +1,26 @@
-import { createStore } from "vuex"; // import actions from "@/store/actions";
-import getters from "@/store/getters";
-import mutations from "@/store/mutations";
-import actions from "@/store/actions";
-export const store = createStore({
-  state: mutations.state,
-  mutations: mutations.mutations,
-  actions: actions.actions,
-  getters: getters.getters,
+import { defineStore } from "pinia";
+import Axios from "axios";
+
+export const useStore = defineStore("useStore", {
+  state: () => {
+    return {
+
+    };
+  },
+  getters: {
+
+  },
+  actions: {
+    request(requestConfig) {
+      return new Promise((resolve, reject) => {
+        Axios(requestConfig)
+          .then(result => {
+              resolve(result);
+          })
+          .catch(xhr => {
+              reject(xhr);
+          });
+      });
+    }
+  }
 });
