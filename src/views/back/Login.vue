@@ -40,29 +40,6 @@
                 </div>
             </div>
         </div>
-        <div class="mb-4">
-          <label for="inputPassword" class="">密碼</label>
-          <input
-            type="password"
-            id="inputPassword"
-            class="form-control rounded-pill"
-            placeholder="Password"
-            required
-            v-model.trim="userInfo.password"
-            @keydown.enter="login"
-          />
-        </div>
-        <div class="text-center">
-          <button class="btn btn-dark btn-md" @click="login">登入</button>
-        </div>
-        <div class="text-center my-2">
-          <span class="dash"></span>
-          <span class="text-secondary">或</span>
-          <span class="dash"></span>
-        </div>
-        <div class="text-center">
-          <a class="link-secondary">忘記密碼？</a>
-        </div>
     </div>
 </template>
 
@@ -72,8 +49,8 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const userInfo = ref({
-    username: "",
-    password: ""
+    username: "liangvuepractice@mail.com",
+    password: "liangxu04vu6"
 });
 // 登入
 const login = () => {
