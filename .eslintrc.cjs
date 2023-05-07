@@ -17,5 +17,6 @@ module.exports = {
     "dot-notation": 0,
     "space-before-function-paren": ["error", "never"],
     "comma-dangle": ["off", "always-multiline"],
+    "vue/multi-word-component-names": "off",
   },
 };

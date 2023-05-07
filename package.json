@@ -26,6 +26,7 @@
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "eslint": "^8.34.0",
     "eslint-plugin-vue": "^9.9.0",
+    "prettier": "2.8.8",
     "sass": "^1.60.0",
     "unplugin-auto-import": "^0.6.9",
     "vite": "^4.1.4",
