@@ -10,6 +10,7 @@ import "@popperjs/core";
 import "./assets/style.scss";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import "vue-loading-overlay/dist/css/index.css";
 
 const app = createApp(App);
 const pinia = createPinia();

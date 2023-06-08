@@ -42,7 +42,6 @@ export const confirmAlert = (title, text, icon, html, button, timer) => {
 export const simpleAlert = (title, icon) => {
 	confirmAlert(title, "", icon, "", true, -1);
 };
-
 /**
  * 解析token
  * @param {*} token

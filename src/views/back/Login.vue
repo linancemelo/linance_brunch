@@ -30,6 +30,7 @@
                 placeholder="Password"
                 required
                 v-model="userInfo.password"
+                @keydown.enter="login"
               />
             </div>
             <div class="mb-3 mb-md-4">
@@ -43,6 +44,13 @@
             </div>
             <div class="text-center">
               <button class="btn btn-dark btn-md w-100" type="submit">
+                <span
+                  v-if="isLoading"
+                  class="spinner-border spinner-border-sm text-light"
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </span>
                 登入
               </button>
             </div>
@@ -67,7 +75,7 @@ import {
   simpleAlert,
   setCookie,
   getCookie,
-  removeCookie
+  removeCookie,
 } from "@/composables/units";
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -77,33 +85,35 @@ const userInfo = ref({
   password: "liangxu04vu6",
 });
 const rememberAc = ref(false);
+const isLoading = ref(false);
 // 登入
 const login = () => {
+  isLoading.value = true;
   callApi(`admin/signin`, "POST", userInfo.value)
     .then(async(result) => {
       if (result.data.success) {
         setCookie("ltk", result.data.token, 0);
         setCookie("linanceAc", userInfo.value.username, 7);
         if (rememberAc.value) {
-            setCookie("rememberAc", rememberAc.value, 7);
+          setCookie("rememberAc", rememberAc.value, 7);
         } else {
-            removeCookie("rememberAc");
-            removeCookie("linanceAc");
+          removeCookie("rememberAc");
+          removeCookie("linanceAc");
         }
         await simpleAlert("登入成功", "success");
         router.push({ name: "Manage" });
       } else {
-          simpleAlert(`${result.data.message}`, "error");
-          return false;
+        simpleAlert(`${result.data.message}`, "error");
       }
+      isLoading.value = false;
     })
     .catch((err) => console.log(err));
 };
 
 onMounted(() => {
   if (getCookie("rememberAc") && getCookie("linanceAc")) {
-      rememberAc.value = getCookie("rememberAc");
-      userInfo.value.username = getCookie("linanceAc");
+    rememberAc.value = getCookie("rememberAc");
+    userInfo.value.username = getCookie("linanceAc");
   }
 });
 </script>
@@ -114,9 +124,11 @@ onMounted(() => {
   display: flex;
   place-items: center;
   overflow: hidden;
+  height: 100vh;
 }
 .login-container {
   padding: 5rem 10rem;
+  margin: 0 auto;
 }
 .row {
   box-shadow: 0 0 20px;
@@ -124,19 +136,19 @@ onMounted(() => {
     display: inline-block;
     width: 20%;
     border: 1px solid #ccc;
-    margin: 0 0.5rem;
+    margin: 0 .5rem;
     vertical-align: middle;
   }
 }
-@media (min-width: 768px) {
-  .background {
-    height: 100vh;
-  }
-}
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .login-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding: 2rem !important;
   }
 }
+//@media (max-width: 1200px) {
+//  .login-container {
+//    padding-left: 1.5rem;
+//    padding-right: 1.5rem;
+//  }
+//}
 </style>
