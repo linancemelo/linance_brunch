@@ -1,11 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from "@/views/back/Login.vue";
-import Manage from "@/views/back/Manage.vue";
 
 const routes = [
   {
     path: "/Login",
-    component: Login,
+    component: () => import("@/views/back/Login.vue"),
     name: "Login",
     meta: {
       title: "Linance|後台登入"
@@ -13,7 +11,7 @@ const routes = [
   },
   {
     path: "/Manage",
-    component: Manage,
+    component: () => import("@/views/back/Manage.vue"),
     name: "Manage",
     meta: {
       title: "Linance|後台管理"

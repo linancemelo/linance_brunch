@@ -70,15 +70,11 @@
 </template>
 
 <script setup>
-import {
-  callApi,
-  simpleAlert,
-  setCookie,
-  getCookie,
-  removeCookie,
-} from "@/composables/units";
+import { useUnits } from "@/composables/units.js";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
+const { callApi, setCookie, removeCookie, getCookie, simpleAlert } = useUnits();
 
 const userInfo = ref({
   username: "",
@@ -86,6 +82,7 @@ const userInfo = ref({
 });
 const rememberAc = ref(false);
 const isLoading = ref(false);
+
 // 登入
 const login = () => {
   isLoading.value = true;
@@ -145,10 +142,10 @@ onMounted(() => {
     padding: 2rem !important;
   }
 }
-//@media (max-width: 1200px) {
-//  .login-container {
-//    padding-left: 1.5rem;
-//    padding-right: 1.5rem;
-//  }
-//}
+@media (max-width: 1200px) {
+  .login-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
 </style>
