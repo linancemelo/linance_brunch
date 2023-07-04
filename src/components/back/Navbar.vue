@@ -1,7 +1,7 @@
 <template>
   <div class="drawer lg:drawer-open h-full">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content">
+    <div class="drawer-content bg-white">
       <div class="navbar h-16">
         <div class="navbar-start">
           <label
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full h-full bg-white p-5" style="height: calc(100% - 4rem)">
+      <div class="w-full h-full bg-secondary p-5" style="height: calc(100% - 4rem)">
         <!-- Page Content -->
         <router-view/>
         <div class="overflow-x-auto">
@@ -63,11 +63,12 @@
     </div>
     <div class="drawer-side">
       <label for="my-drawer" class="drawer-overlay"></label>
-      <div class="h-16">
+      <div class="h-16 bg-warning">
         <!-- navbar logo -->
+          Linance
         <img src="" alt="">
       </div>
-      <ul class="menu p-4 w-80 h-full text-base-content bg-black">
+      <ul class="menu p-4 w-80 h-full text-base-content bg-warning">
         <!-- Sidebar Content -->
         <li class="text-base my-1"><a class="active">產品列表</a></li>
         <li class="text-base my-1"><a>訂單紀錄</a></li>

@@ -96,7 +96,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .login-container {
-  background-image: url("@/assets/img/login_bg.jpeg");
+  background: url("@/assets/img/login_bg.jpg") no-repeat;
+  background-size: cover;
   display: flex;
   place-items: center;
   overflow: auto;
