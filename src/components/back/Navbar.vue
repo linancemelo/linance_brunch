@@ -11,8 +11,8 @@
             <span class="material-symbols-outlined"> menu </span>
           </label>
         </div>
-        <div class="navbar-center">
-          <a class="btn btn-ghost normal-case text-xl">Linance</a>
+        <div class="navbar-center lg:hidden">
+          <a class="normal-case text-xl">Linance</a>
         </div>
         <div class="navbar-end">
           <div class="w-10 rounded-full">
@@ -63,7 +63,11 @@
     </div>
     <div class="drawer-side">
       <label for="my-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 w-80 h-full bg-base-200 text-base-content">
+      <div class="h-16">
+        <!-- navbar logo -->
+        <img src="" alt="">
+      </div>
+      <ul class="menu p-4 w-80 h-full text-base-content bg-black">
         <!-- Sidebar Content -->
         <li class="text-base my-1"><a class="active">產品列表</a></li>
         <li class="text-base my-1"><a>訂單紀錄</a></li>

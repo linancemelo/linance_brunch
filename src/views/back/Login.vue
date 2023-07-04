@@ -7,8 +7,8 @@
         </figure>
         <div class="card-body md:w-2/3 text-black md:py-20">
           <h3 class="text-3xl font-semibold text-center mb-5">登入後台</h3>
-          <form @submit.prevent="login">
-            <div class="form-control mb-3">
+          <form @submit.prevent="login" class="space-y-4">
+            <div class="form-control">
               <label for="inputEmail" class="mb-1">帳號</label>
               <input
                 type="email"
@@ -19,7 +19,7 @@
                 v-model="userInfo.username"
               />
             </div>
-            <div class="form-control mb-3">
+            <div class="form-control">
               <label for="inputPassword" class="mb-1">密碼</label>
               <input
                 type="password"
@@ -31,7 +31,7 @@
                 @keydown.enter="login"
               />
             </div>
-            <div class="mb-3 cursor-pointer flex align-middle">
+            <div class="cursor-pointer flex align-middle">
               <input id="rememberAc" v-model="rememberAc" type="checkbox" checked="checked" class="checkbox checkbox-sm checkbox-error me-1" />
               <label for="rememberAc" class="label-text">記住帳號</label>
             </div>
