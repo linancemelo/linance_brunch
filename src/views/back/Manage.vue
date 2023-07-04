@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="h-screen">
     <Navbar></Navbar>
-    <router-view></router-view>
   </div>
 </template>
 
