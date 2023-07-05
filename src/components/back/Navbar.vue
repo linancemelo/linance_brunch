@@ -20,45 +20,9 @@
           </div>
         </div>
       </div>
-      <div class="w-full h-full bg-secondary p-5" style="height: calc(100% - 4rem)">
+      <div class="w-full h-full bg-secondary p-10" style="height: calc(100% - 4rem)">
         <!-- Page Content -->
         <router-view/>
-        <div class="overflow-x-auto">
-          <table class="table">
-            <!-- head -->
-            <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- row 1 -->
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-            <!-- row 2 -->
-            <tr class="hover">
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-            <!-- row 3 -->
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
     <div class="drawer-side">
@@ -70,14 +34,17 @@
       </div>
       <ul class="menu p-4 w-80 h-full text-base-content bg-warning">
         <!-- Sidebar Content -->
-        <li class="text-base my-1"><a class="active">產品列表</a></li>
-        <li class="text-base my-1"><a>訂單紀錄</a></li>
+        <li class="text-base my-1"><router-link to="/Manage/Product">產品列表</router-link></li>
+        <li class="text-base my-1"><router-link to="/Manage/Order">訂單紀錄</router-link></li>
       </ul>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+const test = () => {
+  document.querySelector("#my-drawer").click();
+};
 </script>
 
 <style scoped></style>
