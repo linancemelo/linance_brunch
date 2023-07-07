@@ -18,16 +18,15 @@ export const useUnits = () => {
       (!data || data === "undefined" || Object.keys(data).length === 0)
     );
   };
+  // https://vue3-course-api.hexschool.io/api/liang-api/admin/products/
   const callApi = (url, method, param, isVerify = false) => {
-    const token = getCookie("ltk");
-    const bearToken = isVerify ? `bear ${token}` : "";
     return store.request({
-      url: `${import.meta.env.VITE_MY_API}${url}`,
+      url: `${import.meta.env.VITE_MY_API}/${url}`,
       method: method,
       data: param,
       headers: {
         "Content-Type": "application/json",
-        Authorization: bearToken,
+        Authorization: isVerify ? getCookie("ltk") : "",
       },
     });
   };

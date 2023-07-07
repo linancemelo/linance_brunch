@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
+import VueDevTools from "vite-plugin-vue-devtools";
 
 export default defineConfig({
   server: {
@@ -9,6 +10,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    VueDevTools(),
     AutoImport({
       imports: [
         "vue",
