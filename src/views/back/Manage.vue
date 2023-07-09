@@ -7,17 +7,21 @@
           <div class="navbar-start">
             <label
               for="my-drawer"
-              class="drawer-button btn btn-neutral lg:hidden"
+              class="drawer-button btn btn-sm btn-neutral lg:hidden"
             >
               <span class="material-symbols-outlined"> menu </span>
             </label>
           </div>
           <div class="navbar-center lg:hidden">
-            <a class="normal-case text-xl">Linance</a>
+            <a class="h-16 flex justify-center items-center text-3xl text-accent font-bold font-mono">Linance</a>
           </div>
           <div class="navbar-end">
-            <div class="w-10 rounded-full">
-              <span class="cursor-pointer material-symbols-outlined" @click="logOut">
+            <div class="w-10 rounded-full flex items-center">
+              <span
+                class="cursor-pointer material-symbols-outlined text-neutral
+"
+                @click="logOut"
+              >
                 logout
               </span>
             </div>
@@ -33,18 +37,27 @@
       </div>
       <div class="drawer-side">
         <label for="my-drawer" class="drawer-overlay"></label>
-        <div class="h-16 bg-warning">
+        <h1 class="h-16 flex justify-center items-center text-3xl text-accent font-bold font-mono bg-neutral">
           <!-- navbar logo -->
-          Linance
-          <img src="" alt="" />
-        </div>
-        <ul class="menu p-4 w-80 h-full text-base-content bg-warning">
+            Linance
+        </h1>
+        <ul class="menu p-4 w-80 h-full text-base-content bg-neutral">
           <!-- Sidebar Content -->
-          <li class="text-base my-1">
-            <router-link to="/Manage/Product">產品列表</router-link>
+          <li class="text-base my-1'">
+            <router-link
+              to="/Manage/Product"
+              :class="route.name === 'Product' ? 'bg-warning' : ''"
+              ><span class="material-symbols-outlined mr-2"> category </span
+              >產品列表</router-link
+            >
           </li>
           <li class="text-base my-1">
-            <router-link to="/Manage/Order">訂單紀錄</router-link>
+            <router-link
+              to="/Manage/Order"
+              :class="route.name === 'Order' ? 'bg-warning' : ''"
+              ><span class="material-symbols-outlined mr-2"> list_alt </span
+              >訂單紀錄</router-link
+            >
           </li>
         </ul>
       </div>
@@ -56,14 +69,31 @@
 import { useUnits } from "@/composables/units.js";
 
 const router = useRouter();
+const route = useRoute();
 const { removeCookie, confirmAlert } = useUnits();
 
-const logOut = async() => {
-    const check = await confirmAlert("確定要登出嗎", "warning");
-    if (check) {
-        removeCookie("linanceAc");
-        removeCookie("ltk");
-        router.push({ name: "Login" });
-    }
+const logOut = async () => {
+  const check = await confirmAlert("確定要登出嗎", "warning");
+  if (check) {
+    removeCookie("linanceAc");
+    removeCookie("ltk");
+    router.push({ name: "Login" });
+  }
 };
 </script>
+<style scoped>
+a:hover {
+  color: #fff !important;
+}
+a:active {
+  color: #fff !important;
+  background: #FEA01C !important;
+}
+a:focus {
+  color: #fff !important;
+  background: #FEA01C !important;
+}
+li {
+  color: #fff;
+}
+</style>
