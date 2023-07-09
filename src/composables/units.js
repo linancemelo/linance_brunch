@@ -37,7 +37,7 @@ export const useUnits = () => {
    * @param icon warning, error, success, info, question
    * @param timer 顯示時間(時間到消失，單位為毫秒)
    */
-  const confirmAlert = (title, text, icon, html, button, timer) => {
+  const errorAlert = (title, text, icon, html, button , timer) => {
     const swalSetting = {
       title: title,
       text: text,
@@ -53,9 +53,33 @@ export const useUnits = () => {
     Swal.fire(swalSetting);
   };
   const simpleAlert = (title, icon) => {
-    confirmAlert(title, "", icon, "", true, -1);
+    errorAlert(title, "", icon, "", true, -1);
   };
-
+  /**
+   * Sweet Alert 確認視窗
+   * @param title
+   * @param icon
+   * @returns {Promise<boolean>}
+   */
+  const confirmAlert = async(title, icon) => {
+    let check = false;
+    await Swal
+        .fire({
+          title: title,
+          text: "",
+          icon: icon,
+          showConfirmButton: true,
+          showCancelButton: true,
+          confirmButtonText: "確定",
+          confirmButtonColor: "#007bff",
+          cancelButtonText: "取消",
+          cancelButtonColor: "gray",
+        })
+        .then((result) => {
+          check = result.isConfirmed;
+        });
+    return check;
+  };
   /**
    * 解析token
    * @param {*} token
