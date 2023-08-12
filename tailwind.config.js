@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 // eslint-disable-next-line no-undef
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
@@ -14,19 +11,18 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          "primary": "#3b82f6",
-          "secondary": "#edeef0",
-          "accent": "#f73859",
-          "neutral": "#1d2330",
-          "base-100": "#fcfcfc",
-          "info": "#1d4ed8",
-          "success": "#4ade80",
-          "warning": "#FEA01C",
-          "error": "#fb0e0e",
+          primary: "#1dcdbc",
+          secondary: "#ff33cd",
+          accent: "#0737ad",
+          neutral: "#262c31",
+          "base-100": "#ffffff",
+          info: "#3abff8",
+          success: "#08e562",
+          warning: "#ffcd05",
+          error: "#f85454",
         },
       },
     ],
-    darkTheme: "light", // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
@@ -35,4 +31,3 @@ module.exports = {
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
   },
 };
-

@@ -1,36 +1,57 @@
 <template>
-  <div class="overflow-x-auto">
-    <table class="table text-neutral bg-white">
+  <div class="text-end mr-4 lg:mr-8">
+    <label
+      for="productModal"
+      class="btn btn-sm bg-warning"
+      @click="emits('setProductInfo', {})"
+      >新增商品</label
+    >
+  </div>
+  <div v-if="tableInfo.length > 0" class="overflow-x-auto">
+    <table class="table w-full xl:px-48">
       <thead>
-        <tr class="text-base font-black">
+        <tr class="text-base text-center">
           <th></th>
-          <th v-for="col in columns" :key="col.enName">{{ col.chName }}</th>
-          <th>
-            <button class="btn btn-sm">新增</button>
+          <th v-for="col in columns" :key="col.enName" class="font-bold">
+            {{ col.chName }}
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in tableInfo" :key="row.id">
-          <th>{{ index + 1 }}</th>
-          <td v-for="col in columns" :key="col.enName">
+        <tr
+          v-for="(row, index) in tableInfo"
+          :key="row.id"
+          class="text-base text-center text-neutral"
+        >
+          <td>{{ index + 1 }}</td>
+          <td v-for="col in columns" :key="col.id">
             <span v-if="col.enName === 'is_enabled'">
               {{ row[col.enName] === 1 ? "有" : "無" }}
             </span>
             <span v-else>{{ row[col.enName] }}</span>
           </td>
-          <td>
-              <button class="btn btn-sm bg-primary">編輯</button>
-              <button class="btn btn-sm bg-warning">刪除</button>
+          <td class="w-1/6">
+            <button class="btn btn-sm bg-success" @click="editProduct(row)">
+              編輯
+            </button>
+            <button class="btn btn-sm bg-error" @click="deleteProduct(row)">
+              刪除
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <NoData v-else content="目前無任何產品" />
 </template>
 
 <script setup>
-const props = defineProps({
+import NoData from "@/components/NoData.vue";
+import { useUnits } from "../../composables/units.js";
+
+const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
+
+defineProps({
   columns: {
     type: Array,
     default: () => [],
@@ -40,6 +61,25 @@ const props = defineProps({
     default: () => [],
   },
 });
+const emits = defineEmits(["refresh", "setProductInfo"]);
+
+const editProduct = (row) => {
+  emits("setProductInfo", row);
+  clickById("productModal");
+};
+const deleteProduct = async (row) => {
+  const { id, title } = row;
+  const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
+  if (check) {
+    const result = await callApi(`admin/product/${id}`, "DELETE", {}, true);
+    if (result.data.success) {
+      simpleAlert("刪除成功", "success");
+      emits("refresh");
+    } else {
+      simpleAlert("刪除失敗", "success");
+    }
+  }
+};
 </script>
 
 <style scoped></style>

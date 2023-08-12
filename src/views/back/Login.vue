@@ -42,10 +42,10 @@
               <label for="rememberAc" class="label-text">記住帳號</label>
             </div>
             <div>
-              <button class="btn btn-block btn-neutral">
+              <button class="btn btn-block bg-black">
                 <span
                   v-if="isLoading"
-                  class="loading loading-spinner loading-sm"
+                  class="loading loading-spinner loading-sm text-white"
                 ></span>
                 <span class="text-white text-base">登入</span>
               </button>
@@ -94,7 +94,7 @@ const login = () => {
           removeCookie("rememberAc");
           removeCookie("linanceAc");
         }
-        await simpleAlert("登入成功", "success");
+        store.setUserInfo();
         router.push({ name: "Manage" });
       } else {
         simpleAlert(`${result.data.message}`, "error");

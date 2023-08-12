@@ -112,6 +112,9 @@ export const useUnits = () => {
   const removeCookie = (cookieName) => {
     cookies.remove(cookieName, null);
   };
+  const clickById = (id) => {
+    document.getElementById(id).click();
+  };
 
   return {
     isEmpty,
@@ -122,5 +125,6 @@ export const useUnits = () => {
     setCookie,
     getCookie,
     removeCookie,
+    clickById,
   };
 };
