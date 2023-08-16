@@ -8,6 +8,8 @@ export const useStore = defineStore("Main", () => {
   // state
   const isLoading = ref(false);
   const userInfo = ref({});
+  const currentPage = ref(1);
+  const totalPage = ref(1);
   // actions
   const request = (requestConfig) => {
     return new Promise((resolve, reject) => {
@@ -27,13 +29,33 @@ export const useStore = defineStore("Main", () => {
       expDate: moment(exp * 1000).format("YYYY-MM-DD"),
     };
   };
+  const verifyManagement = () => {
+    return request({
+      url: "https://vue3-course-api.hexschool.io/api/user/check",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getCookie("ltk"),
+      },
+    })
+      .then((res) => {
+        return res.data.success;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
+  };
 
   return {
     // state
     isLoading,
     userInfo,
+    currentPage,
+    totalPage,
     // actions
     request,
     setUserInfo,
+    verifyManagement,
   };
 });

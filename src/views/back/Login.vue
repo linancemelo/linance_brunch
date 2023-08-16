@@ -72,6 +72,12 @@ const userInfo = ref({
 const rememberAc = ref(false);
 const isLoading = ref(false);
 
+onMounted(() => {
+  rememberAc.value = getCookie("rememberAc");
+  userInfo.value.username = getCookie("rememberAc")
+    ? getCookie("linanceAc")
+    : "";
+});
 // 登入
 const login = () => {
   isLoading.value = true;
@@ -84,7 +90,7 @@ const login = () => {
         "Content-Type": "application/json",
       },
     })
-    .then(async(result) => {
+    .then(async (result) => {
       if (result.data.success) {
         setCookie("ltk", result.data.token, 0);
         setCookie("linanceAc", userInfo.value.username, 7);
@@ -94,7 +100,6 @@ const login = () => {
           removeCookie("rememberAc");
           removeCookie("linanceAc");
         }
-        store.setUserInfo();
         router.push({ name: "Manage" });
       } else {
         simpleAlert(`${result.data.message}`, "error");

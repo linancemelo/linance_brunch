@@ -22,32 +22,49 @@
           tabindex="0"
           class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li><router-link :to="{ name: 'Order' }">訂單列表</router-link></li>
-<!--          <li><router-link to="{ name: '' }">Item 2</router-link></li>-->
-<!--          <li><router-link to="{ name: '' }">Item 3</router-link></li>-->
+          <li>
+            <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
+              >產品列表</router-link
+            >
+          </li>
+          <li>
+            <router-link :to="{ name: 'Order' }" :class="highlight('Order')"
+              >訂單列表</router-link
+            >
+          </li>
         </ul>
       </div>
       <a class="btn btn-ghost normal-case text-xl">Linance</a>
     </div>
-    <div class="navbar-center hidden lg:flex">
+    <div class="navbar-center hidden lg:flex w-">
       <ul class="menu menu-horizontal px-1">
-          <li><router-link :to="{ name: 'Product' }" :class="highlight('Product')">產品列表</router-link></li>
-          <li><router-link :to="{ name: 'Order' }" :class="highlight('Order')">訂單列表</router-link></li>
+        <li>
+          <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
+            >產品列表</router-link
+          >
+        </li>
+        <li>
+          <router-link :to="{ name: 'Order' }" :class="highlight('Order')"
+            >訂單列表</router-link
+          >
+        </li>
       </ul>
     </div>
     <div class="navbar-end">
-        <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <span class="material-symbols-outlined">
-account_circle
-</span>
-            </label>
-            <ul tabindex="0" class="text-neutral mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                <li>使用者：{{ store.userInfo.email }}</li>
-                <li class="mt-2">帳號到期日：{{ store.userInfo.expDate }}</li>
-                <li class="btn btn-sm mt-2" @click="logOut">登出</li>
-            </ul>
-        </div>    </div>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <span class="material-symbols-outlined"> account_circle </span>
+        </label>
+        <ul
+          tabindex="0"
+          class="text-neutral mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+        >
+          <li>使用者：{{ store.userInfo.email }}</li>
+          <li class="mt-2">帳號到期日：{{ store.userInfo.expDate }}</li>
+          <li class="btn btn-sm mt-2" @click="logOut">登出</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -66,7 +83,6 @@ const highlight = (targetPath) => {
 const logOut = async () => {
   const check = await confirmAlert("確定要登出嗎", "warning");
   if (check) {
-    removeCookie("linanceAc");
     removeCookie("ltk");
     router.push({ name: "Login" });
   }

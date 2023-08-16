@@ -8,6 +8,12 @@
       @setProductInfo="setProductInfo"
       @refresh="getProduct"
     ></BasicTable>
+    <div v-if="!store.isLoading" class="flex justify-center mt-5">
+      <Pagination
+        :totalPage="store.totalPage"
+        v-model:currentPage="store.currentPage"
+      />
+    </div>
   </div>
   <ProductModal ref="productModalRef" :action="action" @refresh="getProduct" />
 </template>
@@ -17,6 +23,8 @@ import BasicTable from "@/components/back/BasicTable.vue";
 import ProductModal from "@/components/back/ProductModal.vue";
 import { useStore } from "@/store/index.js";
 import { useUnits } from "@/composables/units.js";
+import Pagination from "@/components/Pagination.vue";
+import "vue-awesome-paginate/dist/style.css";
 
 const store = useStore();
 const { isEmpty, callApi } = useUnits();
@@ -32,16 +40,26 @@ const productList = ref([]);
 const action = ref("create");
 const productModalRef = ref(null);
 
+watch(
+  () => store.currentPage,
+  (newPage) => {
+    getProduct(newPage);
+  }
+);
+
 onMounted(() => {
   getProduct();
 });
 
-const getProduct = async () => {
+const getProduct = async (currentPage = 1) => {
   store.isLoading = true;
-  const result = await callApi("admin/products", "GET", "", true);
+  const url = `admin/products?page=${currentPage}`;
+  const result = await callApi(url, "GET", "", true);
   if (result.data.success) {
     store.isLoading = false;
     productList.value = result.data.products;
+    store.currentPage = result.data.pagination.current_page;
+    store.totalPage = result.data.pagination.total_pages;
   }
 };
 const setProductInfo = (info) => {

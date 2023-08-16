@@ -15,6 +15,7 @@
           <th v-for="col in columns" :key="col.enName" class="font-bold">
             {{ col.chName }}
           </th>
+          <th class="font-bold">動作</th>
         </tr>
       </thead>
       <tbody>
@@ -47,8 +48,10 @@
 
 <script setup>
 import NoData from "@/components/NoData.vue";
+import { useStore } from "../../store/index.js";
 import { useUnits } from "../../composables/units.js";
 
+const store = useStore();
 const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
 
 defineProps({

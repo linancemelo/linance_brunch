@@ -9,7 +9,11 @@ export default defineConfig({
     host: "0.0.0.0"
   },
   plugins: [
-    vue(),
+    vue({
+      script: {
+        defineModel: true,
+      },
+    }),
     VueDevTools(),
     AutoImport({
       imports: [
