@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-primary text-primary-content xl:px-48">
+  <div class="navbar bg-primary text-primary-content lg:px-48">
     <div class="navbar-start">
       <div class="dropdown">
         <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -36,7 +36,7 @@
       </div>
       <a class="btn btn-ghost normal-case text-xl">Linance</a>
     </div>
-    <div class="navbar-center hidden lg:flex w-">
+    <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         <li>
           <router-link :to="{ name: 'Product' }" :class="highlight('Product')"

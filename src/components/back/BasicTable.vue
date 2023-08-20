@@ -7,8 +7,8 @@
       >新增商品</label
     >
   </div>
-  <div v-if="tableInfo.length > 0" class="overflow-x-auto">
-    <table class="table w-full xl:px-48">
+  <div v-if="tableInfo.length > 0" class="overflow-x-scroll">
+    <table class="table w-full lg:px-40">
       <thead>
         <tr class="text-base text-center">
           <th></th>
@@ -31,7 +31,7 @@
             </span>
             <span v-else>{{ row[col.enName] }}</span>
           </td>
-          <td class="w-1/6">
+          <td class="flex justify-center">
             <button class="btn btn-sm bg-success" @click="editProduct(row)">
               編輯
             </button>
@@ -85,4 +85,8 @@ const deleteProduct = async (row) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+td {
+  padding: .5rem 1rem;
+}
+</style>

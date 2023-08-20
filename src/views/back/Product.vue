@@ -1,6 +1,6 @@
 <template>
   <Loading v-model:active="store.isLoading" />
-  <div class="xl:px-48 mt-4">
+  <div class="xl:px-40 py-4">
     <BasicTable
       v-if="!store.isLoading"
       :columns="columns"
@@ -24,7 +24,6 @@ import ProductModal from "@/components/back/ProductModal.vue";
 import { useStore } from "@/store/index.js";
 import { useUnits } from "@/composables/units.js";
 import Pagination from "@/components/Pagination.vue";
-import "vue-awesome-paginate/dist/style.css";
 
 const store = useStore();
 const { isEmpty, callApi } = useUnits();

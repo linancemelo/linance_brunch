@@ -1,12 +1,12 @@
 <template>
   <input type="checkbox" id="productModal" class="modal-toggle" />
   <div class="modal">
-    <div class="modal-box p-0 max-w-full lg:max-w-[75rem]">
+    <div class="modal-box p-0 max-w-full lg:max-w-[75rem] flex flex-col">
       <header class="px-5 py-3 bg-primary">
         <div class="flex justify-between">
-          <div class="flex self-center">{{ actionMap[action] }}產品</div>
+          <div class="flex self-center text-base-100 text-lg">{{ actionMap[action] }}產品</div>
           <div
-            class="flex self-center cursor-pointer"
+            class="flex self-center cursor-pointer text-base-100 text-lg"
             @click="clickById('productModal')"
           >
             <span class="material-symbols-outlined"> close </span>
@@ -14,7 +14,7 @@
         </div>
       </header>
       <!-- 主要區塊 -->
-      <main class="md:flex text-neutral px-5 py-3">
+      <main class="md:flex text-neutral px-5 py-3 overflow-scroll">
         <div class="md:w-2/3 grid grid-cols-2 gap-2">
           <div class="form-control">
             <label for="title" class="mb-1 text-sm">產品名稱</label>
@@ -134,8 +134,8 @@
           </div>
         </div>
       </main>
-      <footer class="modal-action">
-        <button class="btn" @click="updateProduct">
+      <footer class="modal-action py-3 pr-5">
+        <button class="btn btn-primary" @click="updateProduct">
           {{ actionMap[action] }}
         </button>
         <label for="productModal" class="btn">取消</label>
