@@ -4,7 +4,9 @@
     <div class="modal-box p-0 max-w-full lg:max-w-[75rem] flex flex-col">
       <header class="px-5 py-3 bg-primary">
         <div class="flex justify-between">
-          <div class="flex self-center text-base-100 text-lg">{{ actionMap[action] }}產品</div>
+          <div class="flex self-center text-base-100 text-lg">
+            {{ actionMap[action] }}產品
+          </div>
           <div
             class="flex self-center cursor-pointer text-base-100 text-lg"
             @click="clickById('productModal')"
@@ -14,7 +16,7 @@
         </div>
       </header>
       <!-- 主要區塊 -->
-      <main class="md:flex text-neutral px-5 py-3 overflow-scroll">
+      <main class="md:flex text-neutral px-5 py-3 overflow-auto">
         <div class="md:w-2/3 grid grid-cols-2 gap-2">
           <div class="form-control">
             <label for="title" class="mb-1 text-sm">產品名稱</label>
@@ -28,13 +30,18 @@
           </div>
           <div class="form-control">
             <label for="category" class="mb-1 text-sm">種類</label>
-            <input
-              type="text"
-              id="category"
-              class="w-full input input-sm input-bordered bg-white"
-              v-model.trim="productInfo.category"
-              required
-            />
+            <select
+              class="select select-sm select-bordered"
+              v-model="productInfo.category"
+            >
+              <option
+                :value="option.enName"
+                v-for="option in categoryList"
+                :key="option.enName"
+              >
+                {{ option.chName }}
+              </option>
+            </select>
           </div>
           <div class="form-control">
             <label for="origin_price" class="mb-1 text-sm">原價</label>
@@ -130,7 +137,7 @@
               class="bg-white"
               @change="uploadImg"
             />
-              <img :src="productInfo.imageUrl" alt="" class="mt-2">
+            <img :src="productInfo.imageUrl" alt="" class="mt-2" />
           </div>
         </div>
       </main>
@@ -154,6 +161,7 @@ const { isEmpty, getCookie, callApi, clickById, simpleAlert, confirmAlert } =
 
 const props = defineProps({
   action: String,
+  categoryList: Array,
 });
 const emits = defineEmits(["refresh"]);
 
@@ -161,6 +169,7 @@ const actionMap = {
   create: "新增",
   edit: "編輯",
 };
+
 const productInfo = ref({
   id: null,
   title: "",
@@ -217,8 +226,8 @@ const uploadImg = async () => {
     },
   });
   if (result.data.success) {
-      productInfo.value.imageUrl = result.data.imageUrl;
-      imgFileInputRef.value.value = "";
+    productInfo.value.imageUrl = result.data.imageUrl;
+    imgFileInputRef.value.value = "";
   }
 };
 
