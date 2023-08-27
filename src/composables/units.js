@@ -37,7 +37,7 @@ export const useUnits = () => {
    * @param icon warning, error, success, info, question
    * @param timer 顯示時間(時間到消失，單位為毫秒)
    */
-  const errorAlert = (title, text, icon, html, button , timer) => {
+  const errorAlert = (title, text, icon, html, button, timer) => {
     const swalSetting = {
       title: title,
       text: text,
@@ -61,23 +61,21 @@ export const useUnits = () => {
    * @param icon
    * @returns {Promise<boolean>}
    */
-  const confirmAlert = async(title, icon) => {
+  const confirmAlert = async (title, icon) => {
     let check = false;
-    await Swal
-        .fire({
-          title: title,
-          text: "",
-          icon: icon,
-          showConfirmButton: true,
-          showCancelButton: true,
-          confirmButtonText: "確定",
-          confirmButtonColor: "#007bff",
-          cancelButtonText: "取消",
-          cancelButtonColor: "gray",
-        })
-        .then((result) => {
-          check = result.isConfirmed;
-        });
+    await Swal.fire({
+      title: title,
+      text: "",
+      icon: icon,
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "確定",
+      confirmButtonColor: "#007bff",
+      cancelButtonText: "取消",
+      cancelButtonColor: "gray",
+    }).then((result) => {
+      check = result.isConfirmed;
+    });
     return check;
   };
   /**
@@ -115,6 +113,9 @@ export const useUnits = () => {
   const clickById = (id) => {
     document.getElementById(id).click();
   };
+  const findObjInArr = (array, targetKey, targetValue) => {
+    return array.find((item) => item[targetKey] === targetValue);
+  };
 
   return {
     isEmpty,
@@ -126,5 +127,6 @@ export const useUnits = () => {
     getCookie,
     removeCookie,
     clickById,
+    findObjInArr,
   };
 };

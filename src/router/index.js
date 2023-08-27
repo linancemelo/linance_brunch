@@ -3,6 +3,10 @@ import { useStore } from "../store";
 
 const routes = [
   {
+    path: "/",
+    redirect: "/Home"
+  },
+  {
     path: "/Login",
     component: () => import("@/views/back/Login.vue"),
     name: "Login",
@@ -21,7 +25,7 @@ const routes = [
         component: () => import("@/views/back/Product.vue"),
         name: "Product",
         meta: {
-          title: "Linance | 產品列表"
+          title: "後台 | 產品列表"
         }
       },
       {
@@ -29,10 +33,26 @@ const routes = [
         component: () => import("@/views/back/Order.vue"),
         name: "Order",
         meta: {
-          title: "Linance | 訂單紀錄"
+          title: "後台 | 訂單紀錄"
         }
       }
     ]
+  },
+  {
+    path: "/Home",
+    component: () => import("@/views/front/Home.vue"),
+    name: "Home",
+    meta: {
+      title: "Linance | 歡迎"
+    }
+  },
+  {
+    path: "/Menu",
+    component: () => import("@/views/front/Menu.vue"),
+    name: "Menu",
+    meta: {
+      title: "Linance | 菜單"
+    }
   }
 ];
 
