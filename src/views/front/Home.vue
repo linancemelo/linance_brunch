@@ -1,6 +1,8 @@
 <template>
   <Navbar />
-  <div>123</div>
+  <div>
+    <img src="../../assets/img/menu_bg.jpg" alt="" />
+  </div>
 </template>
 
 <script setup>

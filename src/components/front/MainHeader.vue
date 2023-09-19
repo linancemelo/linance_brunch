@@ -26,7 +26,7 @@ defineProps({
   font-size: 2.5rem;
   font-weight: bold;
   color: #fff;
-  background: url("/assets/img/menu_center_bg.jpg") no-repeat;
+  background: url("@/assets/img/menu_center_bg.jpg") no-repeat;
   background-size: cover;
 }
 </style>

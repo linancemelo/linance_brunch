@@ -5,7 +5,6 @@
       v-if="!store.isLoading"
       :columns="columns"
       :tableInfo="productList"
-      :categoryList="categoryList"
       @setProductInfo="setProductInfo"
       @refresh="getProduct"
     ></BasicTable>
@@ -16,7 +15,7 @@
       />
     </div>
   </div>
-  <ProductModal ref="productModalRef" :action="action" :categoryList="categoryList" @refresh="getProduct" />
+  <ProductModal ref="productModalRef" :action="action" @refresh="getProduct" />
 </template>
 
 <script setup>
@@ -39,16 +38,6 @@ const columns = [
 const productList = ref([]);
 const action = ref("create");
 const productModalRef = ref(null);
-const categoryList = [
-    { chName: "美味蛋餅", enName: "chineseOmelet" },
-    { chName: "厚蛋吐司", enName: "toast" },
-    { chName: "漢堡湯種", enName: "hamburger" },
-    { chName: "台式炒飯", enName: "friedRice" },
-    { chName: "鐵板麵", enName: "noodle" },
-    { chName: "韓式小吃", enName: "korea" },
-    { chName: "點心佳餚", enName: "snack" },
-    { chName: "精選飲料", enName: "drink" },
-];
 
 watch(
   () => store.currentPage,

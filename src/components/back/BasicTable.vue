@@ -7,7 +7,7 @@
       >新增商品</label
     >
   </div>
-  <div v-if="tableInfo.length > 0" class="overflow-x-auto">
+  <div v-if="tableInfo.length > 0" class="overflow-x-scroll">
     <table class="table w-full lg:px-40">
       <thead>
         <tr class="text-base text-center">
@@ -28,11 +28,6 @@
           <td v-for="col in columns" :key="col.id">
             <span v-if="col.enName === 'is_enabled'">
               {{ row[col.enName] === 1 ? "有" : "無" }}
-            </span>
-            <span v-else-if="col.enName === 'category'">
-              {{
-                findObjInArr(categoryList, "enName", row[col.enName])?.chName
-              }}
             </span>
             <span v-else>{{ row[col.enName] }}</span>
           </td>
@@ -57,8 +52,7 @@ import { useStore } from "../../store/index.js";
 import { useUnits } from "../../composables/units.js";
 
 const store = useStore();
-const { callApi, clickById, confirmAlert, simpleAlert, findObjInArr } =
-  useUnits();
+const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
 
 defineProps({
   columns: {
@@ -66,10 +60,6 @@ defineProps({
     default: () => [],
   },
   tableInfo: {
-    type: Array,
-    default: () => [],
-  },
-  categoryList: {
     type: Array,
     default: () => [],
   },
@@ -97,6 +87,6 @@ const deleteProduct = async (row) => {
 
 <style scoped>
 td {
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
 }
 </style>

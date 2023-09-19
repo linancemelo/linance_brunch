@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="sticky navbar text-primary-content lg:px-40 xl:px-50 2xl:px-72 justify-between"
-  >
+  <header class="sticky navbar text-primary-content lg:px-40 xl:px-50 2xl:px-72 justify-between">
     <div class="">
       <div class="dropdown">
         <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -26,7 +24,7 @@
         >
           <li>
             <router-link :to="{ name: 'Menu' }" :class="highlight('Menu')"
-              >菜單介紹</router-link
+              >菜單列表</router-link
             >
           </li>
           <li>
@@ -36,8 +34,8 @@
           </li>
         </ul>
       </div>
-      <router-link :to="{ name: 'Home' }" class="btn btn-ghost normal-case font-bold text-4xl text-primary"
-        >Linance</router-link
+      <a class="btn btn-ghost normal-case font-bold text-4xl text-primary"
+        >Linance</a
       >
     </div>
     <div class="navbar-center hidden lg:flex justify-between">
@@ -47,7 +45,7 @@
             class="text-lg"
             :to="{ name: 'Menu' }"
             :class="highlight('Menu')"
-            >菜單介紹</router-link
+            >產品列表</router-link
           >
         </li>
         <li>

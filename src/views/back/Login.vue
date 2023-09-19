@@ -3,7 +3,7 @@
     <div class="m-auto px-3 py-2">
       <div class="card md:card-side bg-white">
         <figure class="sm:display">
-          <img src="/assets/img/logo.png" alt="" />
+          <img src="../../assets/img/logo.png" alt="" />
         </figure>
         <div class="card-body md:w-2/3 text-black md:py-20">
           <h3 class="text-3xl font-semibold text-center mb-5">登入後台</h3>
@@ -119,7 +119,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .login-container {
-  background: url("/assets/img/login_bg.jpg") no-repeat;
+  background: url("@/assets/img/login_bg.jpg") no-repeat;
   background-size: cover;
   display: flex;
   place-items: center;
