@@ -5,7 +5,6 @@ import { createPinia } from "pinia";
 import "@popperjs/core";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/css/index.css";
-import "virtual:uno.css";
 
 const app = createApp(App);
 const pinia = createPinia();
