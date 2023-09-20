@@ -1,6 +1,9 @@
 <template>
-  <Navbar/>
-  <router-view/>
+  <div data-theme="dracula">
+    <Navbar>
+      <router-view />
+    </Navbar>
+  </div>
 </template>
 
 <script setup>
@@ -12,11 +15,11 @@ a:hover {
 }
 a:active {
   color: #fff !important;
-  background: #FEA01C !important;
+  background: #fea01c !important;
 }
 a:focus {
   color: #fff !important;
-  background: #FEA01C !important;
+  background: #fea01c !important;
 }
 li {
   color: #fff;

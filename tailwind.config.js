@@ -22,6 +22,9 @@ module.exports = {
           error: "#f85454",
         },
       },
+      "light",
+      "dark",
+      "dracula",
     ],
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components

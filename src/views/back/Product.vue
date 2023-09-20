@@ -1,18 +1,13 @@
 <template>
-  <Loading v-model:active="store.isLoading" />
-  <div class="xl:px-40 py-4">
-    <BasicTable
-      v-if="!store.isLoading"
-      :columns="columns"
-      :tableInfo="productList"
-      @setProductInfo="setProductInfo"
-      @refresh="getProduct"
-    ></BasicTable>
-    <div v-if="!store.isLoading" class="flex justify-center mt-5">
-      <Pagination
-        :totalPage="store.totalPage"
-        v-model:currentPage="store.currentPage"
-      />
+  <div class="md:px-10 xl:px-30 bg-gray-300 h-full w-full">
+    <Loading v-model:active="store.isLoading" />
+    <div v-if="!store.isLoading" class="py-5 md:py-10 h-full">
+      <BasicTable
+        :columns="columns"
+        :tableInfo="productList"
+        @setProductInfo="setProductInfo"
+        @refresh="getProduct"
+      ></BasicTable>
     </div>
   </div>
   <ProductModal ref="productModalRef" :action="action" @refresh="getProduct" />
@@ -23,7 +18,6 @@ import BasicTable from "@/components/back/BasicTable.vue";
 import ProductModal from "@/components/back/ProductModal.vue";
 import { useStore } from "@/store/index.js";
 import { useUnits } from "@/composables/units.js";
-import Pagination from "@/components/Pagination.vue";
 
 const store = useStore();
 const { isEmpty, callApi } = useUnits();
