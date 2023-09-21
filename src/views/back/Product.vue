@@ -1,7 +1,7 @@
 <template>
-  <div class="md:px-10 xl:px-30 bg-gray-300 h-full w-full">
+  <div class="p-3 2xl:p-8 bg-gray-300 h-full w-full">
     <Loading v-model:active="store.isLoading" />
-    <div v-if="!store.isLoading" class="py-5 md:py-10 h-full">
+    <div v-if="!store.isLoading" class="py-2 mb-2 h-full flex flex-col justify-start bg-white rounded-lg">
       <BasicTable
         :columns="columns"
         :tableInfo="productList"

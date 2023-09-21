@@ -37,13 +37,13 @@ const pagesNumToArr = computed(() => {
     <div v-if="totalPage > 1" class="join justify-center">
         <button
                 v-show="curPage !== 1"
-                class="join-item btn btn-sm bg-primary text-white"
+                class="join-item btn btn-sm bg-accent text-white"
                 @click="curPage -= 1"
         >«</button>
         <button
                 v-for="(num, index) of pagesNumToArr"
                 :key="index"
-                class="join-item btn btn-sm bg-primary text-white"
+                class="join-item btn btn-sm bg-accent text-white"
                 :class="[
         curPage === num ? 'btn-active' : '',
         num === '...' ? 'btn-disabled cursor-default' : 'cursor-pointer',
@@ -52,7 +52,7 @@ const pagesNumToArr = computed(() => {
         >{{ num }}</button>
         <button
                 v-show="curPage !== props.totalPage"
-                class="join-item btn btn-sm bg-primary text-white"
+                class="join-item btn btn-sm bg-accent text-white"
                 @click="curPage += 1"
         >»</button>
     </div>
@@ -61,11 +61,11 @@ const pagesNumToArr = computed(() => {
 <style scoped>
 .btn-active {
     background-color: white;
-    border-color: theme("colors.primary");
-    color: theme("colors.primary");
+    border-color: theme("colors.accent");
+    color: theme("colors.accent");
 }
 .btn.btn-disabled {
     background-color: transparent;
-    color: theme("colors.primary");
+    color: theme("colors.accent");
 }
 </style>

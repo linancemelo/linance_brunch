@@ -1,5 +1,5 @@
 <template>
-  <div class="text-end w-full pr-4">
+  <div class="text-end w-full pr-2 mb-2">
     <label
       for="productModal"
       class="btn btn-sm bg-warning"
@@ -7,42 +7,50 @@
       >新增商品</label
     >
   </div>
-  <div v-if="tableInfo.length > 0" class="overflow-x-auto h-full">
-    <table class="table w-full lg:px-40">
-      <thead>
-        <tr class="text-base text-center">
-          <th></th>
-          <th v-for="col in columns" :key="col.enName" class="font-bold">
-            {{ col.chName }}
-          </th>
-          <th class="font-bold">動作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(row, index) in tableInfo"
-          :key="row.id"
-          class="text-base text-center text-neutral"
-        >
-          <td>{{ index + 1 }}</td>
-          <td v-for="col in columns" :key="col.id">
-            <span v-if="col.enName === 'is_enabled'">
-              {{ row[col.enName] === 1 ? "有" : "無" }}
-            </span>
-            <span v-else>{{ row[col.enName] }}</span>
-          </td>
-          <td class="flex justify-end">
-            <button class="btn btn-sm bg-success" @click="editProduct(row)">
-              編輯
-            </button>
-            <button class="btn btn-sm bg-error" @click="deleteProduct(row)">
-              刪除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="flex justify-center mt-10 mb-20">
+  <div v-if="tableInfo.length > 0" class="h-full overflow-y-auto">
+    <div class="">
+      <table class="table w-full lg:px-40">
+        <thead>
+          <tr class="text-base text-center">
+            <th></th>
+            <th v-for="col in columns" :key="col.enName" class="font-bold">
+              {{ col.chName }}
+            </th>
+            <th class="font-bold text-center">動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(row, index) in tableInfo"
+            :key="row.id"
+            class="text-base text-center text-neutral"
+          >
+            <td>{{ index + 1 }}</td>
+            <td v-for="col in columns" :key="col.id">
+              <span v-if="col.enName === 'is_enabled'">
+                {{ row[col.enName] === 1 ? "有" : "無" }}
+              </span>
+              <span v-else>{{ row[col.enName] }}</span>
+            </td>
+            <td class="flex justify-center">
+              <button
+                class="btn btn-sm w-8 h-8 mr-2 bg-success"
+                @click="editProduct(row)"
+              >
+                <span class="material-symbols-outlined"> edit </span>
+              </button>
+              <button
+                class="btn btn-sm w-8 h-8 bg-error"
+                @click="deleteProduct(row)"
+              >
+                <span class="material-symbols-outlined"> delete </span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="flex justify-center m-10">
       <Pagination
         :totalPage="store.totalPage"
         v-model:currentPage="store.currentPage"
@@ -94,6 +102,6 @@ const deleteProduct = async (row) => {
 
 <style scoped>
 td {
-  padding: 0.5rem 1rem;
+  padding: .25rem;
 }
 </style>

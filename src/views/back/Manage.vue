@@ -1,5 +1,5 @@
 <template>
-  <div data-theme="dracula">
+  <div>
     <Navbar>
       <router-view />
     </Navbar>
