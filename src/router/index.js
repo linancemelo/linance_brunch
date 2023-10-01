@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { useStore } from "../store";
+import { useStore } from "@/store";
 
 const routes = [
   {
@@ -61,11 +61,11 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach(async(to, from) => {
+router.beforeEach(async (to) => {
   document.title = to.meta.title;
   const store = useStore();
   if (to.path.indexOf("Manage") >= 0) {
-    const isAuthenticated = await store.verifyManagement();
+    const isAuthenticated = store.verifyManagement();
     if (!isAuthenticated) return { name: "Login" };
     store.setUserInfo();
   }

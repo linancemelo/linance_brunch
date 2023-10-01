@@ -1,3 +1,63 @@
+<script setup>
+import { useUnits } from "@/composables/units.ts";
+import { useStore } from "@/store/index.js";
+
+const router = useRouter();
+const store = useStore();
+const { setCookie, removeCookie, getCookie, simpleAlert } = useUnits();
+
+const userInfo = ref({
+  username: "",
+  password: "liangxu04vu6",
+});
+const rememberAc = ref(false);
+const isLoading = ref(false);
+
+onMounted(() => {
+  rememberAc.value = getCookie("rememberAc");
+  userInfo.value.username = getCookie("rememberAc")
+      ? getCookie("linanceAc")
+      : "";
+});
+// 登入
+const login = () => {
+  isLoading.value = true;
+  store
+      .request({
+        url: "https://vue3-course-api.hexschool.io/admin/signin",
+        method: "POST",
+        data: userInfo.value,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(async (result) => {
+        if (result.data.success) {
+          setCookie("ltk", result.data.token, 0);
+          setCookie("linanceAc", userInfo.value.username, 7);
+          if (rememberAc.value) {
+            setCookie("rememberAc", rememberAc.value, 7);
+          } else {
+            removeCookie("rememberAc");
+            removeCookie("linanceAc");
+          }
+          router.push({ name: "Manage" });
+        } else {
+          simpleAlert(`${result.data.message}`, "error");
+        }
+        isLoading.value = false;
+      })
+      .catch((err) => console.log(err));
+};
+
+onMounted(() => {
+  if (getCookie("rememberAc") && getCookie("linanceAc")) {
+    rememberAc.value = getCookie("rememberAc");
+    userInfo.value.username = getCookie("linanceAc");
+  }
+});
+</script>
+
 <template>
   <div class="login-container">
     <div class="m-auto px-3 py-2">
@@ -56,66 +116,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useUnits } from "@/composables/units.js";
-import { useStore } from "@/store/index.js";
-
-const router = useRouter();
-const store = useStore();
-const { setCookie, removeCookie, getCookie, simpleAlert } = useUnits();
-
-const userInfo = ref({
-  username: "",
-  password: "liangxu04vu6",
-});
-const rememberAc = ref(false);
-const isLoading = ref(false);
-
-onMounted(() => {
-  rememberAc.value = getCookie("rememberAc");
-  userInfo.value.username = getCookie("rememberAc")
-    ? getCookie("linanceAc")
-    : "";
-});
-// 登入
-const login = () => {
-  isLoading.value = true;
-  store
-    .request({
-      url: "https://vue3-course-api.hexschool.io/admin/signin",
-      method: "POST",
-      data: userInfo.value,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(async (result) => {
-      if (result.data.success) {
-        setCookie("ltk", result.data.token, 0);
-        setCookie("linanceAc", userInfo.value.username, 7);
-        if (rememberAc.value) {
-          setCookie("rememberAc", rememberAc.value, 7);
-        } else {
-          removeCookie("rememberAc");
-          removeCookie("linanceAc");
-        }
-        router.push({ name: "Manage" });
-      } else {
-        simpleAlert(`${result.data.message}`, "error");
-      }
-      isLoading.value = false;
-    })
-    .catch((err) => console.log(err));
-};
-
-onMounted(() => {
-  if (getCookie("rememberAc") && getCookie("linanceAc")) {
-    rememberAc.value = getCookie("rememberAc");
-    userInfo.value.username = getCookie("linanceAc");
-  }
-});
-</script>
 
 <style scoped lang="scss">
 .login-container {

@@ -93,7 +93,7 @@
 
 <script setup>
 import { useStore } from "@/store/index.js";
-import { useUnits } from "@/composables/units.js";
+import { useUnits } from "@/composables/units.ts";
 
 const store = useStore();
 const route = useRoute();

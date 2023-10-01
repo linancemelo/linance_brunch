@@ -1,6 +1,6 @@
-import Swal from "sweetalert2";
 import { useStore } from "@/store/index.js";
 import moment from "moment";
+import Swal, { SweetAlertIcon, SweetAlertOptions } from "sweetalert2";
 import { useCookies } from "vue3-cookies";
 
 export const useUnits = () => {
@@ -11,7 +11,7 @@ export const useUnits = () => {
    * 查看data是否為空
    * @param {*} data
    */
-  const isEmpty = (data) => {
+  const isEmpty = (data: any) => {
     return (
       typeof data !== "number" &&
       typeof data !== "boolean" &&
@@ -19,7 +19,12 @@ export const useUnits = () => {
     );
   };
   // https://vue3-course-api.hexschool.io/api/liang-api/admin/products/
-  const callApi = (url, method, param, isVerify = false) => {
+  const callApi = (
+    url: string,
+    method: string,
+    param: any,
+    isVerify = false
+  ) => {
     return store.request({
       url: `${import.meta.env.VITE_MY_API}/${url}`,
       method: method,
@@ -35,14 +40,23 @@ export const useUnits = () => {
    * @param title 標題
    * @param text 內容
    * @param icon warning, error, success, info, question
+   * @param html
+   * @param button
    * @param timer 顯示時間(時間到消失，單位為毫秒)
    */
-  const errorAlert = (title, text, icon, html, button, timer) => {
-    const swalSetting = {
-      title: title,
-      text: text,
-      icon: icon,
-      html: html,
+  const errorAlert = (
+    title: string,
+    text: string,
+    icon: SweetAlertIcon,
+    html: string,
+    button: boolean,
+    timer: number
+  ) => {
+    const swalSetting: SweetAlertOptions = {
+      title,
+      text,
+      icon,
+      html,
       showConfirmButton: button,
       showCancelButton: false,
       heightAuto: false,
@@ -52,7 +66,7 @@ export const useUnits = () => {
     }
     Swal.fire(swalSetting);
   };
-  const simpleAlert = (title, icon) => {
+  const simpleAlert = (title: string, icon: SweetAlertIcon) => {
     errorAlert(title, "", icon, "", true, -1);
   };
   /**
@@ -61,7 +75,7 @@ export const useUnits = () => {
    * @param icon
    * @returns {Promise<boolean>}
    */
-  const confirmAlert = async (title, icon) => {
+  const confirmAlert = async (title: string, icon: SweetAlertIcon) => {
     let check = false;
     await Swal.fire({
       title: title,
@@ -82,7 +96,7 @@ export const useUnits = () => {
    * 解析token
    * @param {*} token
    */
-  const parseJwt = (token) => {
+  const parseJwt = (token: string) => {
     const base64Url = token.split(".")[1];
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
     const jsonPayload = decodeURIComponent(
@@ -95,25 +109,29 @@ export const useUnits = () => {
     );
     return JSON.parse(jsonPayload);
   };
-  const setCookie = (name, value, days) => {
-    const deadline = moment().add(days, "days").endOf("days");
+  const setCookie = (name: string, value: string, days: number) => {
+    const deadline: number = moment().add(days, "days").endOf("days").valueOf();
     const date = new Date();
     date.setTime(deadline);
     cookies.set(name, value, date);
   };
-  const getCookie = (cookieName) => {
+  const getCookie = (cookieName: string) => {
     if (cookies.isKey(cookieName) && cookies.get(cookieName)) {
       return cookies.get(cookieName);
     }
     return "";
   };
-  const removeCookie = (cookieName) => {
-    cookies.remove(cookieName, null);
+  const removeCookie = (cookieName: string) => {
+    cookies.remove(cookieName, "");
   };
-  const clickById = (id) => {
-    document.getElementById(id).click();
+  const clickById = (id: string) => {
+    (document.getElementById(id) as HTMLElement).click();
   };
-  const findObjInArr = (array, targetKey, targetValue) => {
+  const findObjInArr = (
+    array: any[],
+    targetKey: string,
+    targetValue: string | number
+  ) => {
     return array.find((item) => item[targetKey] === targetValue);
   };
 

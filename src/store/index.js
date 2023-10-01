@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import Axios from "axios";
 import moment from "moment";
-import { useUnits } from "@/composables/units.js";
+import { useUnits } from "@/composables/units.ts";
 
 export const useStore = defineStore("Main", () => {
   const { getCookie, parseJwt } = useUnits();
