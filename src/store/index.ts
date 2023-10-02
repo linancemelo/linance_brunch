@@ -1,13 +1,15 @@
 import { defineStore } from "pinia";
 import Axios, { AxiosResponse } from "axios";
 import moment from "moment";
+import { Ref } from "vue";
 import { useUnits } from "@/composables/units.ts";
+import type { UserInfo } from "@/types/store.ts";
 
 export const useStore = defineStore("Main", () => {
     const { getCookie, parseJwt } = useUnits();
     // state
     const isLoading = ref(false);
-    const userInfo = ref({});
+    const userInfo: Ref<UserInfo> = ref({} as UserInfo);
     const currentPage = ref(1);
     const totalPage = ref(1);
     // actions

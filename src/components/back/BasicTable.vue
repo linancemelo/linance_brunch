@@ -1,3 +1,40 @@
+<script setup lang="ts">
+import NoData from "@/components/NoData.vue";
+import Pagination from "@/components/Pagination.vue";
+import { useStore } from "@/store";
+import { useUnits } from "@/composables/units.ts";
+import type { Props } from "@/types/components/basicTable.ts";
+import type { ProductInfo } from "@/types/product.ts";
+
+const store = useStore();
+const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
+
+withDefaults(defineProps<Props>(), {
+  columns: () => [],
+  tableInfo: () => [],
+});
+
+const emits = defineEmits(["refresh", "setProductInfo"]);
+
+const editProduct = (row: ProductInfo) => {
+    emits("setProductInfo", row);
+    clickById("productModal");
+};
+const deleteProduct = async (row: ProductInfo) => {
+    const { id, title } = row;
+    const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
+    if (check) {
+        const result = await callApi(`admin/product/${id}`, "DELETE", {}, true);
+        if (result.data.success) {
+            simpleAlert("刪除成功", "success");
+            emits("refresh");
+        } else {
+            simpleAlert("刪除失敗", "success");
+        }
+    }
+};
+</script>
+
 <template>
   <div class="text-end w-full pr-2 mb-2">
     <label
@@ -26,7 +63,7 @@
             class="text-base text-center text-neutral"
           >
             <td>{{ index + 1 }}</td>
-            <td v-for="col in columns" :key="col.id">
+            <td v-for="(col, index) in columns" :key="index">
               <span v-if="col.enName === 'is_enabled'">
                 {{ row[col.enName] === 1 ? "有" : "無" }}
               </span>
@@ -60,48 +97,8 @@
   <NoData v-else content="目前無任何產品" />
 </template>
 
-<script setup>
-import NoData from "@/components/NoData.vue";
-import Pagination from "@/components/Pagination.vue";
-import { useStore } from "@/store";
-import { useUnits } from "@/composables/units.ts";
-
-const store = useStore();
-const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
-
-defineProps({
-  columns: {
-    type: Array,
-    default: () => [],
-  },
-  tableInfo: {
-    type: Array,
-    default: () => [],
-  },
-});
-const emits = defineEmits(["refresh", "setProductInfo"]);
-
-const editProduct = (row) => {
-  emits("setProductInfo", row);
-  clickById("productModal");
-};
-const deleteProduct = async (row) => {
-  const { id, title } = row;
-  const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
-  if (check) {
-    const result = await callApi(`admin/product/${id}`, "DELETE", {}, true);
-    if (result.data.success) {
-      simpleAlert("刪除成功", "success");
-      emits("refresh");
-    } else {
-      simpleAlert("刪除失敗", "success");
-    }
-  }
-};
-</script>
-
 <style scoped>
 td {
-  padding: .25rem;
+  padding: 0.25rem;
 }
 </style>

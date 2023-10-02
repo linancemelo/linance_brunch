@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Navbar from "@/components/back/Navbar.vue";
+</script>
+
 <template>
   <div>
     <Navbar>
@@ -6,9 +10,6 @@
   </div>
 </template>
 
-<script setup>
-import Navbar from "@/components/back/Navbar.vue";
-</script>
 <style scoped>
 a:hover {
   color: #fff !important;

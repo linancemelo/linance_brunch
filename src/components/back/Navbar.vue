@@ -1,3 +1,24 @@
+<script setup lang="ts">
+import { useStore } from "@/store";
+import { useUnits } from "@/composables/units.ts";
+
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+const { removeCookie, confirmAlert } = useUnits();
+
+const highlight = (targetPath: string) => {
+    return targetPath === route.name ? "active" : "";
+};
+const logOut = async () => {
+    const check = await confirmAlert("確定要登出嗎", "warning");
+    if (check) {
+        removeCookie("ltk");
+        router.push({ name: "Login" });
+    }
+};
+</script>
+
 <template>
   <div class="drawer lg:drawer-open h-screen">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
@@ -90,27 +111,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useStore } from "@/store";
-import { useUnits } from "@/composables/units.ts";
-
-const store = useStore();
-const route = useRoute();
-const router = useRouter();
-const { removeCookie, confirmAlert } = useUnits();
-
-const highlight = (targetPath) => {
-  return targetPath === route.name ? "active" : "";
-};
-const logOut = async () => {
-  const check = await confirmAlert("確定要登出嗎", "warning");
-  if (check) {
-    removeCookie("ltk");
-    router.push({ name: "Login" });
-  }
-};
-</script>
 
 <style scoped>
 @media (min-width: 1024px) {

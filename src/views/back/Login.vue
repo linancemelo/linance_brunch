@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUnits } from "@/composables/units.ts";
 import Axios from "axios";
 
@@ -13,7 +13,7 @@ const rememberAc = ref(false);
 const isLoading = ref(false);
 
 onMounted(() => {
-  rememberAc.value = getCookie("rememberAc");
+  rememberAc.value = getCookie("rememberAc") === "true";
   userInfo.value.username = getCookie("rememberAc")
     ? getCookie("linanceAc")
     : "";
@@ -34,7 +34,7 @@ const login = () => {
         setCookie("ltk", result.data.token, 0);
         setCookie("linanceAc", userInfo.value.username, 7);
         if (rememberAc.value) {
-          setCookie("rememberAc", rememberAc.value, 7);
+          setCookie("rememberAc", rememberAc.value.toString(), 7);
         } else {
           removeCookie("rememberAc");
           removeCookie("linanceAc");
@@ -47,13 +47,6 @@ const login = () => {
     })
     .catch((err) => console.log(err));
 };
-
-onMounted(() => {
-  if (getCookie("rememberAc") && getCookie("linanceAc")) {
-    rememberAc.value = getCookie("rememberAc");
-    userInfo.value.username = getCookie("linanceAc");
-  }
-});
 </script>
 
 <template>
@@ -94,7 +87,6 @@ onMounted(() => {
                 id="rememberAc"
                 v-model="rememberAc"
                 type="checkbox"
-                checked="checked"
                 class="checkbox checkbox-sm checkbox-error me-1"
               />
               <label for="rememberAc" class="label-text">記住帳號</label>

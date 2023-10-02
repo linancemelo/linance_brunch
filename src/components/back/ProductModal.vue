@@ -1,10 +1,93 @@
+<script setup lang="ts">
+import Axios from "axios";
+import { useUnits } from "@/composables/units.ts";
+
+const { isEmpty, getCookie, callApi, clickById, simpleAlert, confirmAlert } = useUnits();
+
+const props = withDefaults(defineProps<{ action: "create" | "edit" }>(), {
+  action: "create",
+});
+const emits = defineEmits(["refresh"]);
+
+const actionMap = {
+  create: "新增",
+  edit: "編輯",
+};
+const productInfo = ref({
+  id: null,
+  title: "",
+  category: "",
+  origin_price: null,
+  price: null,
+  unit: "",
+  description: "",
+  content: "",
+  is_enabled: 1,
+  imageUrl: "",
+  imagesUrl: [],
+});
+const initProductInfo = { ...productInfo.value };
+const imgFileInputRef = ref<any>(null);
+
+watch(productInfo, (newVal) => {
+  if (isEmpty(newVal)) productInfo.value = initProductInfo;
+});
+
+const updateProduct = async () => {
+  const actionName = actionMap[props.action];
+  const check = await confirmAlert(`確定要${actionName}嗎`, "warning");
+  if (check) {
+    const params = {
+      data: productInfo.value,
+    };
+    let baseUrl = "admin/product";
+    let method = "POST";
+    if (props.action === "edit") {
+      baseUrl += `/${productInfo.value.id}`;
+      method = "PUT";
+    }
+    const result = await callApi(baseUrl, method, params, true);
+    if (result.data.success) {
+      clickById("productModal");
+      simpleAlert(`${actionName}成功`, "success");
+      emits("refresh");
+    } else {
+      simpleAlert(`${actionName}失敗`, "error");
+    }
+  }
+};
+const uploadImg = async () => {
+  const imgFile = imgFileInputRef.value.files[0];
+  const formData = new FormData();
+  formData.append("file-to-upload", imgFile);
+  const result = await Axios({
+    url: `${import.meta.env.VITE_MY_API}/admin/upload`,
+    method: "POST",
+    data: formData,
+    headers: {
+      Authorization: getCookie("ltk"),
+    },
+  });
+  if (result.data.success) {
+    productInfo.value.imageUrl = result.data.imageUrl;
+    imgFileInputRef.value.value = "";
+  }
+};
+
+defineExpose({
+  productInfo,
+});
+</script>
+
 <template>
   <input type="checkbox" id="productModal" class="modal-toggle" />
   <div class="modal">
     <div class="modal-box p-0 max-w-full lg:max-w-[75rem] flex flex-col">
       <header class="px-5 py-3 bg-accent">
         <div class="flex justify-between">
-          <div class="flex self-center text-base-100 text-lg">{{ actionMap[action] }}產品</div>
+          <div class="flex self-center text-base-100 text-lg">
+            {{ actionMap[action] }}產品
+          </div>
           <div
             class="flex self-center cursor-pointer text-base-100 text-lg"
             @click="clickById('productModal')"
@@ -130,7 +213,7 @@
               class="bg-white"
               @change="uploadImg"
             />
-              <img :src="productInfo.imageUrl" alt="" class="mt-2">
+            <img :src="productInfo.imageUrl" alt="" class="mt-2" />
           </div>
         </div>
       </main>
@@ -143,88 +226,5 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useStore } from "@/store";
-import { useUnits } from "@/composables/units.ts";
-
-const store = useStore();
-const { isEmpty, getCookie, callApi, clickById, simpleAlert, confirmAlert } =
-  useUnits();
-
-const props = defineProps({
-  action: String,
-});
-const emits = defineEmits(["refresh"]);
-
-const actionMap = {
-  create: "新增",
-  edit: "編輯",
-};
-const productInfo = ref({
-  id: null,
-  title: "",
-  category: "",
-  origin_price: null,
-  price: null,
-  unit: "",
-  description: "",
-  content: "",
-  is_enabled: 1,
-  imageUrl: "",
-  imagesUrl: [],
-});
-const initProductInfo = { ...productInfo.value };
-const imgFileInputRef = ref(null);
-
-watch(productInfo, (newVal) => {
-  if (isEmpty(newVal)) productInfo.value = initProductInfo;
-});
-
-const updateProduct = async () => {
-  const actionName = actionMap[props.action];
-  const check = await confirmAlert(`確定要${actionName}嗎`, "warning");
-  if (check) {
-    const params = {
-      data: productInfo.value,
-    };
-    let baseUrl = "admin/product";
-    let method = "POST";
-    if (props.action === "edit") {
-      baseUrl += `/${productInfo.value.id}`;
-      method = "PUT";
-    }
-    const result = await callApi(baseUrl, method, params, true);
-    if (result.data.success) {
-      clickById("productModal");
-      simpleAlert(`${actionName}成功`, "success");
-      emits("refresh");
-    } else {
-      simpleAlert(`${actionName}失敗`, "error");
-    }
-  }
-};
-const uploadImg = async () => {
-  const imgFile = imgFileInputRef.value.files[0];
-  const formData = new FormData();
-  formData.append("file-to-upload", imgFile);
-  const result = await store.request({
-    url: `${import.meta.env.VITE_MY_API}/admin/upload`,
-    method: "POST",
-    data: formData,
-    headers: {
-      Authorization: getCookie("ltk"),
-    },
-  });
-  if (result.data.success) {
-      productInfo.value.imageUrl = result.data.imageUrl;
-      imgFileInputRef.value.value = "";
-  }
-};
-
-defineExpose({
-  productInfo,
-});
-</script>
 
 <style scoped></style>
