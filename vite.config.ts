@@ -6,30 +6,24 @@ import VueDevTools from "vite-plugin-vue-devtools";
 
 export default defineConfig({
   server: {
-    host: "0.0.0.0"
+    host: "0.0.0.0",
   },
   plugins: [
     vue({
-      script: {
-        defineModel: true,
-      },
+      script: { defineModel: true },
     }),
     VueDevTools(),
     AutoImport({
-      imports: [
-        "vue",
-        "vue-router",
-        "pinia",
-      ],
-      dts:"src/auto-import.d.ts",
+      imports: ["vue", "vue-router", "pinia"],
+      dts: "src/auto-import.d.ts",
       eslintrc: {
-        enabled: true
+        enabled: true,
       },
-    })
+    }),
   ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-    }
+    },
   },
 });

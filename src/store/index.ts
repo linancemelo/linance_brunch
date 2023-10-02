@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import Axios, { AxiosRequestConfig } from "axios";
+import Axios, { AxiosResponse } from "axios";
 import moment from "moment";
 import { useUnits } from "@/composables/units.ts";
 
@@ -11,17 +11,6 @@ export const useStore = defineStore("Main", () => {
     const currentPage = ref(1);
     const totalPage = ref(1);
     // actions
-    const request = (requestConfig: AxiosRequestConfig) => {
-        return new Promise((resolve, reject) => {
-            Axios(requestConfig)
-                .then((result) => {
-                    resolve(result);
-                })
-                .catch((xhr) => {
-                    reject(xhr);
-                });
-        });
-    };
     const setUserInfo = () => {
         const { email, exp } = parseJwt(getCookie("ltk"));
         userInfo.value = {
@@ -29,8 +18,8 @@ export const useStore = defineStore("Main", () => {
             expDate: moment(exp * 1000).format("YYYY-MM-DD"),
         };
     };
-    const verifyManagement = async () => {
-        return await request({
+    const verifyManagement = () => {
+        return Axios({
             url: "https://vue3-course-api.hexschool.io/api/user/check",
             method: "POST",
             headers: {
@@ -38,8 +27,8 @@ export const useStore = defineStore("Main", () => {
                 Authorization: getCookie("ltk"),
             },
         })
-            .then((res) => {
-                return res.data.success;
+            .then((response: AxiosResponse) => {
+                return response.data.success;
             })
             .catch((err) => {
                 console.log(err);
@@ -54,7 +43,6 @@ export const useStore = defineStore("Main", () => {
         currentPage,
         totalPage,
         // actions
-        request,
         setUserInfo,
         verifyManagement,
     };

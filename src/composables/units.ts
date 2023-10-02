@@ -1,11 +1,10 @@
-import { useStore } from "@/store/index.js";
 import moment from "moment";
 import Swal, { SweetAlertIcon, SweetAlertOptions } from "sweetalert2";
 import { useCookies } from "vue3-cookies";
+import Axios from "axios";
 
 export const useUnits = () => {
   const { cookies } = useCookies();
-  const store = useStore();
   /**
    *
    * 查看data是否為空
@@ -25,7 +24,7 @@ export const useUnits = () => {
     param: any,
     isVerify = false
   ) => {
-    return store.request({
+    return Axios({
       url: `${import.meta.env.VITE_MY_API}/${url}`,
       method: method,
       data: param,

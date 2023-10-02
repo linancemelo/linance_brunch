@@ -145,7 +145,7 @@
 </template>
 
 <script setup>
-import { useStore } from "@/store/index.js";
+import { useStore } from "@/store";
 import { useUnits } from "@/composables/units.ts";
 
 const store = useStore();

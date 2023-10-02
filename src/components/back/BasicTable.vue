@@ -63,8 +63,8 @@
 <script setup>
 import NoData from "@/components/NoData.vue";
 import Pagination from "@/components/Pagination.vue";
-import { useStore } from "../../store/index.js";
-import { useUnits } from "../../composables/units.ts";
+import { useStore } from "@/store";
+import { useUnits } from "@/composables/units.ts";
 
 const store = useStore();
 const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
