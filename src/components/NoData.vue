@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps({
+  content: String,
+});
+</script>
+
 <template>
   <div class="mx-auto py-10 bg-white rounded-lg">
     <div class="flex flex-col justify-center items-center py-12">
@@ -16,11 +22,5 @@
     </div>
   </div>
 </template>
-
-<script setup>
-defineProps({
-    content: String,
-});
-</script>
 
 <style scoped></style>

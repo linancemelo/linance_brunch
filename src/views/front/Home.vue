@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <div>
+  <div> 
     <img src="../../assets/img/menu_bg.jpg" alt="" />
   </div>
 </template>
