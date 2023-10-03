@@ -29,7 +29,7 @@ const login = () => {
       "Content-Type": "application/json",
     },
   })
-    .then(async (result) => {
+    .then((result) => {
       if (result.data.success) {
         setCookie("ltk", result.data.token, 0);
         setCookie("linanceAc", userInfo.value.username, 7);
@@ -58,7 +58,7 @@ const login = () => {
         </figure>
         <div class="card-body md:w-2/3 text-black md:py-20">
           <h3 class="text-3xl font-semibold text-center mb-5">登入後台</h3>
-          <form @submit.prevent="login" class="space-y-4">
+          <div class="space-y-4">
             <div class="form-control">
               <label for="inputEmail" class="mb-1">帳號</label>
               <input
@@ -92,7 +92,7 @@ const login = () => {
               <label for="rememberAc" class="label-text">記住帳號</label>
             </div>
             <div>
-              <button class="btn btn-block bg-black">
+              <button class="btn btn-block bg-black" @click="login">
                 <span
                   v-if="isLoading"
                   class="loading loading-spinner loading-sm text-white"
@@ -100,7 +100,7 @@ const login = () => {
                 <span class="text-white text-base">登入</span>
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

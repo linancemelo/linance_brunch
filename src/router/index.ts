@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { useStore } from "@/store";
 const routes: RouteRecordRaw[] = [
     {
         path: "/",
@@ -62,12 +61,6 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
     document.title = to.meta.title as string;
-    const store = useStore();
-    if (to.path.indexOf("Manage") >= 0) {
-        const isAuthenticated = await store.verifyManagement();
-        if (!isAuthenticated) return { name: "Login" };
-        store.setUserInfo();
-    }
 });
 
 export default router;
