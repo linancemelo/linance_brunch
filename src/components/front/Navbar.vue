@@ -1,79 +1,57 @@
-<template>
-  <header class="sticky navbar text-primary-content lg:px-40 xl:px-50 2xl:px-72 justify-between">
-    <div class="">
-      <div class="dropdown">
-        <label tabindex="0" class="btn btn-ghost lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </label>
-        <ul
-          tabindex="0"
-          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <router-link :to="{ name: 'Menu' }" :class="highlight('Menu')"
-              >菜單列表</router-link
-            >
-          </li>
-          <li>
-            <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
-              >關於我們</router-link
-            >
-          </li>
-        </ul>
-      </div>
-      <a class="btn btn-ghost normal-case font-bold text-4xl text-primary"
-        >Linance</a
-      >
-    </div>
-    <div class="navbar-center hidden lg:flex justify-between">
-      <ul class="menu menu-horizontal px-1">
-        <li>
-          <router-link
-            class="text-lg"
-            :to="{ name: 'Menu' }"
-            :class="highlight('Menu')"
-            >產品列表</router-link
-          >
-        </li>
-        <li>
-          <router-link
-            class="text-lg"
-            :to="{ name: 'Product' }"
-            :class="highlight('Product')"
-            >關於我們</router-link
-          >
-        </li>
-      </ul>
-    </div>
-  </header>
-</template>
-
-<script setup>
-const route = useRoute();
-const highlight = (targetPath) => {
-  return targetPath === route.name ? "active" : "";
-};
+<script setup lang="ts">
 </script>
 
-<style scoped>
-a:hover {
-  color: theme("colors.primary");
-  background: transparent;
-}
-a:active {
-  color: theme("colors.primary");
-}
-</style>
+<template>
+  <input id="home-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="navbar bg-base-100 w-[100vw]">
+    <div class="navbar-start">
+      <div class="flex-none lg:hidden">
+        <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+      </div>
+    </div>
+    <div class="navbar-center">
+      <ul class="hidden lg:flex">
+        <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
+      </ul>
+      <a class="btn btn-ghost normal-case text-xl mx-10">Linance</a>
+      <ul class="hidden lg:flex">
+        <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <button class="btn btn-ghost btn-circle"><span class="material-symbols-outlined">shopping_cart</span></button>
+    </div>
+  </div>
+  <div class="drawer-side">
+    <ul class="menu w-full min-h-full bg-base-200 p-0">
+      <li class="h-100 py-5 cursor-none flex justify-center">
+        <a class="btn normal-case text-xl">Linance</a>
+        <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost absolute right-5">
+          <span class="material-symbols-outlined">close</span>
+        </label>
+      </li>
+      <li class="my-1"><router-link :to="{ name: 'Product' }" class="block text-center">產品列表</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Product' }" class="block text-center">產品列表</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Product' }" class="block text-center">產品列表</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Product' }" class="block text-center">產品列表</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Product' }" class="block text-center">產品列表</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Product' }" class="block text-center">產品列表</router-link></li>
+    </ul>
+  </div>
+</template>
+
+<!--<style scoped>-->
+<!--a:hover {-->
+<!--  color: theme("colors.primary");-->
+<!--  background: transparent;-->
+<!--}-->
+<!--a:active {-->
+<!--  color: theme("colors.primary");-->
+<!--}-->
+<!--</style>-->

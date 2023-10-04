@@ -6,7 +6,7 @@ type Props = {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  totalPage: Number,
+  totalPage: 1,
 });
 // eslint-disable-next-line no-undef
 const curPage = defineModel<number>("currentPage", { default: 1 });
