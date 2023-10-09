@@ -3,7 +3,7 @@
 
 <template>
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="navbar bg-base-100 w-[100vw]">
+  <div class="navbar bg-base-100 w-[100vw] fixed top-0">
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
         <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="navbar-center">
-      <ul class="hidden lg:flex">
+      <ul class="hidden lg:flex z-100">
         <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Product' }">產品列表</router-link></li>

@@ -1,10 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const routes: RouteRecordRaw[] = [
     {
-        path: "/",
-        redirect: "/Home"
-    },
-    {
         path: "/Login",
         component: () => import("../views/back/Login.vue"),
         name: "Login",
@@ -37,21 +33,29 @@ const routes: RouteRecordRaw[] = [
         ]
     },
     {
-        path: "/Home",
-        component: () => import("@/views/front/Home.vue"),
-        name: "Home",
-        meta: {
-            title: "Linance | 歡迎"
-        }
+        path: "/",
+        redirect: "/Home",
+        component: () => import("@/views/front/FrontBase.vue"),
+        name: "",
+        children: [
+            {
+                path: "/Home",
+                component: () => import("@/views/front/Home.vue"),
+                name: "Home",
+                meta: {
+                    title: "Linance | 歡迎"
+                }
+            },
+            {
+                path: "/Menu",
+                component: () => import("@/views/front/Menu.vue"),
+                name: "Menu",
+                meta: {
+                    title: "Linance | 菜單"
+                }
+            }
+        ]
     },
-    {
-        path: "/Menu",
-        component: () => import("@/views/front/Menu.vue"),
-        name: "Menu",
-        meta: {
-            title: "Linance | 菜單"
-        }
-    }
 ];
 
 const router = createRouter({
