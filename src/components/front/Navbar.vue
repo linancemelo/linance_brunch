@@ -3,7 +3,7 @@
 
 <template>
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="navbar bg-transparent w-[100vw] fixed top-0 z-50">
+  <div class="navbar bg-white w-[100vw] fixed top-0 z-50">
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
         <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
@@ -14,17 +14,17 @@
     <div class="navbar-center">
       <ul class="hidden lg:flex z-100">
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Menu' }">線上訂位</router-link></li>
       </ul>
       <a class="btn btn-ghost normal-case text-xl mx-10">Linance</a>
       <ul class="hidden lg:flex">
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Menu' }">關於我們</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Menu' }">後台登入</router-link></li>
       </ul>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end mr-5">
       <button class="btn btn-ghost btn-circle"><span class="material-symbols-outlined">shopping_cart</span></button>
     </div>
   </div>
@@ -37,11 +37,11 @@
         </label>
       </li>
       <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">線上訂位</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">關於我們</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">後台登入</router-link></li>
     </ul>
   </div>
 </template>
