@@ -3,7 +3,7 @@
 
 <template>
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="navbar bg-white w-[100vw] fixed top-0 z-50">
+  <div class="navbar bg-white w-[100vw] z-50">
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
         <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
