@@ -13,7 +13,7 @@
     </div>
     <div class="navbar-center">
       <ul class="hidden lg:flex z-100">
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">產品列表</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Menu' }">美味餐點</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">線上訂位</router-link></li>
       </ul>

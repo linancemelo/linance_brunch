@@ -53,6 +53,14 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                     title: "Linance | 菜單"
                 }
+            },
+            {
+                path: "/Food",
+                component: () => import("@/views/front/Food.vue"),
+                name: "Food",
+                meta: {
+                    title: "Linance | 餐點"
+                }
             }
         ]
     },
