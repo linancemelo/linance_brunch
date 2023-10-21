@@ -1,4 +1,30 @@
 <script setup lang="ts">
+import { useUnits } from "@/composables/units.ts";
+import {ProductInfo} from "@/types/product.ts";
+
+const route = useRoute();
+const { callApi } = useUnits();
+
+const id = ref("");
+const foodInfo = ref({} as ProductInfo);
+const count = ref(1);
+
+const getFoodInfo = async () => {
+  await callApi(`product/${id.value}`, "get", "")
+    .then((response) => {
+      if (response.data.success) {
+        foodInfo.value = response.data.product;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+onMounted(() => {
+  id.value = route.params.id as string;
+  getFoodInfo();
+});
 </script>
 
 <template>
@@ -18,24 +44,24 @@
       </div>
       <div class="max-w-lg px-5">
         <div>
-          <img src="/assets/專案圖片/吐司/培根蛋吐司.jpg" alt="">
+          <img :src="foodInfo.imageUrl" alt="" />
         </div>
       </div>
       <div class="max-w-lg px-5">
         <div class="title mb-5">
-          <h1 class="text-5xl font-bold">培根陽光堡</h1>
+          <h1 class="text-5xl font-bold">{{ foodInfo.title }}</h1>
           <span>Sesame Hot Dog Bun with Bacon</span>
         </div>
         <div class="price mb-5">
-          <h5>原價: 11,111</h5>
-          <h5>售價: 1,111</h5>
+          <h5>原價: {{ foodInfo.origin_price }}</h5>
+          <h5>售價: {{ foodInfo.price }}</h5>
         </div>
         <div class="count mb-3">
-          <button class="btn btn-square btn-sm">
+          <button class="btn btn-square btn-sm" @click="count --" :disabled="count === 1">
             <span class="material-symbols-outlined"> remove </span>
           </button>
-          <span>1</span>
-          <button class="btn btn-square btn-sm">
+          <span>{{ count }}</span>
+          <button class="btn btn-square btn-sm" @click="count ++">
             <span class="material-symbols-outlined"> add </span>
           </button>
         </div>

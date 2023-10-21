@@ -17,7 +17,7 @@
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">線上訂位</router-link></li>
       </ul>
-      <a class="btn btn-ghost normal-case text-xl mx-10">Linance</a>
+      <router-link :to="{ name: 'Home' }" class="btn btn-ghost normal-case text-xl mx-10">Linance</router-link>
       <ul class="hidden lg:flex">
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">關於我們</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>
@@ -31,7 +31,7 @@
   <div class="drawer-side" style="z-index: 99">
     <ul class="menu w-full min-h-full bg-base-200 p-0">
       <li class="h-100 py-5 cursor-none flex justify-center">
-        <a class="btn normal-case text-xl">Linance</a>
+        <router-link :to="{ name: 'Home' }" class="btn normal-case text-xl">Linance</router-link>
         <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost absolute right-5">
           <span class="material-symbols-outlined">close</span>
         </label>

@@ -55,7 +55,7 @@ const routes: RouteRecordRaw[] = [
                 }
             },
             {
-                path: "/Food",
+                path: "/Food/:id",
                 component: () => import("@/views/front/Food.vue"),
                 name: "Food",
                 meta: {

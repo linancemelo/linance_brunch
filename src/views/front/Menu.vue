@@ -1,3 +1,43 @@
+<script setup lang="ts">
+import MainHeader from "@/components/front/MainHeader.vue";
+import { Ref } from "vue";
+import { useUnits } from "@/composables/units";
+import type { ProductInfo } from "@/types/product.ts";
+
+const route = useRoute();
+const router = useRouter();
+const { callApi, findObjInArr } = useUnits();
+
+const categoryList = [
+  { chName: "美味蛋餅", enName: "chineseOmelet" },
+  { chName: "厚蛋吐司", enName: "toast" },
+  { chName: "漢堡湯種", enName: "hamburger" },
+  { chName: "台式炒飯", enName: "friedRice" },
+  { chName: "鐵板麵", enName: "noodle" },
+  { chName: "韓式小吃", enName: "korea" },
+  { chName: "點心佳餚", enName: "snack" },
+  { chName: "精選飲料", enName: "drink" },
+];
+const allProductList: Ref<ProductInfo[]> = ref([]);
+
+const routeHash = computed(() =>
+    route.hash ? route.hash.split("#")[1] : categoryList[0].enName
+);
+const currentProductList = computed(() =>
+    allProductList.value.filter((product: ProductInfo) => product.category === routeHash.value)
+);
+
+const getAllProduct = async () => {
+  const { data } = await callApi("products/all", "GET", "");
+  if (data.success) allProductList.value = data.products;
+};
+const toInfo = (id: string) => {
+  router.push(`/Food/${id}`);
+};
+
+getAllProduct();
+</script>
+
 <template>
   <MainHeader bgUrl="/assets/img/menu_bg.jpg" title="菜單介紹" />
   <main class="lg:px-40 xl:px-50 2xl:px-72 mt-8">
@@ -33,6 +73,7 @@
             <div
               class="w-full relative overflow-hidden"
               style="padding-top: 90%"
+              @click="toInfo(product.id)"
             >
               <div class="image cursor-pointer">
                 <div class="cover"></div>
@@ -54,40 +95,6 @@
     </div>
   </main>
 </template>
-
-<script setup lang="ts">
-import MainHeader from "@/components/front/MainHeader.vue";
-import { useUnits } from "@/composables/units";
-
-const route = useRoute();
-const { callApi, findObjInArr } = useUnits();
-
-const categoryList = [
-  { chName: "美味蛋餅", enName: "chineseOmelet" },
-  { chName: "厚蛋吐司", enName: "toast" },
-  { chName: "漢堡湯種", enName: "hamburger" },
-  { chName: "台式炒飯", enName: "friedRice" },
-  { chName: "鐵板麵", enName: "noodle" },
-  { chName: "韓式小吃", enName: "korea" },
-  { chName: "點心佳餚", enName: "snack" },
-  { chName: "精選飲料", enName: "drink" },
-];
-const allProductList = ref([]);
-
-const routeHash = computed(() =>
-  route.hash ? route.hash.split("#")[1] : categoryList[0].enName
-);
-const currentProductList = computed(() =>
-  allProductList.value.filter((product) => product.category === routeHash.value)
-);
-
-const getAllProduct = async () => {
-  const { data } = await callApi("products/all", "GET", "");
-  if (data.success) allProductList.value = data.products;
-};
-
-getAllProduct();
-</script>
 
 <style scoped>
 li .active {
