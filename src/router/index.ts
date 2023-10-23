@@ -36,7 +36,7 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     redirect: "/Home",
     component: () => import("@/views/front/FrontBase.vue"),
-    name: "",
+    name: "Home",
     children: [
       {
         path: "/Home",
@@ -64,11 +64,29 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "/Cart",
+        redirect: "/Cart/CartInfo",
         component: () => import("@/views/front/Cart.vue"),
         name: "Cart",
         meta: {
           title: "Linance | 購物車",
         },
+        children: [
+          {
+            path: "/Cart/CartInfo",
+            component: () => import("@/views/front/CartInfo.vue"),
+            name: "CartInfo",
+          },
+          {
+            path: "/Cart/UserInfo",
+            component: () => import("@/views/front/UserInfo.vue"),
+            name: "UserInfo",
+          },
+          {
+            path: "/Cart/OrderInfo",
+            component: () => import("@/views/front/OrderInfo.vue"),
+            name: "OrderInfo",
+          },
+        ]
       },
     ],
   },
