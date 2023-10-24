@@ -4,12 +4,12 @@ const route = useRoute();
 const getStepClass = (routeName: string) => {
   const { name } = route;
   if (name === "CartInfo") {
-    if (routeName === "CartInfo") return "step-accent";
+    if (routeName === "CartInfo") return "step-accent text-accent";
   } else if (name === "UserInfo") {
     if (routeName === "CartInfo" || routeName === "UserInfo")
-      return "step-accent";
+      return "step-accent text-accent";
   } else {
-    return "step-accent";
+    return "step-accent text-accent";
   }
 };
 </script>
