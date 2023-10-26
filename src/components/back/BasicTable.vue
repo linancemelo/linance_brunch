@@ -2,11 +2,10 @@
 import NoData from "@/components/NoData.vue";
 import Pagination from "@/components/Pagination.vue";
 import { useStore } from "@/store";
-import { useUnits } from "@/composables/units.ts";
 import type { Props } from "@/types/components/basicTable.ts";
-import type { ProductInfo } from "@/types/product.ts";
 
 const store = useStore();
+const route = useRoute();
 
 withDefaults(defineProps<Props>(), {
   columns: () => [],
@@ -15,12 +14,12 @@ withDefaults(defineProps<Props>(), {
   editBtn: false,
   delBtn: false,
 });
+defineEmits(["setModalInfo", "deleteItem", "editItem"]);
 
-const emits = defineEmits(["refresh", "setProductInfo", "deleteItem"]);
-
-const editProduct = (row: ProductInfo) => {
-  emits("setProductInfo", row);
-  clickById("productModal");
+const typeMap = {
+  Product: "餐點",
+  Order: "訂單",
+  Coupon: "優惠券"
 };
 </script>
 
@@ -29,8 +28,8 @@ const editProduct = (row: ProductInfo) => {
     <label
       for="productModal"
       class="btn btn-sm bg-warning"
-      @click="emits('setProductInfo', {})"
-      >新增商品</label
+      @click="$emit('setModalInfo', {})"
+      >新增{{ typeMap[route.name] }}</label
     >
   </div>
   <div v-if="tableInfo.length > 0" class="h-full overflow-y-auto">
@@ -62,14 +61,14 @@ const editProduct = (row: ProductInfo) => {
               <button
                 v-if="editBtn"
                 class="btn btn-sm w-8 h-8 mr-2 bg-success"
-                @click="emits('editItem', row)"
+                @click="$emit('editItem', row)"
               >
                 <span class="material-symbols-outlined"> edit </span>
               </button>
               <button
                 v-if="delBtn"
                 class="btn btn-sm w-8 h-8 bg-error"
-                @click="emits('deleteItem', row)"
+                @click="$emit('deleteItem', row)"
               >
                 <span class="material-symbols-outlined"> delete </span>
               </button>

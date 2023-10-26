@@ -8,14 +8,14 @@ const router = useRouter();
 const { removeCookie, confirmAlert } = useUnits();
 
 const highlight = (targetPath: string) => {
-    return targetPath === route.name ? "active" : "";
+  return targetPath === route.name ? "active" : "";
 };
 const logOut = async () => {
-    const check = await confirmAlert("確定要登出嗎", "warning");
-    if (check) {
-        removeCookie("ltk");
-        router.push({ name: "Login" });
-    }
+  const check = await confirmAlert("確定要登出嗎", "warning");
+  if (check) {
+    removeCookie("ltk");
+    router.push({ name: "Login" });
+  }
 };
 </script>
 
@@ -89,7 +89,13 @@ const logOut = async () => {
           <li class="my-2">
             <router-link :to="{ name: 'Order' }" :class="highlight('Order')"
               ><span class="material-symbols-outlined"> list_alt </span
-              >訂單列表</router-link
+              >訂單紀錄</router-link
+            >
+          </li>
+          <li class="my-2">
+            <router-link :to="{ name: 'Coupon' }" :class="highlight('Coupon')"
+              ><span class="material-symbols-outlined"> bookmark_remove </span
+              >優惠券</router-link
             >
           </li>
         </ul>
@@ -104,6 +110,12 @@ const logOut = async () => {
             <router-link :to="{ name: 'Order' }" :class="highlight('Order')"
               ><span class="material-symbols-outlined"> list_alt </span
               >訂單列表</router-link
+            >
+          </li>
+          <li class="my-2">
+            <router-link :to="{ name: 'Coupon' }" :class="highlight('Coupon')"
+            ><span class="material-symbols-outlined"> bookmark_remove </span
+            >優惠券</router-link
             >
           </li>
         </ul>

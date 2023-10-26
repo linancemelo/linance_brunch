@@ -168,7 +168,7 @@ defineExpose({
             />
           </div>
           <div class="form-control md:flex md:flex-row">
-            <label for="description" class="mb-1 text-sm">是否啟用</label>
+            <label for="description" class="mb-1 text-sm">是否有庫存</label>
             <div class="mb-2 md:ml-5 flex">
               <div class="me-2 flex self-center">
                 <input

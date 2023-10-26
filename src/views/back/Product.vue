@@ -77,6 +77,7 @@ const deleteProduct = async (row: ProductInfo) => {
         addBtn
         editBtn
         delBtn
+        @setModalInfo="setProductInfo"
         @deleteItem="deleteProduct"
         @editItem="editProduct"
       ></BasicTable>

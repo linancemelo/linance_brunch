@@ -30,6 +30,14 @@ const routes: RouteRecordRaw[] = [
           title: "後台 | 訂單紀錄",
         },
       },
+      {
+        path: "/Manage/Coupon",
+        component: () => import("@/views/back/Coupon.vue"),
+        name: "Coupon",
+        meta: {
+          title: "後台 | 優惠券",
+        },
+      },
     ],
   },
   {
