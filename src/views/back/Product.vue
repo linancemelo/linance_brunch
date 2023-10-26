@@ -6,7 +6,7 @@ import { useUnits } from "@/composables/units.ts";
 import type { ProductInfo } from "@/types/product.ts";
 
 const store = useStore();
-const { isEmpty, callApi } = useUnits();
+const { isEmpty, callApi, confirmAlert, simpleAlert, clickById } = useUnits();
 
 const columns = [
   { enName: "title", chName: "產品名稱" },
@@ -45,6 +45,23 @@ const setProductInfo = (info: ProductInfo) => {
   action.value = isEmpty(info) ? "create" : "edit";
   productModalRef.value.productInfo = info;
 };
+const editProduct = (row: ProductInfo) => {
+  setProductInfo(row);
+  clickById("productModal");
+};
+const deleteProduct = async (row: ProductInfo) => {
+  const { id, title } = row;
+  const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
+  if (check) {
+    const result = await callApi(`admin/product/${id}`, "DELETE", {}, true);
+    if (result.data.success) {
+      simpleAlert("刪除成功", "success");
+      getProduct();
+    } else {
+      simpleAlert("刪除失敗", "success");
+    }
+  }
+};
 </script>
 
 <template>
@@ -57,8 +74,11 @@ const setProductInfo = (info: ProductInfo) => {
       <BasicTable
         :columns="columns"
         :tableInfo="productList"
-        @setProductInfo="setProductInfo"
-        @refresh="getProduct"
+        addBtn
+        editBtn
+        delBtn
+        @deleteItem="deleteProduct"
+        @editItem="editProduct"
       ></BasicTable>
     </div>
   </div>

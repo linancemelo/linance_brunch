@@ -5,4 +5,7 @@ export type Columns = {
 export type Props = {
   columns: Columns[];
   tableInfo: any[];
+  addBtn?: boolean,
+  editBtn?: boolean,
+  delBtn?: boolean,
 };

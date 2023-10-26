@@ -7,36 +7,25 @@ import type { Props } from "@/types/components/basicTable.ts";
 import type { ProductInfo } from "@/types/product.ts";
 
 const store = useStore();
-const { callApi, clickById, confirmAlert, simpleAlert } = useUnits();
 
 withDefaults(defineProps<Props>(), {
   columns: () => [],
   tableInfo: () => [],
+  addBtn: false,
+  editBtn: false,
+  delBtn: false,
 });
 
-const emits = defineEmits(["refresh", "setProductInfo"]);
+const emits = defineEmits(["refresh", "setProductInfo", "deleteItem"]);
 
 const editProduct = (row: ProductInfo) => {
-    emits("setProductInfo", row);
-    clickById("productModal");
-};
-const deleteProduct = async (row: ProductInfo) => {
-    const { id, title } = row;
-    const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
-    if (check) {
-        const result = await callApi(`admin/product/${id}`, "DELETE", {}, true);
-        if (result.data.success) {
-            simpleAlert("刪除成功", "success");
-            emits("refresh");
-        } else {
-            simpleAlert("刪除失敗", "success");
-        }
-    }
+  emits("setProductInfo", row);
+  clickById("productModal");
 };
 </script>
 
 <template>
-  <div class="text-end w-full pr-2 mb-2">
+  <div v-if="addBtn" class="text-end w-full pr-2 mb-2">
     <label
       for="productModal"
       class="btn btn-sm bg-warning"
@@ -53,7 +42,7 @@ const deleteProduct = async (row: ProductInfo) => {
             <th v-for="col in columns" :key="col.enName" class="font-bold">
               {{ col.chName }}
             </th>
-            <th class="font-bold text-center">動作</th>
+            <th v-if="editBtn || delBtn" class="font-bold text-center">動作</th>
           </tr>
         </thead>
         <tbody>
@@ -71,14 +60,16 @@ const deleteProduct = async (row: ProductInfo) => {
             </td>
             <td class="flex justify-center">
               <button
+                v-if="editBtn"
                 class="btn btn-sm w-8 h-8 mr-2 bg-success"
-                @click="editProduct(row)"
+                @click="emits('editItem', row)"
               >
                 <span class="material-symbols-outlined"> edit </span>
               </button>
               <button
+                v-if="delBtn"
                 class="btn btn-sm w-8 h-8 bg-error"
-                @click="deleteProduct(row)"
+                @click="emits('deleteItem', row)"
               >
                 <span class="material-symbols-outlined"> delete </span>
               </button>
