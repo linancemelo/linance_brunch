@@ -8,6 +8,8 @@ const cartList = ref([]);
 const finalTotal = ref(0);
 const totalAmount = ref(0);
 const finalAmount = ref(0);
+const couponCode = ref("");
+const couponContent = ref("");
 
 const getCartList = async () => {
   await callApi("cart", "get", "")
@@ -64,9 +66,19 @@ const sub = (item) => {
     deleteItem(item);
     return;
   }
-  console.log(123);
   updateCartList(item);
 };
+const useCoupon = async () => {
+  const result = await callApi("coupon", "post", {
+    data: { code: couponCode.value },
+  });
+  const { data, success, message } = result.data;
+  if (success) {
+    getCartList();
+    couponContent.value = message;
+  }
+};
+
 const openUserInfo = () => {
   router.push({ name: "UserInfo" });
   window.scroll({
@@ -129,7 +141,7 @@ onMounted(() => {
           <ul>
             <li class="flex justify-between mb-2">
               <span>總數量</span><span>{{ finalTotal }}</span>
-            </li>
+            </li> 
             <li class="flex justify-between mb-2">
               <span>小計</span><span>{{ totalAmount }}</span>
             </li>
@@ -140,13 +152,17 @@ onMounted(() => {
                     <input
                       class="input input-sm input-bordered join-item"
                       placeholder="輸入優惠券"
+                      v-model.trim="couponCode"
                     />
                   </div>
                 </div>
                 <div class="indicator">
-                  <button class="btn btn-sm join-item">套用</button>
+                  <button class="btn btn-sm join-item" @click="useCoupon">
+                    套用
+                  </button>
                 </div>
               </div>
+              <div>{{ couponContent }}</div>
             </li>
             <li class="flex justify-between">
               <span>運費</span><span>60</span>

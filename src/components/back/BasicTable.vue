@@ -26,7 +26,7 @@ const typeMap = {
 <template>
   <div v-if="addBtn" class="text-end w-full pr-2 mb-2">
     <label
-      for="productModal"
+      :for="`${route.name}Modal`"
       class="btn btn-sm bg-warning"
       @click="$emit('setModalInfo', {})"
       >新增{{ typeMap[route.name] }}</label
@@ -84,7 +84,7 @@ const typeMap = {
       />
     </div>
   </div>
-  <NoData v-else content="目前無任何產品" />
+  <NoData v-else :content="`目前無任何${typeMap[route.name]}`" />
 </template>
 
 <style scoped>

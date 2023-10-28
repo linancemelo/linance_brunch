@@ -48,7 +48,7 @@ const updateProduct = async () => {
     }
     const result = await callApi(baseUrl, method, params, true);
     if (result.data.success) {
-      clickById("productModal");
+      clickById("ProductModal");
       simpleAlert(`${actionName}成功`, "success");
       emits("refresh");
     } else {
@@ -80,7 +80,7 @@ defineExpose({
 </script>
 
 <template>
-  <input type="checkbox" id="productModal" class="modal-toggle" />
+  <input type="checkbox" id="ProductModal" class="modal-toggle" />
   <div class="modal">
     <div class="modal-box p-0 max-w-full lg:max-w-[75rem] flex flex-col">
       <header class="px-5 py-3 bg-accent">
@@ -90,7 +90,7 @@ defineExpose({
           </div>
           <div
             class="flex self-center cursor-pointer text-base-100 text-lg"
-            @click="clickById('productModal')"
+            @click="clickById('ProductModal')"
           >
             <span class="material-symbols-outlined"> close </span>
           </div>
@@ -221,7 +221,7 @@ defineExpose({
         <button class="btn btn-accent" @click="updateProduct">
           {{ actionMap[action] }}
         </button>
-        <label for="productModal" class="btn">取消</label>
+        <label for="ProductModal" class="btn">取消</label>
       </footer>
     </div>
   </div>

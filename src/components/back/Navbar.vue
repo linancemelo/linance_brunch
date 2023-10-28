@@ -83,7 +83,7 @@ const logOut = async () => {
           <li class="my-2">
             <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
               ><span class="material-symbols-outlined"> lunch_dining </span
-              >產品列表</router-link
+              >餐點列表</router-link
             >
           </li>
           <li class="my-2">
@@ -95,7 +95,7 @@ const logOut = async () => {
           <li class="my-2">
             <router-link :to="{ name: 'Coupon' }" :class="highlight('Coupon')"
               ><span class="material-symbols-outlined"> bookmark_remove </span
-              >優惠券</router-link
+              >優惠券清單</router-link
             >
           </li>
         </ul>
@@ -103,7 +103,7 @@ const logOut = async () => {
           <li class="my-2">
             <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
               ><span class="material-symbols-outlined"> lunch_dining </span
-              >產品列表</router-link
+              >餐點列表</router-link
             >
           </li>
           <li class="my-2">
@@ -115,7 +115,7 @@ const logOut = async () => {
           <li class="my-2">
             <router-link :to="{ name: 'Coupon' }" :class="highlight('Coupon')"
             ><span class="material-symbols-outlined"> bookmark_remove </span
-            >優惠券</router-link
+            >優惠券清單</router-link
             >
           </li>
         </ul>

@@ -47,7 +47,7 @@ const setProductInfo = (info: ProductInfo) => {
 };
 const editProduct = (row: ProductInfo) => {
   setProductInfo(row);
-  clickById("productModal");
+  clickById("ProductModal");
 };
 const deleteProduct = async (row: ProductInfo) => {
   const { id, title } = row;
