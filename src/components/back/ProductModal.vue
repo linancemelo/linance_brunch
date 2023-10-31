@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import Axios from "axios";
 import { useUnits } from "@/composables/units.ts";
+import { Action } from "@/types/components/action.ts";
 
-const { isEmpty, getCookie, callApi, clickById, simpleAlert, confirmAlert } = useUnits();
+const { isEmpty, getCookie, callApi, clickById, simpleAlert, confirmAlert } =
+  useUnits();
 
-const props = withDefaults(defineProps<{ action: "create" | "edit" }>(), {
-  action: "create",
-});
+const { action = "create" } = defineProps<{
+  action: Action;
+}>();
 const emits = defineEmits(["refresh"]);
 
 const actionMap = {
@@ -34,7 +36,7 @@ watch(productInfo, (newVal) => {
 });
 
 const updateProduct = async () => {
-  const actionName = actionMap[props.action];
+  const actionName = actionMap[action];
   const check = await confirmAlert(`確定要${actionName}嗎`, "warning");
   if (check) {
     const params = {
@@ -42,7 +44,7 @@ const updateProduct = async () => {
     };
     let baseUrl = "admin/product";
     let method = "POST";
-    if (props.action === "edit") {
+    if (action === "edit") {
       baseUrl += `/${productInfo.value.id}`;
       method = "PUT";
     }

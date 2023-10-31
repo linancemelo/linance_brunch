@@ -10,7 +10,7 @@ export default defineConfig({
   },
   plugins: [
     vue({
-      script: { defineModel: true },
+      script: { defineModel: true, propsDestructure: true },
     }),
     VueDevTools(),
     AutoImport({

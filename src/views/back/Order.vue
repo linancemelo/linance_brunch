@@ -2,6 +2,7 @@
 import BasicTable from "@/components/back/BasicTable.vue";
 import { useUnits } from "@/composables/units.ts";
 import { useStore } from "@/store";
+import type { OrderInfo, OrderListObj } from "@/types/back/order.ts";
 
 const store = useStore();
 const { callApi, confirmAlert, simpleAlert } = useUnits();
@@ -14,7 +15,7 @@ const columns = [
   { enName: "total", chName: "總金額" },
   { enName: "is_paid", chName: "付款狀態" },
 ];
-const orderList = ref([]);
+const orderList = ref<OrderListObj[]>([]);
 
 onMounted(() => {
   getOrder();
@@ -24,28 +25,29 @@ const getOrder = async (currentPage = 1) => {
   store.isLoading = true;
   const url = `admin/orders?page=${currentPage}`;
   const result = await callApi(url, "GET", "", true);
-  if (result.data.success) {
+  const { success, orders, pagination } = result.data;
+  if (success) {
     store.isLoading = false;
-    orderList.value = dealOrderInfo(result.data.orders);
-    store.currentPage = result.data.pagination.current_page;
-    store.totalPage = result.data.pagination.total_pages;
+    orderList.value = dealOrderInfo(orders);
+    store.currentPage = pagination.current_page;
+    store.totalPage = pagination.total_pages;
   }
 };
 
-const dealOrderInfo = (result) => {
-  return result.map(({ user, ...items }) => {
+const dealOrderInfo = (result: OrderInfo[]) => {
+  return result.map(({ user, ...items }: OrderInfo) => {
     return {
       ...user,
       ...items,
     };
   });
 };
-const deleteOrder = async (row) => {
+const deleteOrder = async (row: OrderListObj) => {
   const { id } = row;
   const check = await confirmAlert(`確定要刪除此筆訂單嗎`, "warning");
   if (check) {
-    const { data } = await callApi(`admin/order/${id}`, "DELETE", {}, true);
-    const { success } = data;
+    const result = await callApi(`admin/order/${id}`, "DELETE", {}, true);
+    const { success } = result.data;
     if (success) {
       simpleAlert("刪除成功", "success");
       getOrder();
@@ -63,7 +65,12 @@ const deleteOrder = async (row) => {
       v-if="!store.isLoading"
       class="py-2 mb-2 h-full flex flex-col justify-start bg-white rounded-lg"
     >
-      <BasicTable :columns="columns" :tableInfo="orderList" delBtn @deleteItem="deleteOrder"></BasicTable>
+      <BasicTable
+        :columns="columns"
+        :tableInfo="orderList"
+        delBtn
+        @deleteItem="deleteOrder"
+      ></BasicTable>
     </div>
   </div>
 </template>

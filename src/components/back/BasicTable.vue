@@ -1,4 +1,6 @@
 <script setup lang="ts">
+type RouteType = "Product" | "Order" | "Coupon";
+
 import NoData from "@/components/NoData.vue";
 import Pagination from "@/components/Pagination.vue";
 import { useStore } from "@/store";
@@ -6,6 +8,7 @@ import type { Props } from "@/types/components/basicTable.ts";
 
 const store = useStore();
 const route = useRoute();
+const routeName = route.name as RouteType;
 
 withDefaults(defineProps<Props>(), {
   columns: () => [],
@@ -26,10 +29,10 @@ const typeMap = {
 <template>
   <div v-if="addBtn" class="text-end w-full pr-2 mb-2">
     <label
-      :for="`${route.name}Modal`"
+      :for="`${routeName}Modal`"
       class="btn btn-sm bg-warning"
       @click="$emit('setModalInfo', {})"
-      >新增{{ typeMap[route.name] }}</label
+      >新增{{ typeMap[routeName] }}</label
     >
   </div>
   <div v-if="tableInfo.length > 0" class="h-full overflow-y-auto">
@@ -84,7 +87,7 @@ const typeMap = {
       />
     </div>
   </div>
-  <NoData v-else :content="`目前無任何${typeMap[route.name]}`" />
+  <NoData v-else :content="`目前無任何${typeMap[routeName]}`" />
 </template>
 
 <style scoped>

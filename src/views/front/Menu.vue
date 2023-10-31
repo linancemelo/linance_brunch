@@ -2,7 +2,7 @@
 import MainHeader from "@/components/front/MainHeader.vue";
 import { Ref } from "vue";
 import { useUnits } from "@/composables/units";
-import type { ProductInfo } from "@/types/product.ts";
+import type { ProductInfo } from "@/types/back/product.ts";
 
 const route = useRoute();
 const router = useRouter();

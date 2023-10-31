@@ -3,7 +3,9 @@ import BasicTable from "@/components/back/BasicTable.vue";
 import CouponModal from "@/components/back/CouponModal.vue";
 import { useStore } from "@/store";
 import { useUnits } from "@/composables/units.ts";
-import {ProductInfo} from "@/types/product.ts";
+import type { ProductInfo } from "@/types/back/product.ts";
+import type { CouponInfo } from "@/types/back/coupon.ts";
+import type { Action } from "@/types/components/action.ts";
 
 const store = useStore();
 const { isEmpty, callApi, confirmAlert, simpleAlert, clickById } = useUnits();
@@ -16,25 +18,26 @@ const columns = [
   { enName: "is_enabled", chName: "有效" },
 ];
 const couponList = ref([]);
-const action = ref("create");
+const action = ref<Action>("create");
 const couponModalRef = ref(null);
 
 const getCoupon = async (currentPage = 1) => {
   store.isLoading = true;
   const url = `admin/coupons?page=${currentPage}`;
   const result = await callApi(url, "GET", "", true);
-  if (result.data.success) {
+  const { success, coupons, pagination } = result.data;
+  if (success) {
     store.isLoading = false;
-    couponList.value = result.data.coupons;
-    store.currentPage = result.data.pagination.current_page;
-    store.totalPage = result.data.pagination.total_pages;
+    couponList.value = coupons;
+    store.currentPage = pagination.current_page;
+    store.totalPage = pagination.total_pages;
   }
 };
-const setCouponInfo = (info) => {
+const setCouponInfo = (info: CouponInfo) => {
   action.value = isEmpty(info) ? "create" : "edit";
   couponModalRef.value.couponInfo = info;
 };
-const editCoupon = (row) => {
+const editCoupon = (row: CouponInfo) => {
   setCouponInfo(row);
   clickById("CouponModal");
 };
@@ -43,7 +46,8 @@ const deleteCoupon = async (row: ProductInfo) => {
   const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
   if (check) {
     const result = await callApi(`admin/coupon/${id}`, "DELETE", {}, true);
-    if (result.data.success) {
+    const { success } = result.data;
+    if (success) {
       simpleAlert("刪除成功", "success");
       getCoupon();
     } else {
@@ -76,7 +80,7 @@ onMounted(() => {
       />
     </div>
   </div>
-  <CouponModal ref="couponModalRef" :action="action" @refresh="getCoupon"/>
+  <CouponModal ref="couponModalRef" :action="action" @refresh="getCoupon" />
 </template>
 
 <style scoped></style>

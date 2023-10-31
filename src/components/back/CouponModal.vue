@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useUnits } from "@/composables/units.ts";
+import type { Action } from "@/types/components/action.ts";
 
-const { isEmpty, callApi, clickById, simpleAlert, confirmAlert } =
-  useUnits();
+const { isEmpty, callApi, clickById, simpleAlert, confirmAlert } = useUnits();
 
-const props = withDefaults(defineProps<{ action: "create" | "edit" }>(), {
-  action: "create",
-});
+const { action = "create" } = defineProps<{
+  action: Action;
+}>();
 const emits = defineEmits(["refresh"]);
 
 const actionMap = {
@@ -28,7 +28,7 @@ watch(couponInfo, (newVal) => {
 });
 
 const updateCoupon = async () => {
-  const actionName = actionMap[props.action];
+  const actionName = actionMap[action];
   const check = await confirmAlert(`確定要${actionName}嗎`, "warning");
   if (check) {
     couponInfo.value.due_date = new Date(couponInfo.value.due_date).getTime();
@@ -37,12 +37,13 @@ const updateCoupon = async () => {
     };
     let baseUrl = "admin/coupon";
     let method = "POST";
-    if (props.action === "edit") {
+    if (action === "edit") {
       baseUrl += `/${couponInfo.value.id}`;
       method = "PUT";
     }
     const result = await callApi(baseUrl, method, params, true);
-    if (result.data.success) {
+    const { success } = result.data;
+    if (success) {
       clickById("CouponModal");
       simpleAlert(`${actionName}成功`, "success");
       emits("refresh");

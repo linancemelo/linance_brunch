@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUnits } from "@/composables/units.ts";
-import { ProductInfo } from "@/types/product.ts";
+import { ProductInfo } from "@/types/back/product.ts";
 
 const route = useRoute();
 const { callApi } = useUnits();

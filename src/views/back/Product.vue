@@ -3,7 +3,7 @@ import BasicTable from "@/components/back/BasicTable.vue";
 import ProductModal from "@/components/back/ProductModal.vue";
 import { useStore } from "@/store";
 import { useUnits } from "@/composables/units.ts";
-import type { ProductInfo } from "@/types/product.ts";
+import type { ProductInfo } from "@/types/back/product.ts";
 
 const store = useStore();
 const { isEmpty, callApi, confirmAlert, simpleAlert, clickById } = useUnits();
@@ -34,11 +34,12 @@ const getProduct = async (currentPage = 1) => {
   store.isLoading = true;
   const url = `admin/products?page=${currentPage}`;
   const result = await callApi(url, "GET", "", true);
-  if (result.data.success) {
+  const { success, products, pagination } = result.data;
+  if (success) {
     store.isLoading = false;
-    productList.value = result.data.products;
-    store.currentPage = result.data.pagination.current_page;
-    store.totalPage = result.data.pagination.total_pages;
+    productList.value = products;
+    store.currentPage = pagination.current_page;
+    store.totalPage = pagination.total_pages;
   }
 };
 const setProductInfo = (info: ProductInfo) => {
@@ -54,7 +55,8 @@ const deleteProduct = async (row: ProductInfo) => {
   const check = await confirmAlert(`確定要刪除${title}嗎`, "warning");
   if (check) {
     const result = await callApi(`admin/product/${id}`, "DELETE", {}, true);
-    if (result.data.success) {
+    const { success } = result.data;
+    if (success) {
       simpleAlert("刪除成功", "success");
       getProduct();
     } else {

@@ -1,8 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+// 後
+import Login from "@/views/back/Login.vue";
+import Manage from "@/views/back/Manage.vue";
+import Product from "@/views/back/Product.vue";
+import Order from "@/views/back/Order.vue";
+import Coupon from "@/views/back/Coupon.vue";
+// 前
+import FrontBase from "@/views/front/FrontBase.vue";
+import Home from "@/views/front/Home.vue";
+import Menu from "@/views/front/Menu.vue";
+import Food from "@/views/front/Food.vue";
+import Cart from "@/views/front/Cart.vue";
+import CartInfo from "@/views/front/CartInfo.vue";
+import UserInfo from "@/views/front/UserInfo.vue";
+import OrderInfo from "@/views/front/OrderInfo.vue";
+
 const routes: RouteRecordRaw[] = [
   {
     path: "/Login",
-    component: () => import("../views/back/Login.vue"),
+    component: Login,
     name: "Login",
     meta: {
       title: "Linance | 後台登入",
@@ -10,13 +26,13 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/Manage",
-    component: () => import("@/views/back/Manage.vue"),
+    component: Manage,
     name: "Manage",
     redirect: "/Manage/Product",
     children: [
       {
         path: "/Manage/Product",
-        component: () => import("@/views/back/Product.vue"),
+        component: Product,
         name: "Product",
         meta: {
           title: "後台 | 產品列表",
@@ -24,7 +40,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "/Manage/Order",
-        component: () => import("@/views/back/Order.vue"),
+        component: Order,
         name: "Order",
         meta: {
           title: "後台 | 訂單紀錄",
@@ -32,7 +48,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "/Manage/Coupon",
-        component: () => import("@/views/back/Coupon.vue"),
+        component: Coupon,
         name: "Coupon",
         meta: {
           title: "後台 | 優惠券",
@@ -43,12 +59,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     redirect: "/Home",
-    component: () => import("@/views/front/FrontBase.vue"),
+    component: FrontBase,
     name: "Home",
     children: [
       {
         path: "/Home",
-        component: () => import("@/views/front/Home.vue"),
+        component: Home,
         name: "Home",
         meta: {
           title: "Linance | 歡迎",
@@ -56,7 +72,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "/Menu",
-        component: () => import("@/views/front/Menu.vue"),
+        component: Menu,
         name: "Menu",
         meta: {
           title: "Linance | 菜單",
@@ -64,7 +80,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "/Food/:id",
-        component: () => import("@/views/front/Food.vue"),
+        component: Food,
         name: "Food",
         meta: {
           title: "Linance | 餐點",
@@ -73,7 +89,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: "/Cart",
         redirect: "/Cart/CartInfo",
-        component: () => import("@/views/front/Cart.vue"),
+        component: Cart,
         name: "Cart",
         meta: {
           title: "Linance | 購物車",
@@ -81,20 +97,20 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: "/Cart/CartInfo",
-            component: () => import("@/views/front/CartInfo.vue"),
+            component: CartInfo,
             name: "CartInfo",
           },
           {
             path: "/Cart/UserInfo",
-            component: () => import("@/views/front/UserInfo.vue"),
+            component: UserInfo,
             name: "UserInfo",
           },
           {
             path: "/Cart/OrderInfo/:id",
-            component: () => import("@/views/front/OrderInfo.vue"),
+            component: OrderInfo,
             name: "OrderInfo",
           },
-        ]
+        ],
       },
     ],
   },

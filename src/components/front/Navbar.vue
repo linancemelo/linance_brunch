@@ -21,7 +21,7 @@
       <ul class="hidden lg:flex">
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">關於我們</router-link></li>
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">後台登入</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'Login' }">後台登入</router-link></li>
       </ul>
     </div>
     <div class="navbar-end mr-5">
@@ -41,7 +41,7 @@
       <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">線上訂位</router-link></li>
       <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">關於我們</router-link></li>
       <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">後台登入</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Login' }" class="block text-center">後台登入</router-link></li>
     </ul>
   </div>
 </template>

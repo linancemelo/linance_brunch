@@ -6,7 +6,7 @@ const router = useRouter();
 const { setCookie, removeCookie, getCookie, simpleAlert } = useUnits();
 
 const userInfo = ref({
-  username: "",
+  username: "liangvuepractice@mail.com",
   password: "liangxu04vu6",
 });
 const rememberAc = ref(false);
@@ -30,8 +30,9 @@ const login = () => {
     },
   })
     .then((result) => {
-      if (result.data.success) {
-        setCookie("ltk", result.data.token, 0);
+      const { message, success, token } = result.data;
+      if (success) {
+        setCookie("ltk", token, 0);
         setCookie("linanceAc", userInfo.value.username, 7);
         if (rememberAc.value) {
           setCookie("rememberAc", rememberAc.value.toString(), 7);
@@ -41,7 +42,7 @@ const login = () => {
         }
         router.push({ name: "Manage" });
       } else {
-        simpleAlert(`${result.data.message}`, "error");
+        simpleAlert(message, "error");
       }
       isLoading.value = false;
     })

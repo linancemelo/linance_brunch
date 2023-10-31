@@ -7,10 +7,12 @@ const router = useRouter();
 
 onMounted(async () => {
   const isAuthenticated = await store.verifyManagement();
-  if (!isAuthenticated) router.push({ name: "Login" });
+  if (!isAuthenticated) {
+    router.push({ name: "Login" });
+    return;
+  }
+  store.setUserInfo();
 });
-
-store.setUserInfo();
 </script>
 
 <template>
