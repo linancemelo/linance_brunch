@@ -29,4 +29,4 @@ export type UserInfo = {
   tel: string;
 };
 
-export type OrderListObj = Omit<OrderInfo, "user"> & UserInfo;
+export type OrderListObj = Omit<OrderInfo, "user" | "create_at"> & UserInfo & { create_at: string };

@@ -14,12 +14,13 @@ const actionMap = {
   edit: "編輯",
 };
 const couponInfo = ref({
-  id: null,
+  id: "",
   title: "",
   is_enabled: 1,
   percent: 0,
   due_date: 0,
   code: "",
+  num: 0,
 });
 const initCouponInfo = { ...couponInfo.value };
 

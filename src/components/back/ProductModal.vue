@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Axios from "axios";
 import { useUnits } from "@/composables/units.ts";
-import { Action } from "@/types/components/action.ts";
+import type { Action } from "@/types/components/action.ts";
 
 const { isEmpty, getCookie, callApi, clickById, simpleAlert, confirmAlert } =
   useUnits();

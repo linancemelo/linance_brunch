@@ -6,6 +6,7 @@ import { useUnits } from "@/composables/units.ts";
 import type { ProductInfo } from "@/types/back/product.ts";
 import type { CouponInfo } from "@/types/back/coupon.ts";
 import type { Action } from "@/types/components/action.ts";
+import moment from "moment";
 
 const store = useStore();
 const { isEmpty, callApi, confirmAlert, simpleAlert, clickById } = useUnits();
@@ -19,7 +20,7 @@ const columns = [
 ];
 const couponList = ref([]);
 const action = ref<Action>("create");
-const couponModalRef = ref(null);
+const couponModalRef = ref<InstanceType<typeof CouponModal>>();
 
 const getCoupon = async (currentPage = 1) => {
   store.isLoading = true;
@@ -28,14 +29,21 @@ const getCoupon = async (currentPage = 1) => {
   const { success, coupons, pagination } = result.data;
   if (success) {
     store.isLoading = false;
-    couponList.value = coupons;
+    couponList.value = coupons.map(({ due_date, ...items }: CouponInfo) => {
+      return {
+        ...items,
+        due_date: moment(due_date).format("YYYY-MM-DD")
+      };
+    });
     store.currentPage = pagination.current_page;
     store.totalPage = pagination.total_pages;
   }
 };
 const setCouponInfo = (info: CouponInfo) => {
   action.value = isEmpty(info) ? "create" : "edit";
-  couponModalRef.value.couponInfo = info;
+  if (couponModalRef.value) {
+    couponModalRef.value.couponInfo = info;
+  }
 };
 const editCoupon = (row: CouponInfo) => {
   setCouponInfo(row);

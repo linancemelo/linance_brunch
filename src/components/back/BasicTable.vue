@@ -10,19 +10,33 @@ const store = useStore();
 const route = useRoute();
 const routeName = route.name as RouteType;
 
-withDefaults(defineProps<Props>(), {
-  columns: () => [],
-  tableInfo: () => [],
-  addBtn: false,
-  editBtn: false,
-  delBtn: false,
-});
+const {
+  columns = [],
+  tableInfo = [],
+  addBtn = false,
+  editBtn = false,
+  delBtn = false,
+} = defineProps<Props>();
 defineEmits(["setModalInfo", "deleteItem", "editItem"]);
 
 const typeMap = {
   Product: "餐點",
   Order: "訂單",
-  Coupon: "優惠券"
+  Coupon: "優惠券",
+};
+
+const categoryList = [
+  { chName: "美味蛋餅", enName: "chineseOmelet" },
+  { chName: "厚蛋吐司", enName: "toast" },
+  { chName: "漢堡湯種", enName: "hamburger" },
+  { chName: "台式炒飯", enName: "friedRice" },
+  { chName: "鐵板麵", enName: "noodle" },
+  { chName: "韓式小吃", enName: "korea" },
+  { chName: "點心佳餚", enName: "snack" },
+  { chName: "精選飲料", enName: "drink" },
+];
+const getCategoryChName = (colEn: string) => {
+  return categoryList.find((item) => item.enName === colEn)?.chName;
 };
 </script>
 
@@ -57,6 +71,12 @@ const typeMap = {
             <td v-for="(col, index) in columns" :key="index">
               <span v-if="col.enName === 'is_enabled'">
                 {{ row[col.enName] === 1 ? "有" : "無" }}
+              </span>
+              <span v-else-if="col.enName === 'is_paid'">
+                {{ row[col.enName] ? "已付款" : "未付款" }}
+              </span>
+              <span v-else-if="col.enName === 'category'">
+                {{ getCategoryChName(row[col.enName]) }}
               </span>
               <span v-else>{{ row[col.enName] }}</span>
             </td>

@@ -3,6 +3,7 @@ import BasicTable from "@/components/back/BasicTable.vue";
 import { useUnits } from "@/composables/units.ts";
 import { useStore } from "@/store";
 import type { OrderInfo, OrderListObj } from "@/types/back/order.ts";
+import moment from "moment";
 
 const store = useStore();
 const { callApi, confirmAlert, simpleAlert } = useUnits();
@@ -35,8 +36,9 @@ const getOrder = async (currentPage = 1) => {
 };
 
 const dealOrderInfo = (result: OrderInfo[]) => {
-  return result.map(({ user, ...items }: OrderInfo) => {
+  return result.map(({ create_at, user, ...items }: OrderInfo) => {
     return {
+      create_at: moment.unix(create_at).format("YYYY-MM-DD"),
       ...user,
       ...items,
     };
