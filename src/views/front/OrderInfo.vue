@@ -91,7 +91,7 @@ onMounted(() => {
       </div>
       <div class="card-actions justify-end">
         <button v-if="!orderInfo.is_paid" class="btn btn-primary" @click="payOrder">完成付款</button>
-        <router-link :to="{ name: 'Home' }" class="btn btn-primary" @click="payOrder">回首頁</router-link>
+        <router-link v-else :to="{ name: 'Home' }" class="btn btn-primary" @click="payOrder">回首頁</router-link>
       </div>
     </div>
   </div>

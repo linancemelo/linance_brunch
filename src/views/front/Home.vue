@@ -6,8 +6,8 @@
     <div class="carousel w-full h-[100vh]">
       <div id="slide1" class="carousel-item relative w-full">
         <img
-          src="https://www.laya.com.tw/upload/home_about_list/twL_home_about_22C12_qysnbkdsic.png"
-          class="w-full"
+            src="http://twjsp.com.tw/files/thumbnails/files_images_index_banner-1_1920x1920.jpg"
+            class="w-full"
         />
         <div
           class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
@@ -18,8 +18,8 @@
       </div>
       <div id="slide2" class="carousel-item relative w-full">
         <img
-          src="http://twjsp.com.tw/files/thumbnails/files_images_index_banner-1_1920x1920.jpg"
-          class="w-full"
+            src="https://www.laya.com.tw/upload/home_about_list/twL_home_about_22C12_qysnbkdsic.png"
+            class="w-full"
         />
         <div
           class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
@@ -62,16 +62,6 @@
             <p>If a dog chews shoes whose shoes does he choose?</p>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl mx-10">
-          <figure><img src="https://www.qburger.com.tw/uploads/images/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91-%E5%85%AD%E5%B0%8F%E5%9C%96_%E7%BE%8E%E5%91%B3%E9%A4%90%E9%BB%9E.jpg" alt="Shoes" /></figure>
-          <div class="card-body">
-            <h2 class="card-title">
-              Shoes!
-              <div class="badge badge-secondary">NEW</div>
-            </h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-          </div>
-        </div>
       </div>
     </div>
     <!-- 熱賣商品 -->
@@ -79,14 +69,6 @@
       <h2 class="text-center">熱賣商品</h2>
       <div class="divider pb-10">Hot Sales</div>
       <div class="mb-6 flex justify-center">
-        <div>
-          <div class="avatar placeholder mx-5">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
-              <span class="text-3xl">K</span>
-            </div>
-          </div>
-          <p>123</p>
-        </div>
         <div>
           <div class="avatar placeholder mx-5">
             <div class="bg-neutral-focus text-neutral-content rounded-full w-48">

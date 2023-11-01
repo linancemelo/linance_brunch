@@ -3,7 +3,7 @@
 
 <template>
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="navbar bg-white w-[100vw] z-50">
+  <div class="navbar bg-white w-full z-50">
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
         <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
@@ -14,13 +14,13 @@
     <div class="navbar-center">
       <ul class="hidden lg:flex z-100">
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">美味餐點</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>
+<!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>-->
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">線上訂位</router-link></li>
       </ul>
       <router-link :to="{ name: 'Home' }" class="btn btn-ghost normal-case text-xl mx-10">Linance</router-link>
       <ul class="hidden lg:flex">
         <li class="mx-5"><router-link :to="{ name: 'Menu' }">關於我們</router-link></li>
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>
+<!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>-->
         <li class="mx-5"><router-link :to="{ name: 'Login' }">後台登入</router-link></li>
       </ul>
     </div>
@@ -36,11 +36,11 @@
           <span class="material-symbols-outlined">close</span>
         </label>
       </li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">產品列表</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>
+      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">美味餐點</router-link></li>
+<!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>-->
       <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">線上訂位</router-link></li>
       <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">關於我們</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>
+<!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>-->
       <li class="my-1"><router-link :to="{ name: 'Login' }" class="block text-center">後台登入</router-link></li>
     </ul>
   </div>

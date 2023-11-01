@@ -17,9 +17,7 @@ const getCartList = async () => {
       console.log(response);
       if (response.data.success) {
         cartList.value = response.data.data.carts;
-        finalTotal.value = response.data.data.carts.reduce((tQty, i) => {
-          return (tQty += i.qty);
-        }, 0);
+        finalTotal.value = response.data.data.carts.reduce((tQty, i) => tQty + i.qty, 0);
         totalAmount.value = response.data.data.total;
         finalAmount.value = response.data.data.final_total;
         console.log(cartList.value);
@@ -141,7 +139,7 @@ onMounted(() => {
           <ul>
             <li class="flex justify-between mb-2">
               <span>總數量</span><span>{{ finalTotal }}</span>
-            </li> 
+            </li>
             <li class="flex justify-between mb-2">
               <span>小計</span><span>{{ totalAmount }}</span>
             </li>
