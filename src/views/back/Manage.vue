@@ -1,18 +1,5 @@
 <script setup lang="ts">
 import Navbar from "@/components/back/Navbar.vue";
-import { useStore } from "@/store";
-
-const store = useStore();
-const router = useRouter();
-
-onMounted(async () => {
-  const isAuthenticated = await store.verifyManagement();
-  if (!isAuthenticated) {
-    router.push({ name: "Login" });
-    return;
-  }
-  store.setUserInfo();
-});
 </script>
 
 <template>

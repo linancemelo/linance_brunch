@@ -220,10 +220,10 @@ defineExpose({
         </div>
       </main>
       <footer class="modal-action py-3 pr-5">
-        <button class="btn btn-accent" @click="updateProduct">
+        <button class="btn btn-accent rounded" @click="updateProduct">
           {{ actionMap[action] }}
         </button>
-        <label for="ProductModal" class="btn">取消</label>
+        <label for="ProductModal" class="btn rounded">取消</label>
       </footer>
     </div>
   </div>

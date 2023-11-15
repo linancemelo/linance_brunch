@@ -44,7 +44,7 @@ const getCategoryChName = (colEn: string) => {
   <div v-if="addBtn" class="text-end w-full pr-2 mb-2">
     <label
       :for="`${routeName}Modal`"
-      class="btn btn-sm bg-warning"
+      class="btn btn-sm rounded bg-warning"
       @click="$emit('setModalInfo', {})"
       >新增{{ typeMap[routeName] }}</label
     >
@@ -83,14 +83,14 @@ const getCategoryChName = (colEn: string) => {
             <td class="flex justify-center">
               <button
                 v-if="editBtn"
-                class="btn btn-sm w-8 h-8 mr-2 bg-success"
+                class="btn btn-sm rounded w-8 h-8 mr-2 bg-success"
                 @click="$emit('editItem', row)"
               >
                 <span class="material-symbols-outlined"> edit </span>
               </button>
               <button
                 v-if="delBtn"
-                class="btn btn-sm w-8 h-8 bg-error"
+                class="btn btn-sm rounded w-8 h-8 bg-error"
                 @click="$emit('deleteItem', row)"
               >
                 <span class="material-symbols-outlined"> delete </span>

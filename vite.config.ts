@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
-import VueDevTools from "vite-plugin-vue-devtools";
 
 export default defineConfig({
   server: {
@@ -12,7 +11,6 @@ export default defineConfig({
     vue({
       script: { defineModel: true, propsDestructure: true },
     }),
-    VueDevTools(),
     AutoImport({
       imports: ["vue", "vue-router", "pinia"],
       dts: "src/auto-import.d.ts",

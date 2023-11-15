@@ -67,7 +67,7 @@ const deleteProduct = async (row: ProductInfo) => {
 </script>
 
 <template>
-  <div class="p-3 2xl:p-8 bg-gray-300 h-full w-full">
+  <div class="p-3 2xl:p-8 w-full">
     <Loading v-model:active="store.isLoading" />
     <div
       v-if="!store.isLoading"

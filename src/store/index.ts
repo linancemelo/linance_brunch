@@ -20,8 +20,8 @@ export const useStore = defineStore("Main", () => {
             expDate: moment(exp * 1000).format("YYYY-MM-DD"),
         };
     };
-    const verifyManagement = () => {
-        return Axios({
+    const verifyManagement = async () => {
+        return await Axios({
             url: "https://vue3-course-api.hexschool.io/api/user/check",
             method: "POST",
             headers: {

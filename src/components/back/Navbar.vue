@@ -8,7 +8,7 @@ const router = useRouter();
 const { removeCookie, confirmAlert } = useUnits();
 
 const highlight = (targetPath: string) => {
-  return targetPath === route.name ? "active" : "";
+  return targetPath === route.name ? "active" : "bg-base-accent text-base-100";
 };
 const logOut = async () => {
   const check = await confirmAlert("確定要登出嗎", "warning");
@@ -20,15 +20,13 @@ const logOut = async () => {
 </script>
 
 <template>
-  <div class="drawer lg:drawer-open h-screen">
-    <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col">
+  <div class="drawer lg:drawer-open bg-gray-300">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col min-h-screen">
       <!-- Navbar -->
-      <div
-        class="w-full flex justify-between bg-opacity-90 bg-base-100 h-[8vh] px-2 lg:px-5 xl:px-10"
-      >
-        <div class="flex items-center flex-none lg:hidden">
-          <label for="my-drawer-3" class="btn btn-square btn-ghost">
+      <div class="navbar bg-base-100 justify-between lg:justify-end">
+        <div class="flex items-center lg:hidden">
+          <label for="my-drawer" class="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -44,78 +42,78 @@ const logOut = async () => {
             </svg>
           </label>
         </div>
-        <div class="flex px-2 mx-2 items-center">
-          <a class="btn btn-ghost normal-case text-2xl lg:hidden"
-            ><span class="material-symbols-outlined"> restaurant_menu </span
-            >Linance</a
-          >
+        <div class="flex px-2 mx-2 items-center lg:hidden">
+          <span class="material-symbols-outlined"> restaurant_menu </span
+          >Linance
         </div>
-        <div class="flex items-center">
+        <div class="flex-none gap-2">
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-              <span class="material-symbols-outlined text-3xl">
-                account_circle
+              <span class="avatar online w-full">
+                <div class="w-24 rounded-full self-center">
+                  <img src="https://i.pinimg.com/736x/aa/aa/73/aaaa733a0bc815f1b17cfb5a7d94295e.jpg"/>
+                </div>
               </span>
             </label>
             <ul
               tabindex="0"
-              class="text-neutral mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              class="text-neutral mt-3 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>使用者：{{ store.userInfo.email }}</li>
               <li class="mt-2">帳號到期日：{{ store.userInfo.expDate }}</li>
-              <li class="btn btn-sm mt-2" @click="logOut">登出</li>
+              <li class="btn btn-sm rounded mt-2 btn-outline" @click="logOut">登出</li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="max-w-[100vw] h-[92vh]">
+      <div class="max-w-[100vw]">
         <slot />
       </div>
     </div>
-    <div class="drawer-side z-40 h-screen">
-      <label for="my-drawer-3" class="drawer-overlay"></label>
-      <aside class="w-48">
-        <div class="flex bg-white ps-5 items-center h-[8vh] text-2xl">
+    <div class="drawer-side z-40 max-h-screen">
+      <label for="my-drawer" class="drawer-overlay"></label>
+      <aside class="w-44 min-h-[100vh] bg-neutral-800">
+        <div class="flex items-center justify-center text-2xl py-4 text-base-100">
           <span class="material-symbols-outlined"> restaurant_menu </span
-          >Linance
+          ><span>Linance</span>
         </div>
-        <ul class="min-h-[92vh] bg-white menu py-2 px-4 w-full lg:hidden">
-          <li class="my-2">
+        <ul class="menu px-4 w-full lg:hidden">
+          <li class="mb-2 rounded hover:bg-base-300">
             <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
               ><span class="material-symbols-outlined"> lunch_dining </span
               >餐點列表</router-link
             >
           </li>
-          <li class="my-2">
+          <li class="mb-2 rounded hover:bg-base-300">
             <router-link :to="{ name: 'Order' }" :class="highlight('Order')"
               ><span class="material-symbols-outlined"> list_alt </span
               >訂單紀錄</router-link
             >
           </li>
-          <li class="my-2">
+          <li class="mb-2 rounded hover:bg-base-300">
             <router-link :to="{ name: 'Coupon' }" :class="highlight('Coupon')"
               ><span class="material-symbols-outlined"> bookmark_remove </span
               >優惠券清單</router-link
             >
           </li>
         </ul>
-        <ul class="min-h-[92vh] hidden lg:block menu menu-sm lg:menu-md px-4">
-          <li class="my-2">
+        <ul class="hidden lg:block menu menu-sm lg:menu-md px-4">
+          <li class="mb-2 rounded hover:bg-base-300">
             <router-link :to="{ name: 'Product' }" :class="highlight('Product')"
               ><span class="material-symbols-outlined"> lunch_dining </span
               >餐點列表</router-link
             >
           </li>
-          <li class="my-2">
+          <li class="mb-2 rounded hover:bg-base-300">
             <router-link :to="{ name: 'Order' }" :class="highlight('Order')"
               ><span class="material-symbols-outlined"> list_alt </span
-              >訂單列表</router-link
+              >訂單紀錄</router-link
             >
           </li>
-          <li class="my-2">
+          <li class="mb-2 rounded hover:bg-base-300">
             <router-link :to="{ name: 'Coupon' }" :class="highlight('Coupon')"
-            ><span class="material-symbols-outlined"> bookmark_remove </span
-            >優惠券清單</router-link
+              ><span class="material-symbols-outlined"> bookmark_remove </span
+              >優惠券清單</router-link
             >
           </li>
         </ul>
@@ -134,5 +132,10 @@ const logOut = async () => {
     width: auto;
     overscroll-behavior: auto;
   }
+}
+.active {
+  background: #D1D5DB !important;
+  color: #000 !important;
+  border-radius: .25rem;
 }
 </style>

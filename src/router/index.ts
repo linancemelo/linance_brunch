@@ -14,6 +14,7 @@ import Cart from "@/views/front/Cart.vue";
 import CartInfo from "@/views/front/CartInfo.vue";
 import UserInfo from "@/views/front/UserInfo.vue";
 import OrderInfo from "@/views/front/OrderInfo.vue";
+import { useStore } from "@/store";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -120,9 +121,22 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
-
-router.beforeEach(async (to) => {
+router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title as string;
+
+  const store = useStore();
+
+  if (to.path.indexOf("Manage") >= 0) {
+    const isAuth = await store.verifyManagement();
+    if (isAuth) {
+      next();
+      store.setUserInfo();
+    } else {
+      next({ name: "Login" });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
