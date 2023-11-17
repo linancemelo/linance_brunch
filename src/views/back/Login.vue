@@ -65,7 +65,7 @@ const login = () => {
               <input
                 type="email"
                 id="inputEmail"
-                class="w-full input input-bordered bg-white"
+                class="w-full input input-bordered rounded bg-white"
                 placeholder="Email address"
                 required
                 v-model="userInfo.username"
@@ -76,7 +76,7 @@ const login = () => {
               <input
                 type="password"
                 id="inputPassword"
-                class="w-full input input-bordered bg-white"
+                class="w-full input input-bordered rounded bg-white"
                 placeholder="Password"
                 required
                 v-model="userInfo.password"
@@ -93,7 +93,7 @@ const login = () => {
               <label for="rememberAc" class="label-text">記住帳號</label>
             </div>
             <div>
-              <button class="btn btn-block bg-black" @click="login">
+              <button class="btn btn-block rounded bg-black" @click="login">
                 <span
                   v-if="isLoading"
                   class="loading loading-spinner loading-sm text-white"

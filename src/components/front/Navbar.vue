@@ -29,20 +29,20 @@
     </div>
   </div>
   <div class="drawer-side" style="z-index: 99">
-    <ul class="menu w-full min-h-full bg-base-200 p-0">
-      <li class="h-100 py-5 cursor-none flex justify-center">
-        <router-link :to="{ name: 'Home' }" class="btn normal-case text-xl">Linance</router-link>
-        <label for="home-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost absolute right-5">
-          <span class="material-symbols-outlined">close</span>
-        </label>
-      </li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">美味餐點</router-link></li>
-<!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>-->
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">線上訂位</router-link></li>
-      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">關於我們</router-link></li>
-<!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>-->
-      <li class="my-1"><router-link :to="{ name: 'Login' }" class="block text-center">後台登入</router-link></li>
-    </ul>
+    <label for="my-drawer" class="drawer-overlay"></label>
+    <aside class="w-44 min-h-[100vh] bg-neutral-800">
+      <ul class="menu w-full min-h-full bg-base-200 p-5">
+        <li class="flex justify-center">
+          <router-link :to="{ name: 'Home' }" class="btn normal-case text-xl">Linance</router-link>
+        </li>
+        <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">美味餐點</router-link></li>
+  <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>-->
+        <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">線上訂位</router-link></li>
+        <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">關於我們</router-link></li>
+  <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>-->
+        <li class="my-1"><router-link :to="{ name: 'Login' }" class="block text-center">後台登入</router-link></li>
+      </ul>
+    </aside>
   </div>
 </template>
 
