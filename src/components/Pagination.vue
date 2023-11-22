@@ -79,6 +79,6 @@ const pagesNumToArr = computed(() => {
   color: theme("colors.primary");
 }
 .btn:hover {
-  background-color: theme("colors.primary-focus");;
+  background-color: theme("colors.primary");;
 }
 </style>
