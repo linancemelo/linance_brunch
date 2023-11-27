@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main class="lg:px-5">
+  <main>
     <div class="carousel w-full">
       <div id="slide1" class="carousel-item relative w-full">
         <img
@@ -41,7 +41,7 @@
       </div>
     </div>
     <!-- 提供服務 -->
-    <div class="bg-base-300 w-full py-20"  style="background: url('https://img.freepik.com/free-photo/brown-wooden-textured-flooring-background_53876-101851.jpg?w=1380&t=st=1700662866~exp=1700663466~hmac=80493b0fb5c95ab275e6ee2490bfcbaa1cc76db3cb63d03a7d194de6bc9df4a4') no-repeat; background-size: cover">
+    <div class="bg-base-300 w-full py-20" style="background: url('http://twjsp.com.tw/styles/images/common/footer-bg.jpg') no-repeat; background-size: cover">
       <div class="flex justify-center">
         <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
           <figure class="px-10 pt-10">
@@ -73,7 +73,7 @@
       </div>
     </div>
     <!-- 熱賣商品 -->
-    <div class="bg-base-300/30 w-full py-20 text-center">
+    <div class="bg-base-300/30 w-full py-20 text-center" style="background: url('https://www.qburger.com.tw/uploads/images/qb_5fffe60b86fed_hp-news-bg.jpg')">
       <div class="mb-6 flex justify-center">
         <div>
           <div class="avatar placeholder mx-5">
