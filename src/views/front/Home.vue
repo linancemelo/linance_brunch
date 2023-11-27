@@ -40,40 +40,8 @@
         </div>
       </div>
     </div>
-    <!-- 提供服務 -->
-    <div class="bg-base-300 w-full py-20" style="background: url('http://twjsp.com.tw/styles/images/common/footer-bg.jpg') no-repeat; background-size: cover">
-      <div class="flex justify-center">
-        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
-          <figure class="px-10 pt-10">
-            <img src="https://img.freepik.com/free-photo/3d-hand-making-cashless-payment-from-smartphone_107791-16609.jpg?w=740&t=st=1700660727~exp=1700661327~hmac=3c59ed5f52912956d45c2eef2869a137000cb61b254f407ed999458856cbe20b" alt="電子支付" class="rounded-xl" />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">電子支付</h2>
-            <p>無論是線上還是線下，支付輕鬆無憂。Line Pay、Apple Pay、悠遊卡、信用卡，方便、安全，輕鬆支付。</p>
-          </div>
-        </div>
-        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
-          <figure class="px-10 pt-10">
-            <img src="https://img.freepik.com/free-photo/3d-render-courier-hands-give-carton-box-client_107791-16196.jpg?w=740&t=st=1700660625~exp=1700661225~hmac=e199fa625c660370a20cb4833c5f3bd3f7b1a2ed006bcd8d8e2cfd91b6f49850" alt="外送" class="rounded-xl" />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">外送到府</h2>
-            <p>美食不出門，外送到你家。FoodPanda、UberEats、店家外送，選擇多元，口味無界，享受在家的美味時光。</p>
-          </div>
-        </div>
-        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
-          <figure class="px-10 pt-10">
-            <img src="https://img.freepik.com/free-photo/gift-box-design_1156-855.jpg?w=740&t=st=1700661108~exp=1700661708~hmac=a16075c0c57bc998f3e109ef2591fe78a5c7a8330c5340da181d022fe45f9870" alt="集點卡" class="rounded-xl" />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">滿額集點</h2>
-            <p>每百元一點，滿五點送美味。集點輕鬆，兌換精緻點心和飲料，品味回饋，美好滋味由你開始。</p>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- 熱賣商品 -->
-    <div class="bg-base-300/30 w-full py-20 text-center" style="background: url('https://www.qburger.com.tw/uploads/images/qb_5fffe60b86fed_hp-news-bg.jpg')">
+    <div class="bg-base-300/30 w-full py-20 text-center" style="background: url('https://pic.52112.com/180207/180207_21/ny0fZrv4V2.jpg')">
       <div class="mb-6 flex justify-center">
         <div>
           <div class="avatar placeholder mx-5">
@@ -114,15 +82,52 @@
       </div>
       <button class="btn btn-outline">所有商品</button>
     </div>
+    <!-- 提供服務 -->
+    <div class="bg-base-300 w-full py-20" style="background: url('http://twjsp.com.tw/styles/images/common/footer-bg.jpg') no-repeat; background-size: cover">
+      <div class="flex justify-center">
+        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img src="https://img.freepik.com/free-photo/3d-hand-making-cashless-payment-from-smartphone_107791-16609.jpg?w=740&t=st=1700660727~exp=1700661327~hmac=3c59ed5f52912956d45c2eef2869a137000cb61b254f407ed999458856cbe20b" alt="電子支付" class="rounded-xl" />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">電子支付</h2>
+            <p>無論是線上還是線下，支付輕鬆無憂。Line Pay、Apple Pay、悠遊卡、信用卡，方便、安全，輕鬆支付。</p>
+          </div>
+        </div>
+        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img src="https://img.freepik.com/free-photo/3d-render-courier-hands-give-carton-box-client_107791-16196.jpg?w=740&t=st=1700660625~exp=1700661225~hmac=e199fa625c660370a20cb4833c5f3bd3f7b1a2ed006bcd8d8e2cfd91b6f49850" alt="外送" class="rounded-xl" />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">外送到府</h2>
+            <p>美食不出門，外送到你家。FoodPanda、UberEats、店家外送，選擇多元，口味無界，享受在家的美味時光。</p>
+          </div>
+        </div>
+        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img src="https://img.freepik.com/free-photo/gift-box-design_1156-855.jpg?w=740&t=st=1700661108~exp=1700661708~hmac=a16075c0c57bc998f3e109ef2591fe78a5c7a8330c5340da181d022fe45f9870" alt="集點卡" class="rounded-xl" />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">滿額集點</h2>
+            <p>每百元一點，滿五點送美味。集點輕鬆，兌換精緻點心和飲料，品味回饋，美好滋味由你開始。</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- APP點餐 -->
-    <div class="hero" style="background-image: url('https://img.freepik.com/free-photo/close-up-hands-holding-smartphone_23-2149303372.jpg?w=1380&t=st=1700665050~exp=1700665650~hmac=59c945def1144a12a2840196a9a3dc2b483bc0d42330c09c50e3194471117e9a')">
+    <div class="hero" style="background-image: url('https://www.qburger.com.tw/uploads/images/qb_5fffe60b86fed_hp-news-bg.jpg')">
       <div class="hero min-h-screen">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-          <img src="/assets/img/qrcode.png" class="max-w-sm rounded-lg shadow-2xl" />
-          <div>
-            <h1 class="text-5xl font-bold">線上訂位點餐</h1>
-            <p class="py-6">掃描QR Code，輕鬆享受智慧訂位與點餐體驗！</p>
-            <button class="btn btn-primary">Get Started</button>
+        <div class="hero-content">
+          <div class="card glass">
+            <div class="card-body flex flex-row">
+              <div>
+                <h1 class="text-5xl font-bold">線上訂位與點餐</h1>
+                <p class="py-6">掃描QR Code，輕鬆享受智慧訂位與點餐體驗！</p>
+                <button class="btn btn-sm btn-outline mr-2"><img src="/assets/img/app_store.png" alt="">App Store</button>
+                <button class="btn btn-sm btn-outline"><img src="/assets/img/google_play.png" alt="">Google Play</button>
+              </div>
+              <img src="/assets/img/qrcode.png" class="max-w-sm rounded-lg shadow-2xl" />
+            </div>
           </div>
         </div>
       </div>

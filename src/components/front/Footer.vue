@@ -3,12 +3,11 @@
 </script>
 
 <template>
-  <footer class="footer footer-center p-10 text-base-content rounded">
-    <nav class="grid grid-flow-col gap-4">
-      <a class="link link-hover">About us</a>
-      <a class="link link-hover">Contact</a>
-      <a class="link link-hover">Jobs</a>
-      <a class="link link-hover">Press kit</a>
+  <footer class="footer footer-center p-10 bg-neutral text-neutral-content" style="background: url('https://www.umai.tw/wp-content/uploads/2021/11/Footer-_Background.jpg')">
+    <nav class="flex">
+      <a class="link link-hover">人才招募</a>
+      <a class="link link-hover">聯絡我們</a>
+      <a class="link link-hover">最新消息</a>
     </nav>
     <nav>
       <div class="grid grid-flow-col gap-4">
@@ -18,7 +17,7 @@
       </div>
     </nav>
     <aside>
-      <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+      <p>Copyright © 2023 - All right reserved by Linance</p>
     </aside>
   </footer>
 </template>
