@@ -3,48 +3,32 @@
 
 <template>
   <main>
-    <div class="carousel w-full">
-      <div id="slide1" class="carousel-item relative w-full">
-        <img
-            src="/assets/img/home_bg1.png"
-            class="w-full object-contain"
-        />
-        <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-        >
-          <a href="#slide2" class="btn btn-circle">❮</a>
-          <a href="#slide2" class="btn btn-circle">❯</a>
-        </div>
-      </div>
-      <div id="slide2" class="carousel-item relative w-full">
-        <img
-            src="/assets/img/home_bg2.png"
-            class="w-full"
-        />
-        <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-        >
-          <a href="#slide1" class="btn btn-circle">❮</a>
-          <a href="#slide1" class="btn btn-circle">❯</a>
+    <div class="hero min-h-screen" style="background-image: url(/assets/img/home_bg1.png);">
+      <div class="hero-overlay bg-opacity-50"></div>
+      <div class="hero-content text-center text-neutral-content">
+        <div class="max-w-xl">
+          <h1 class="mb-5 text-4xl md:text-5xl font-bold">美味與活力的完美交匯</h1>
+          <p class="mb-5 text-2xl font-bold">-輕鬆享受每一口，激發無限能量-</p>
+          <button class="btn rounded">立即訂購</button>
         </div>
       </div>
     </div>
-    <!-- 此處背景需透明 -->
-    <div class="hero" style="background-image: url('/assets/img/home_bg3.jpg');">
+    <!-- 品牌故事 -->
+    <div class="hero" style="background-image: url(/assets/img/home_bg3.jpg);">
       <div class="hero-overlay"></div>
       <div class="hero-content text-center text-neutral-content">
-        <div class="py-48 text-center">
-          <h1 class="text-4xl font-bold">店名</h1>
-          <p class="tracking-widest">以貼心服務、新鮮嚴選食材和創意心思為您打造一個美食饗宴。希望您能享受快樂，吃得安心滿足，在這個充滿溫暖熱情的地方，感受台灣在地的熱情胸懷，早餐店文化。</p>
-          <button class="btn">了解更多</button>
+        <div class="md:px-40 lg:px-60 py-48 text-center">
+          <h1 class="text-4xl font-bold mb-5">店名</h1>
+          <p class="tracking-widest mb-5">以貼心服務、新鮮嚴選食材和創意心思為您打造一個美食饗宴。希望您能享受快樂，吃得安心滿足，在這個充滿溫暖熱情的地方，感受台灣在地的熱情胸懷，早餐店文化。</p>
+          <button class="btn rounded">了解更多</button>
         </div>
       </div>
     </div>
     <!-- 熱賣商品 -->
-    <div class="bg-base-300/30 w-full py-20 text-center" style="background: url('https://pic.52112.com/180207/180207_21/ny0fZrv4V2.jpg')">
-      <div class="mb-6 flex justify-center">
-        <div>
-          <div class="avatar placeholder mx-5">
+    <div class="bg-base-300/30 w-full py-20 text-center" style="background: url(/assets/img/home_bg4.jpg)">
+      <div class="mb-6 max-w-full grid grid-cols-2 md:grid-cols-4 xl:px-40">
+        <div class="py-2">
+          <div class="avatar placeholder">
             <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
               <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" />
             </div>
@@ -52,8 +36,8 @@
           <p>打拋豬炒飯</p>
           <p>$100</p>
         </div>
-        <div>
-          <div class="avatar placeholder mx-5">
+        <div class="py-2">
+          <div class="avatar placeholder">
             <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
               <img src="/assets/專案圖片/炒飯/櫻花蝦炒飯.png" />
             </div>
@@ -61,8 +45,8 @@
           <p>櫻花蝦炒飯</p>
           <p>$120</p>
         </div>
-        <div>
-          <div class="avatar placeholder mx-5">
+        <div class="py-2">
+          <div class="avatar placeholder">
             <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
               <img src="/assets/專案圖片/炒飯/蝦仁炒飯.png" />
             </div>
@@ -70,8 +54,8 @@
           <p>蝦仁炒飯</p>
           <p>$110</p>
         </div>
-        <div>
-          <div class="avatar placeholder mx-5">
+        <div class="py-2">
+          <div class="avatar placeholder">
             <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
               <img src="/assets/專案圖片/炒飯/香腸炒飯.png" />
             </div>
@@ -80,32 +64,31 @@
           <p>$100</p>
         </div>
       </div>
-      <button class="btn btn-outline">所有商品</button>
     </div>
     <!-- 提供服務 -->
-    <div class="bg-base-300 w-full py-20" style="background: url('http://twjsp.com.tw/styles/images/common/footer-bg.jpg') no-repeat; background-size: cover">
-      <div class="flex justify-center">
-        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
+    <div class="bg-base-300 w-full py-20" style="background: url(/assets/img/home_bg5.jpg)">
+      <div class="grid grid-cols-1 md:grid-cols-3 px-10 lg:px-40 gap-10">
+        <div class="card bg-base-100 shadow-xl">
           <figure class="px-10 pt-10">
-            <img src="https://img.freepik.com/free-photo/3d-hand-making-cashless-payment-from-smartphone_107791-16609.jpg?w=740&t=st=1700660727~exp=1700661327~hmac=3c59ed5f52912956d45c2eef2869a137000cb61b254f407ed999458856cbe20b" alt="電子支付" class="rounded-xl" />
+            <img src="/assets/img/e_pay.jpg" alt="電子支付" class="rounded-xl" />
           </figure>
           <div class="card-body items-center text-center">
             <h2 class="card-title">電子支付</h2>
             <p>無論是線上還是線下，支付輕鬆無憂。Line Pay、Apple Pay、悠遊卡、信用卡，方便、安全，輕鬆支付。</p>
           </div>
         </div>
-        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
+        <div class="card bg-base-100 shadow-xl">
           <figure class="px-10 pt-10">
-            <img src="https://img.freepik.com/free-photo/3d-render-courier-hands-give-carton-box-client_107791-16196.jpg?w=740&t=st=1700660625~exp=1700661225~hmac=e199fa625c660370a20cb4833c5f3bd3f7b1a2ed006bcd8d8e2cfd91b6f49850" alt="外送" class="rounded-xl" />
+            <img src="/assets/img/delivery.jpg" alt="外送" class="rounded-xl" />
           </figure>
           <div class="card-body items-center text-center">
             <h2 class="card-title">外送到府</h2>
             <p>美食不出門，外送到你家。FoodPanda、UberEats、店家外送，選擇多元，口味無界，享受在家的美味時光。</p>
           </div>
         </div>
-        <div class="card w-1/4 mx-2 bg-base-100 shadow-xl">
+        <div class="card bg-base-100 shadow-xl">
           <figure class="px-10 pt-10">
-            <img src="https://img.freepik.com/free-photo/gift-box-design_1156-855.jpg?w=740&t=st=1700661108~exp=1700661708~hmac=a16075c0c57bc998f3e109ef2591fe78a5c7a8330c5340da181d022fe45f9870" alt="集點卡" class="rounded-xl" />
+            <img src="/assets/img/gift.jpg" alt="集點卡" class="rounded-xl" />
           </figure>
           <div class="card-body items-center text-center">
             <h2 class="card-title">滿額集點</h2>
@@ -115,18 +98,23 @@
       </div>
     </div>
     <!-- APP點餐 -->
-    <div class="hero" style="background-image: url('https://www.qburger.com.tw/uploads/images/qb_5fffe60b86fed_hp-news-bg.jpg')">
-      <div class="hero min-h-screen">
+    <div class="hero" style="background-image: url(/assets/img/home_bg6.jpg)">
+      <div class="hero min-h-[75vh]">
         <div class="hero-content">
           <div class="card glass">
-            <div class="card-body flex flex-row">
-              <div>
-                <h1 class="text-5xl font-bold">線上訂位與點餐</h1>
-                <p class="py-6">掃描QR Code，輕鬆享受智慧訂位與點餐體驗！</p>
-                <button class="btn btn-sm btn-outline mr-2"><img src="/assets/img/app_store.png" alt="">App Store</button>
-                <button class="btn btn-sm btn-outline"><img src="/assets/img/google_play.png" alt="">Google Play</button>
+            <div class="card-body flex flex-col md:flex-row">
+              <div class="flex flex-col justify-center items-center">
+                <h1 class="text-5xl font-bold">線上訂位</h1>
+                <h6 class="py-6">掃描QR Code，輕鬆享受智慧訂位與點餐！</h6>
+                <div>
+                  <button class="btn btn-outline mr-2">    <i class="fa-brands fa-apple"></i>
+                    App Store</button>
+                  <button class="btn btn-outline"><i class="fa-brands fa-google-play"></i>Google Play</button>
+                </div>
               </div>
-              <img src="/assets/img/qrcode.png" class="max-w-sm rounded-lg shadow-2xl" />
+              <div class="flex justify-center p-5 md:p-0">
+                <img src="/assets/img/qrcode.png" class="rounded-lg shadow-2xl" />
+              </div>
             </div>
           </div>
         </div>

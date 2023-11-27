@@ -28,10 +28,10 @@
       <button class="btn btn-ghost btn-circle"><span class="material-symbols-outlined">shopping_cart</span></button>
     </div>
   </div>
-  <div class="drawer-side" style="z-index: 99">
-    <label for="my-drawer" class="drawer-overlay"></label>
-    <aside class="w-44 min-h-[100vh] bg-neutral-800">
-      <ul class="menu w-full min-h-full bg-base-200 p-5">
+  <div class="drawer-side z-[50] max-h-screen">
+    <label for="home-drawer" class="drawer-overlay"></label>
+    <aside class="w-80 min-h-[100vh] bg-neutral-800">
+      <ul class="menu w-full min-h-[100vh] bg-base-200 p-5">
         <li class="flex justify-center">
           <router-link :to="{ name: 'Home' }" class="btn normal-case text-xl">Linance</router-link>
         </li>
