@@ -3,11 +3,12 @@ import { useUnits } from "@/composables/units.ts";
 import { ProductInfo } from "@/types/back/product.ts";
 
 const route = useRoute();
-const { callApi } = useUnits();
+const { callApi, simpleAlert } = useUnits();
 
 const id = ref("");
 const foodInfo = ref({} as ProductInfo);
 const count = ref(1);
+const isLoading = ref(false);
 
 const categoryList = [
   { chName: "美味蛋餅", enName: "chineseOmelet" },
@@ -25,16 +26,23 @@ const foodCategory = computed(
 );
 
 const getFoodInfo = async () => {
+  isLoading.value = true;
   await callApi(`product/${id.value}`, "get", "")
     .then((response) => {
       if (response.data.success) {
         foodInfo.value = response.data.product;
+        isLoading.value = false;
       }
     })
     .catch((error) => {
       console.log(error);
     });
 };
+
+const minus = () => {
+  if (count.value > 1) count.value--;
+};
+
 const addToCart = async () => {
   const data = {
     product_id: id.value,
@@ -46,6 +54,7 @@ const addToCart = async () => {
   })
     .then((response) => {
       console.log(response);
+      simpleAlert("已加入購物車", "success");
     })
     .catch((error) => {
       console.log(error);
@@ -74,37 +83,36 @@ onMounted(() => {
         </ul>
       </div>
       <div class="max-w-lg px-5">
-        <div>
+        <div class="p-5 md:p-0">
           <img :src="foodInfo.imageUrl" alt="" />
         </div>
       </div>
-      <div class="max-w-lg px-5">
+      <div class="max-w-lg px-5 flex flex-col justify-center">
         <div class="title mb-5">
           <h1 class="text-5xl font-bold">{{ foodInfo.title }}</h1>
-          <span>Sesame Hot Dog Bun with Bacon</span>
+<!--          <span>Sesame Hot Dog Bun with Bacon</span>-->
         </div>
         <div class="price mb-5">
           <h5>原價: {{ foodInfo.origin_price }}</h5>
           <h5>售價: {{ foodInfo.price }}</h5>
         </div>
-        <div class="count mb-3">
+        <div class="flex items-center justify-center count mb-3">
           <button
-            class="btn btn-square btn-sm"
-            @click="count--"
-            :disabled="count === 1"
+            class="btn btn-square btn-xs"
+            @click="minus"
           >
             <span class="material-symbols-outlined"> remove </span>
           </button>
-          <span>{{ count }}</span>
-          <button class="btn btn-square btn-sm" @click="count++">
+          <span class="mx-2 w-5">{{ count }}</span>
+          <button class="btn btn-square btn-xs" @click="count++">
             <span class="material-symbols-outlined"> add </span>
           </button>
         </div>
         <div class="to-cart mb-5">
-          <button class="btn btn-warning mr-5" @click="addToCart">
+          <button class="btn btn-sm btn-warning rounded mr-5" @click="addToCart">
             加入購物車
           </button>
-          <router-link :to="{ name: 'Cart' }" class="btn"
+          <router-link :to="{ name: 'Cart' }" class="btn btn-sm rounded"
             >前往購物車</router-link
           >
         </div>

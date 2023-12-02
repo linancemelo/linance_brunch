@@ -32,7 +32,7 @@ const confirmOrder = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center py-5">
     <div class="form-control w-full max-w-lg">
       <label class="label">
         <span class="label-text">名字</span>
@@ -40,7 +40,7 @@ const confirmOrder = async () => {
       <input
         type="text"
         placeholder="請輸入名字"
-        class="input input-bordered w-full"
+        class="input input-bordered rounded w-full"
         v-model.trim="user.name"
       />
     </div>
@@ -51,7 +51,7 @@ const confirmOrder = async () => {
       <input
         type="email"
         placeholder="請輸入信箱"
-        class="input input-bordered w-full"
+        class="input input-bordered rounded w-full"
         v-model.trim="user.email"
       />
     </div>
@@ -62,7 +62,7 @@ const confirmOrder = async () => {
       <input
         type="tel"
         placeholder="請輸入電話"
-        class="input input-bordered w-full"
+        class="input input-bordered rounded w-full"
         v-model.trim="user.tel"
       />
     </div>
@@ -73,7 +73,7 @@ const confirmOrder = async () => {
       <input
         type="text"
         placeholder="請輸入地址"
-        class="input input-bordered w-full"
+        class="input input-bordered rounded w-full"
         v-model.trim="user.address"
       />
     </div>
@@ -82,14 +82,14 @@ const confirmOrder = async () => {
         <span class="label-text">備註</span>
       </label>
       <textarea
-        class="textarea textarea-bordered h-40"
+        class="textarea textarea-bordered rounded h-40"
         placeholder="其他需求"
         v-model.trim="message"
       ></textarea>
     </div>
     <div class="flex justify-between w-full max-w-lg mt-5">
-      <button class="btn w-1/4">確認餐點</button>
-      <button class="btn w-1/4" @click="confirmOrder">送出訂單</button>
+      <button class="btn rounded w-1/3 md:w-1/4">確認餐點</button>
+      <button class="btn btn-accent rounded w-1/3 md:w-1/4" @click="confirmOrder">送出訂單</button>
     </div>
   </div>
 </template>

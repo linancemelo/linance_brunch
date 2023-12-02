@@ -16,7 +16,7 @@ const getStepClass = (routeName: string) => {
 
 <template>
   <div class="min-w-full flex flex-col justify-center px-5 md:px-20 min-h-[80vh]">
-    <ul class="steps">
+    <ul class="steps py-5">
       <li class="step" :class="getStepClass('CartInfo')">
         <span class="text-sm">確認餐點</span>
       </li>

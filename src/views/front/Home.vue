@@ -27,37 +27,37 @@
     <!-- 熱賣商品 -->
     <div class="bg-base-300/30 w-full py-20 text-center" style="background: url(/assets/img/home_bg4.jpg)">
       <div class="mb-6 max-w-full grid grid-cols-2 md:grid-cols-4 xl:px-40">
-        <div class="py-2">
+        <div class="p-2">
           <div class="avatar placeholder">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
-              <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" />
+            <div class="bg-neutral-focus text-neutral-content rounded-full max-w-48">
+              <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" class="" />
             </div>
           </div>
           <p>打拋豬炒飯</p>
           <p>$100</p>
         </div>
-        <div class="py-2">
+        <div class="p-2">
           <div class="avatar placeholder">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
-              <img src="/assets/專案圖片/炒飯/櫻花蝦炒飯.png" />
+            <div class="bg-neutral-focus text-neutral-content rounded-full max-w-48">
+              <img src="/assets/專案圖片/炒飯/櫻花蝦炒飯.png" class="" />
             </div>
           </div>
           <p>櫻花蝦炒飯</p>
           <p>$120</p>
         </div>
-        <div class="py-2">
+        <div class="p-2">
           <div class="avatar placeholder">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
-              <img src="/assets/專案圖片/炒飯/蝦仁炒飯.png" />
+            <div class="bg-neutral-focus text-neutral-content rounded-full max-w-48">
+              <img src="/assets/專案圖片/炒飯/蝦仁炒飯.png" class="" />
             </div>
           </div>
           <p>蝦仁炒飯</p>
           <p>$110</p>
         </div>
-        <div class="py-2">
+        <div class="p-2">
           <div class="avatar placeholder">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-48">
-              <img src="/assets/專案圖片/炒飯/香腸炒飯.png" />
+            <div class="bg-neutral-focus text-neutral-content rounded-full max-w-48">
+              <img src="/assets/專案圖片/炒飯/香腸炒飯.png" class="" />
             </div>
           </div>
           <p>香腸炒飯</p>
@@ -106,13 +106,13 @@
               <div class="flex flex-col justify-center items-center">
                 <h1 class="text-5xl font-bold">線上訂位</h1>
                 <h6 class="py-6">掃描QR Code，輕鬆享受智慧訂位與點餐！</h6>
-                <div>
-                  <button class="btn btn-outline mr-2">    <i class="fa-brands fa-apple"></i>
+                <div class="flex justify-center">
+                  <button class="btn btn-sm btn-outline mr-2 mb-2">    <i class="fa-brands fa-apple"></i>
                     App Store</button>
-                  <button class="btn btn-outline"><i class="fa-brands fa-google-play"></i>Google Play</button>
+                  <button class="btn btn-sm btn-outline"><i class="fa-brands fa-google-play"></i>Google Play</button>
                 </div>
               </div>
-              <div class="flex justify-center p-5 md:p-0">
+              <div class="flex justify-center items-center p-5">
                 <img src="/assets/img/qrcode.png" class="rounded-lg shadow-2xl" />
               </div>
             </div>

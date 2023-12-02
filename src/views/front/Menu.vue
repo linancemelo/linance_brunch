@@ -40,7 +40,7 @@ getAllProduct();
 
 <template>
   <MainHeader bgUrl="/assets/img/menu_bg.jpg" title="菜單介紹" />
-  <main class="lg:px-40 xl:px-50 2xl:px-72 mt-8">
+  <main class="lg:px-24 2xl:px-72 my-8">
     <div class="md:flex">
       <div class="md:w-1/5 text-black">
         <ul class="menu w-full">
@@ -64,7 +64,7 @@ getAllProduct();
           {{ findObjInArr(categoryList, "enName", routeHash)?.chName }}
         </h1>
         <hr class="my-3" />
-        <div class="mt-12 grid grid-cols md:grid-cols-3 gap-4">
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4">
           <div
             v-for="product in currentProductList"
             :key="product.id"

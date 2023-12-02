@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-screen h-[250px] lg:h-[350px] relative"
+    class="w-max-screen h-[250px] lg:h-[350px] relative"
     :style="{ backgroundImage: `url(${bgUrl})`, backgroundSize: 'cover' }"
   >
     <h1

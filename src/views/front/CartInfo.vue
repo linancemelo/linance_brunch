@@ -91,49 +91,48 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="lg:flex">
+  <div class="xl:flex xl:p-5 min-h-screen mt-5">
     <!-- 購物車內容 -->
-    <div class="w-full lg:w-2/3">
-      <h1>購物車內容</h1>
+    <div class="w-full xl:w-2/3 lg:p-5 mb-5">
+      <h1 class="font-bold text-xl">購物車內容</h1>
       <div class="card bg-base-300 shadow-xl p-3">
         <div
           v-for="item in cartList"
           :key="item.id"
           class="p-5 flex flex-row card bg-base-100 my-1"
         >
-          <div class="">
+          <div class="w-1/3 flex items-center">
             <img
               :src="item.product.imageUrl"
               alt=""
               class="w-[5rem] h-[5rem]"
             />
           </div>
-          <div class="flex w-full justify-around items-center">
-            <h1>{{ item.product.title }}</h1>
-            <div class="join">
+          <div class="w-2/3 px-3 flex flex-col sm:flex-row justify-center sm:items-center">
+            <h1 class="sm:w-1/3">{{ item.product.title }}</h1>
+            <div class="sm:w-1/3">${{ item.product.price }}</div>
+            <div class="sm:w-1/3 join">
               <button
-                class="btn btn-square join-item text-2xl"
+                class="btn btn-square btn-sm join-item text-2xl"
                 @click="sub(item)"
               >
                 -
               </button>
-              <input class="input join-item w-[3rem] px-0" v-model="item.qty" />
+              <input class="input input-sm join-item w-[3rem] px-0" v-model="item.qty" />
               <button
-                class="btn btn-square join-item text-2xl"
+                class="btn btn-square btn-sm join-item text-2xl"
                 @click="add(item)"
               >
                 +
               </button>
             </div>
-            <div>{{ item.product.price }}</div>
-            <div>{{ item.final_total }}</div>
           </div>
         </div>
       </div>
     </div>
     <!-- 訂單摘要 -->
-    <div class="w-full lg:w-1/3">
-      <h1>訂單摘要</h1>
+    <div class="w-full xl:w-1/3 lg:p-5 mb-5">
+      <h1 class="font-bold text-xl">訂單摘要</h1>
       <div class="card bg-base-300 shadow-xl p-3">
         <div class="p-5 card bg-base-100 my-1">
           <ul>
@@ -143,22 +142,16 @@ onMounted(() => {
             <li class="flex justify-between mb-2">
               <span>小計</span><span>{{ totalAmount }}</span>
             </li>
-            <li class="flex justify-between mb-2">
-              <div class="join">
-                <div>
-                  <div>
-                    <input
-                      class="input input-sm input-bordered join-item"
-                      placeholder="輸入優惠券"
-                      v-model.trim="couponCode"
-                    />
-                  </div>
-                </div>
-                <div class="indicator">
-                  <button class="btn btn-sm join-item" @click="useCoupon">
-                    套用
-                  </button>
-                </div>
+            <li class="max-w-full mb-2">
+              <div class="flex justify-between">
+                <input
+                    class="input input-sm w-36 input-bordered"
+                    placeholder="輸入優惠券"
+                    v-model.trim="couponCode"
+                />
+                <button class="btn btn-sm rounded" @click="useCoupon">
+                  套用
+                </button>
               </div>
               <div>{{ couponContent }}</div>
             </li>
@@ -168,8 +161,8 @@ onMounted(() => {
             <li class="flex justify-between">
               <span>總金額</span><span>{{ finalAmount }}</span>
             </li>
-            <li>
-              <button @click="openUserInfo" class="btn btn-accent w-full">
+            <li class="mt-5">
+              <button @click="openUserInfo" class="btn btn-accent rounded w-full">
                 填寫用戶資料
               </button>
             </li>
