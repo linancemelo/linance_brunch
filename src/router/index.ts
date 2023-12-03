@@ -14,6 +14,8 @@ import Cart from "@/views/front/Cart.vue";
 import CartInfo from "@/views/front/CartInfo.vue";
 import UserInfo from "@/views/front/UserInfo.vue";
 import OrderInfo from "@/views/front/OrderInfo.vue";
+import About from "@/views/front/About.vue";
+
 import { useStore } from "@/store";
 
 const routes: RouteRecordRaw[] = [
@@ -112,6 +114,14 @@ const routes: RouteRecordRaw[] = [
             name: "OrderInfo",
           },
         ],
+      },
+      {
+        path: "/About",
+        component: About,
+        name: "About",
+        meta: {
+          title: "Linance | 關於我們",
+        },
       },
     ],
   },

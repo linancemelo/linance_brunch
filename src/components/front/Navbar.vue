@@ -19,12 +19,12 @@
       </ul>
       <router-link :to="{ name: 'Home' }" class="btn btn-ghost normal-case text-xl mx-10">Linance</router-link>
       <ul class="hidden lg:flex">
-        <li class="mx-5"><router-link :to="{ name: 'Menu' }">關於我們</router-link></li>
+        <li class="mx-5"><router-link :to="{ name: 'About' }">關於我們</router-link></li>
 <!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>-->
         <li class="mx-5"><router-link :to="{ name: 'Login' }">後台登入</router-link></li>
       </ul>
     </div>
-    <div class="navbar-end mr-5">
+    <div class="navbar-end md:mr-5">
       <button class="btn btn-ghost btn-circle"><span class="material-symbols-outlined">shopping_cart</span></button>
     </div>
   </div>
@@ -38,7 +38,7 @@
         <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">美味餐點</router-link></li>
   <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>-->
         <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">線上訂位</router-link></li>
-        <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">關於我們</router-link></li>
+        <li class="my-1"><router-link :to="{ name: 'About' }" class="block text-center">關於我們</router-link></li>
   <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>-->
         <li class="my-1"><router-link :to="{ name: 'Login' }" class="block text-center">後台登入</router-link></li>
       </ul>
