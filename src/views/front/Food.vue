@@ -60,6 +60,7 @@ const addToCart = async () => {
       console.log(error);
     });
 };
+const checked = ref(false);
 
 onMounted(() => {
   id.value = route.params.id as string;
@@ -118,6 +119,15 @@ onMounted(() => {
         </div>
         <p>＊產品圖片僅供參考，實際產品以各門市販售為準。</p>
       </div>
+    </div>
+  </div>
+  <div class="collapse collapse-arrow bg-base-200">
+    <input type="radio" name="my-accordion-3" :checked="checked" @click="checked = !checked" />
+    <div class="collapse-title text-xl text-center font-medium">
+      Click to open this one and close others
+    </div>
+    <div class="collapse-content flex justify-center">
+      <p>hello</p>
     </div>
   </div>
 </template>

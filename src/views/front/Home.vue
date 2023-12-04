@@ -33,8 +33,8 @@
               <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" class="" />
             </div>
           </div>
-          <p>打拋豬炒飯</p>
-          <p>$100</p>
+          <p class="text-2xl font-bold mt-2">打拋豬炒飯</p>
+          <p class="text-xl font-mono">$100</p>
         </div>
         <div class="p-2">
           <div class="avatar placeholder">
@@ -42,8 +42,8 @@
               <img src="/assets/專案圖片/炒飯/櫻花蝦炒飯.png" class="" />
             </div>
           </div>
-          <p>櫻花蝦炒飯</p>
-          <p>$120</p>
+          <p class="text-2xl font-bold mt-2">櫻花蝦炒飯</p>
+          <p class="text-xl font-mono">$120</p>
         </div>
         <div class="p-2">
           <div class="avatar placeholder">
@@ -51,8 +51,8 @@
               <img src="/assets/專案圖片/炒飯/蝦仁炒飯.png" class="" />
             </div>
           </div>
-          <p>蝦仁炒飯</p>
-          <p>$110</p>
+          <p class="text-2xl font-bold mt-2">蝦仁炒飯</p>
+          <p class="text-xl font-mono">$110</p>
         </div>
         <div class="p-2">
           <div class="avatar placeholder">
@@ -60,8 +60,8 @@
               <img src="/assets/專案圖片/炒飯/香腸炒飯.png" class="" />
             </div>
           </div>
-          <p>香腸炒飯</p>
-          <p>$100</p>
+          <p class="text-2xl font-bold mt-2">香腸炒飯</p>
+          <p class="text-xl font-mono">$100</p>
         </div>
       </div>
     </div>
