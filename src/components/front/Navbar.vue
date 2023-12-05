@@ -60,8 +60,9 @@ getCartLength();
         </li>
         <!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>-->
         <li class="mx-5">
-          <router-link :to="{ name: 'Menu' }" class="hover:text-error"
-            >線上訂位</router-link
+          <router-link :to="{ name: 'Booking' }" class="hover:text-error"
+                       :class="{ 'text-red-600 font-bold': route.name === 'Booking' }"
+          >線上訂位</router-link
           >
         </li>
       </ul>
@@ -87,7 +88,7 @@ getCartLength();
         </li>
       </ul>
     </div>
-    <div class="navbar-end md:mr-5 indicator">
+    <div class="navbar-end mr-3 indicator">
       <span
         class="indicator-item mt-2 bg-red-600 border-none text-white w-[30px] h-[30px] flex justify-center items-center"
         style="border-radius: 50%"
@@ -114,7 +115,7 @@ getCartLength();
         </li>
         <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>-->
         <li class="my-1">
-          <router-link :to="{ name: 'Menu' }" class="block text-center"
+          <router-link :to="{ name: 'Booking' }" class="block text-center"
             >線上訂位</router-link
           >
         </li>

@@ -8,7 +8,8 @@ import "vue-loading-overlay/dist/css/index.css";
 
 const app = createApp(App);
 const pinia = createPinia();
-app.use(router)
-    .use(pinia)
-    .component("Loading", Loading)
-    .mount("#app");
+app
+  .use(router)
+  .use(pinia)
+  .component("Loading", Loading)
+  .mount("#app");
