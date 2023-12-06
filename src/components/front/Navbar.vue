@@ -68,8 +68,8 @@ getCartLength();
       </ul>
       <router-link
         :to="{ name: 'Home' }"
-        class="btn btn-ghost normal-case text-xl mx-10"
-        >Linance</router-link
+        class="normal-case text-xl mx-10"
+        ><img src="/assets/img/logo_1.png" width="50"></router-link
       >
       <ul class="hidden lg:flex">
         <li class="mx-5">

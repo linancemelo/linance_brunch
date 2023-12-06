@@ -60,7 +60,7 @@ const formatDate = (date) => {
           <h2 class="card-title">{{ branch.name }}</h2>
           <p>{{ branch.address }}</p>
           <div class="card-actions">
-            <button v-for="time in branch.availableTime" :key="time" class="btn btn-error btn-sm">{{ time }}</button>
+            <button v-for="time in branch.availableTime" :key="time" class="btn btn-error btn-sm rounded">{{ time }}</button>
           </div>
         </div>
       </div>
