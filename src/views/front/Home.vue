@@ -6,7 +6,7 @@
     <div class="hero min-h-screen" style="background-image: url(/assets/img/home_bg1.png);">
       <div class="hero-overlay bg-opacity-50"></div>
       <div class="hero-content text-center text-neutral-content">
-        <div class="max-w-xl">
+        <div class="max-w-xl" data-aos="fade-up">
           <h1 class="mb-5 text-4xl md:text-5xl font-bold">美味與活力的完美交匯</h1>
           <p class="mb-5 text-2xl font-bold">-輕鬆享受每一口，激發無限能量-</p>
           <button class="btn rounded">立即訂購</button>

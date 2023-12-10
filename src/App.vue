@@ -1,7 +1,17 @@
+<script setup>
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+onMounted(() => {
+  AOS.init({
+    duration: 1000
+  });
+});
+</script>
+
 <template>
   <RouterView />
 </template>
-
 
 <style>
 body::-webkit-scrollbar {
@@ -20,6 +30,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-button {
-  display:none;
+  display: none;
 }
 </style>
