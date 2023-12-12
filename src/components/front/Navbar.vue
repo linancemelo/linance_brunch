@@ -9,7 +9,6 @@ const cartLength = ref(0);
 const getCartLength = async () => {
   await callApi("cart", "get", "")
     .then((response) => {
-      console.log(response);
       if (response.data.success) {
         cartLength.value = response.data.data.carts.length;
       }
