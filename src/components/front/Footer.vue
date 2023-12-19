@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const currentYear = import.meta.env.VITE_YEAR;
 </script>
 
 <template>
@@ -17,7 +17,7 @@
       </div>
     </nav>
     <aside>
-      <p>Copyright © 2023 - All right reserved by Linance</p>
+      <p>Copyright © {{ currentYear }} - All right reserved by Linance</p>
     </aside>
   </footer>
 </template>

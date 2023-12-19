@@ -1,24 +1,48 @@
 <script setup>
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 const beforeEnter = (el) => {
-  el.style.transform = "translateY(-60px)";
-  el.style.opacity = 0;
+  gsap.set(el, {
+    y: 30,
+    opacity: 0,
+  });
 };
 const enter = (el) => {
   gsap.to(el, {
-    duration: 2,
+    duration: 3,
     y: 0,
     opacity: 1,
     ease: "bounce.out"
   });
 };
+
+const setupScrollTrigger = (el) => {
+  gsap.from(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: "top center", // 觸發點設置
+      toggleActions: "play none none reset"
+    },
+    duration: 2,
+    y: 30,
+    opacity: 0,
+    ease: "bounce.out"
+  });
+};
+
+const test = ref(null);
+onMounted(() => {
+  setupScrollTrigger(test.value);
+});
 </script>
 
 <template>
   <main>
     <div
-      class="hero min-h-screen"
-      style="background-image: url(/assets/img/home_bg1.png)"
+      class="hero min-h-screen max-h-screen"
+      style="background-image: url(/assets/img/test.png)"
     >
       <div class="hero-overlay bg-opacity-50"></div>
       <Transition appear @before-enter="beforeEnter" @enter="enter">
@@ -30,21 +54,66 @@ const enter = (el) => {
             <p class="mb-5 text-2xl font-bold">
               -輕鬆享受每一口，激發無限能量-
             </p>
-            <button class="btn rounded">立即訂購</button>
           </div>
       </div>
       </Transition>
     </div>
     <!-- 品牌故事 -->
-    <div class="hero" style="background-image: url(/assets/img/home_bg3.jpg)">
+    <div class="hero" style="background-image: url(/assets/img/test2.png)">
       <div class="hero-overlay"></div>
       <div class="hero-content text-center text-neutral-content">
-        <div class="md:px-40 lg:px-60 py-48 text-center">
+        <div ref="test" class="md:px-40 lg:px-60 py-48 text-center">
           <h1 class="text-4xl font-bold mb-5">店名</h1>
           <p class="tracking-widest mb-5">
             以貼心服務、新鮮嚴選食材和創意心思為您打造一個美食饗宴。希望您能享受快樂，吃得安心滿足，在這個充滿溫暖熱情的地方，感受台灣在地的熱情胸懷，早餐店文化。
           </p>
           <button class="btn rounded">了解更多</button>
+        </div>
+      </div>
+    </div>
+    <!-- 提供服務 -->
+    <div
+        class="bg-base-300 w-full py-20"
+        style="background: url(/assets/img/home_bg5.jpg)"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-3 px-10 lg:px-40 gap-10">
+        <div class="card bg-base-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img
+                src="/assets/img/e_pay.jpg"
+                alt="電子支付"
+                class="rounded-xl"
+            />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">電子支付</h2>
+            <p>
+              無論是線上還是線下，支付輕鬆無憂。Line Pay、Apple
+              Pay、悠遊卡、信用卡，方便、安全，輕鬆支付。
+            </p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img src="/assets/img/delivery.jpg" alt="外送" class="rounded-xl" />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">外送到府</h2>
+            <p>
+              美食不出門，外送到你家。FoodPanda、UberEats、店家外送，選擇多元，口味無界，享受在家的美味時光。
+            </p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img src="/assets/img/gift.jpg" alt="集點卡" class="rounded-xl" />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">滿額集點</h2>
+            <p>
+              每百元一點，滿五點送美味。集點輕鬆，兌換精緻點心和飲料，品味回饋，美好滋味由你開始。
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -97,52 +166,6 @@ const enter = (el) => {
           </div>
           <p class="text-2xl font-bold mt-2">香腸炒飯</p>
           <p class="text-xl font-mono">$100</p>
-        </div>
-      </div>
-    </div>
-    <!-- 提供服務 -->
-    <div
-      class="bg-base-300 w-full py-20"
-      style="background: url(/assets/img/home_bg5.jpg)"
-    >
-      <div class="grid grid-cols-1 md:grid-cols-3 px-10 lg:px-40 gap-10">
-        <div class="card bg-base-100 shadow-xl">
-          <figure class="px-10 pt-10">
-            <img
-              src="/assets/img/e_pay.jpg"
-              alt="電子支付"
-              class="rounded-xl"
-            />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">電子支付</h2>
-            <p>
-              無論是線上還是線下，支付輕鬆無憂。Line Pay、Apple
-              Pay、悠遊卡、信用卡，方便、安全，輕鬆支付。
-            </p>
-          </div>
-        </div>
-        <div class="card bg-base-100 shadow-xl">
-          <figure class="px-10 pt-10">
-            <img src="/assets/img/delivery.jpg" alt="外送" class="rounded-xl" />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">外送到府</h2>
-            <p>
-              美食不出門，外送到你家。FoodPanda、UberEats、店家外送，選擇多元，口味無界，享受在家的美味時光。
-            </p>
-          </div>
-        </div>
-        <div class="card bg-base-100 shadow-xl">
-          <figure class="px-10 pt-10">
-            <img src="/assets/img/gift.jpg" alt="集點卡" class="rounded-xl" />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">滿額集點</h2>
-            <p>
-              每百元一點，滿五點送美味。集點輕鬆，兌換精緻點心和飲料，品味回饋，美好滋味由你開始。
-            </p>
-          </div>
         </div>
       </div>
     </div>

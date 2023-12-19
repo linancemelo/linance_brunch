@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { useUnits } from "@/composables/units.ts";
+import { useWindowScroll } from "@vueuse/core";
 
 const route = useRoute();
 const { callApi } = useUnits();
 
-const cartLength = ref(0);
+const { y } = useWindowScroll();
+const isScrolled = ref(false);
+// 每當滾動位置改變時，更新 isScrolled
+watch(
+  () => y.value,
+  (newY) => {
+    isScrolled.value = newY > 200;
+  }
+);
 
+const cartLength = ref(0);
 const getCartLength = async () => {
   await callApi("cart", "get", "")
     .then((response) => {
@@ -23,7 +33,10 @@ getCartLength();
 
 <template>
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="navbar bg-base-100 w-full z-50 sticky top-0 shadow-lg">
+  <div
+    class="navbar w-full z-50 top-0 shadow-lg bg-base-100"
+    :class="route.name === 'Home' ? 'fixed' : 'sticky'"
+  >
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
         <label
@@ -52,36 +65,36 @@ getCartLength();
         <li class="mx-5">
           <router-link
             :to="{ name: 'Menu' }"
-            class="hover:text-error"
+            class="text-lg hover:text-error"
             :class="{ 'text-red-600 font-bold': route.name === 'Menu' }"
             >美味餐點</router-link
           >
         </li>
         <!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>-->
         <li class="mx-5">
-          <router-link :to="{ name: 'Booking' }" class="hover:text-error"
-                       :class="{ 'text-red-600 font-bold': route.name === 'Booking' }"
-          >線上訂位</router-link
+          <router-link
+            :to="{ name: 'Booking' }"
+            class="text-lg hover:text-error"
+            :class="{ 'text-red-600 font-bold': route.name === 'Booking' }"
+            >線上訂位</router-link
           >
         </li>
       </ul>
-      <router-link
-        :to="{ name: 'Home' }"
-        class="normal-case text-xl mx-10"
-        ><img src="/assets/img/logo_1.png" width="50"></router-link
-      >
+      <router-link :to="{ name: 'Home' }" class="normal-case text-xl mx-10"
+        ><img src="/assets/img/logo_test.png" width="50"
+      /></router-link>
       <ul class="hidden lg:flex">
         <li class="mx-5">
           <router-link
             :to="{ name: 'About' }"
-            class="hover:text-error"
+            class="text-lg hover:text-error"
             :class="{ 'text-red-600 font-bold': route.name === 'About' }"
             >關於我們</router-link
           >
         </li>
         <!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>-->
         <li class="mx-5">
-          <router-link :to="{ name: 'Login' }" class="hover:text-error"
+          <router-link :to="{ name: 'Login' }" class="text-lg hover:text-error"
             >後台登入</router-link
           >
         </li>

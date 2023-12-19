@@ -71,7 +71,7 @@ const routes: RouteRecordRaw[] = [
         component: Home,
         name: "Home",
         meta: {
-          title: "Linance | 歡迎",
+          title: "Linance | 主頁",
         },
       },
       {
@@ -87,7 +87,7 @@ const routes: RouteRecordRaw[] = [
         component: Food,
         name: "Food",
         meta: {
-          title: "Linance | 餐點",
+          title: "Linance | 餐點介紹",
         },
       },
       {
