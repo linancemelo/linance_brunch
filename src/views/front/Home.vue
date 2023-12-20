@@ -1,41 +1,41 @@
 <script setup>
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
-const beforeEnter = (el) => {
-  gsap.set(el, {
-    y: 30,
-    opacity: 0,
-  });
-};
-const enter = (el) => {
-  gsap.to(el, {
-    duration: 3,
-    y: 0,
-    opacity: 1,
-    ease: "bounce.out"
-  });
-};
-
-const setupScrollTrigger = (el) => {
-  gsap.from(el, {
-    scrollTrigger: {
-      trigger: el,
-      start: "top center", // 觸發點設置
-      toggleActions: "play none none reset"
-    },
-    duration: 2,
-    y: 30,
-    opacity: 0,
-    ease: "bounce.out"
-  });
-};
-
-const test = ref(null);
-onMounted(() => {
-  setupScrollTrigger(test.value);
-});
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// gsap.registerPlugin(ScrollTrigger);
+//
+// const beforeEnter = (el) => {
+//   gsap.set(el, {
+//     y: 30,
+//     opacity: 0,
+//   });
+// };
+// const enter = (el) => {
+//   gsap.to(el, {
+//     duration: 3,
+//     y: 0,
+//     opacity: 1,
+//     ease: "bounce.out"
+//   });
+// };
+//
+// const setupScrollTrigger = (el) => {
+//   gsap.from(el, {
+//     scrollTrigger: {
+//       trigger: el,
+//       start: "top center", // 觸發點設置
+//       toggleActions: "play none none reset"
+//     },
+//     duration: 2,
+//     y: 30,
+//     opacity: 0,
+//     ease: "bounce.out"
+//   });
+// };
+//
+// const test = ref(null);
+// onMounted(() => {
+//   setupScrollTrigger(test.value);
+// });
 </script>
 
 <template>
@@ -45,18 +45,16 @@ onMounted(() => {
       style="background-image: url(/assets/img/test.png)"
     >
       <div class="hero-overlay bg-opacity-50"></div>
-      <Transition appear @before-enter="beforeEnter" @enter="enter">
       <div class="hero-content text-center text-neutral-content">
           <div class="max-w-xl">
             <h1 class="mb-5 text-4xl md:text-5xl font-bold">
-              美味與活力的完美交匯
+              美味與活力的完美交會
             </h1>
             <p class="mb-5 text-2xl font-bold">
               -輕鬆享受每一口，激發無限能量-
             </p>
           </div>
       </div>
-      </Transition>
     </div>
     <!-- 品牌故事 -->
     <div class="hero" style="background-image: url(/assets/img/test2.png)">

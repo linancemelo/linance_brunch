@@ -1,16 +1,8 @@
 <script setup>
-import AOS from "aos";
-import "aos/dist/aos.css";
-
-onMounted(() => {
-  AOS.init({
-    duration: 1000
-  });
-});
 </script>
 
 <template>
-  <RouterView />
+  <router-view />
 </template>
 
 <style>

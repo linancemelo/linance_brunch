@@ -1,11 +1,13 @@
-import { fileURLToPath, URL } from "node:url";
+import path from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 
 export default defineConfig({
   server: {
-    host: "0.0.0.0",
+    watch: {
+      usePolling: true,
+    },
   },
   plugins: [
     vue({
@@ -21,7 +23,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });
