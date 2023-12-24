@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import Navbar from "@/components/front/Navbar.vue";
 import Footer from "@/components/front/Footer.vue";
+import { useWindowScroll } from "@vueuse/core/index";
 
+const { y } = useWindowScroll();
+const isScrolled = ref(false);
+// 每當滾動位置改變時，更新 isScrolled
+watch(
+  () => y.value,
+  (newY) => {
+    isScrolled.value = newY > 200;
+  }
+);
 const scrollToTop = () => {
   window.scroll({
     top: 0,
@@ -14,7 +24,7 @@ const scrollToTop = () => {
   <Navbar />
   <router-view />
   <Footer />
-  <button class="toTop" @click="scrollToTop">
+  <button v-show="isScrolled" class="toTop" @click="scrollToTop">
     <span class="material-symbols-outlined text-white">
       keyboard_double_arrow_up
     </span>

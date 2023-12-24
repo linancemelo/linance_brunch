@@ -34,8 +34,8 @@ getCartLength();
 <template>
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
   <div
-    class="navbar w-full z-50 top-0 shadow-lg bg-base-100"
-    :class="route.name === 'Home' ? 'fixed' : 'sticky'"
+    class="navbar w-full z-10 top-0"
+    :class="[route.name === 'Home' ? 'fixed' : 'sticky', isScrolled ? '' : '']"
   >
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
@@ -147,12 +147,8 @@ getCartLength();
   </div>
 </template>
 
-<!--<style scoped>-->
-<!--a:hover {-->
-<!--  color: theme("colors.primary");-->
-<!--  background: transparent;-->
-<!--}-->
-<!--a:active {-->
-<!--  color: theme("colors.primary");-->
-<!--}-->
-<!--</style>-->
+<style scoped>
+a {
+  color: #fff
+}
+</style>
