@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Toast from "@/components/Toast.vue";
 import { useUnits } from "@/composables/units.ts";
 import { ProductInfo } from "@/types/back/product.ts";
 
@@ -48,19 +49,22 @@ const addToCart = async () => {
     product_id: id.value,
     qty: count.value,
   };
-  console.log(data);
   await callApi("cart", "post", {
     data
   })
     .then((response) => {
-      console.log(response);
-      simpleAlert("已加入購物車", "success");
+      const { title, unit } = response.data.data.product;
+      const toastMsg = `${count.value}${unit}${title}已加入購物車`;
+      toastList.value.push(toastMsg);
     })
     .catch((error) => {
       console.log(error);
     });
 };
 const checked = ref(false);
+
+const imageLoaded = ref(false);
+const toastList = ref<string[]>([]);
 
 onMounted(() => {
   id.value = route.params.id as string;
@@ -69,33 +73,43 @@ onMounted(() => {
 </script>
 
 <template>
+  <template v-if="toastList.length > 0">
+    <div id="toast" class="toast toast-top toast-end z-[999]">
+      <Toast v-for="(toast, index) in toastList" :key="index">
+        <template #msg>{{ toast }}</template>
+      </Toast>
+    </div>
+  </template>
   <div
-    class="hero min-h-[80vh]"
+    class="min-h-[50vh] px-20 lg:px-50 xl:px-60 py-20 flex justify-center items-center bg-no-repeat bg-cover"
     style="
       background-image: url(http://twjsp.com.tw/styles/images/products/pattern2.jpg);
     "
   >
-    <div class="hero-overlay bg-opacity-20"></div>
-    <div class="text-center text-neutral-content lg:flex relative">
-      <div class="text-sm breadcrumbs absolute left-5 -top-10">
-        <ul>
-          <li><a>美味餐點</a></li>
-          <li>{{ foodCategory }}</li>
-        </ul>
-      </div>
-      <div class="max-w-lg px-5">
-        <div class="p-5 md:p-0">
-          <img :src="foodInfo.imageUrl" alt="" />
+    <div class="w-full text-center text-neutral-content md:flex justify-center items-center lg:px-10">
+      <div class="md:w-1/2 relative">
+        <div class="text-sm breadcrumbs absolute left-0 -top-10">
+          <ul>
+            <li><a>美味餐點</a></li>
+            <li class="w-full">
+              <div v-show="!imageLoaded" class="w-12 h-4 skeleton"></div>
+              <span v-show="imageLoaded">{{ foodCategory }}</span>
+            </li>
+          </ul>
         </div>
+        <figure class="w-full aspect-square bg-gray-100 flex" :class="{ 'skeleton': !imageLoaded }">
+          <img :src="foodInfo.imageUrl" alt="" class="img-fit-cover" @load="imageLoaded = true" />
+        </figure>
       </div>
-      <div class="max-w-lg px-5 flex flex-col justify-center">
-        <div class="title mb-5">
-          <h1 class="text-5xl font-bold">{{ foodInfo.title }}</h1>
-<!--          <span>Sesame Hot Dog Bun with Bacon</span>-->
+      <div class="md:w-1/2 p-5 flex flex-col justify-center">
+        <div class="title w-full mb-5 flex justify-center">
+          <h1 class="min-h-[2.5rem] w-full md:w-1/2 text-4xl font-bold" :class="{ 'skeleton': !imageLoaded }">
+            <span v-show="imageLoaded">{{ foodInfo.title }}</span>
+          </h1>
         </div>
-        <div class="price mb-5">
-          <h5>原價: {{ foodInfo.origin_price }}</h5>
-          <h5>售價: {{ foodInfo.price }}</h5>
+        <div class="price mb-5 flex flex-col items-center">
+          <h5 class="min-h-[1.5rem] w-20 my-1" :class="{ 'skeleton': !imageLoaded }"><span v-show="imageLoaded">原價: {{ foodInfo.origin_price }}</span></h5>
+          <h5 class="min-h-[1.5rem] w-20 my-1" :class="{ 'skeleton': !imageLoaded }"><span v-show="imageLoaded">售價: {{ foodInfo.price }}</span></h5>
         </div>
         <div class="flex items-center justify-center count mb-3">
           <button
@@ -109,7 +123,7 @@ onMounted(() => {
             <span class="material-symbols-outlined"> add </span>
           </button>
         </div>
-        <div class="to-cart mb-5">
+        <div class="to-cart mb-2">
           <button class="btn btn-sm btn-warning rounded mr-5" @click="addToCart">
             加入購物車
           </button>
@@ -117,7 +131,7 @@ onMounted(() => {
             >前往購物車</router-link
           >
         </div>
-        <p>＊產品圖片僅供參考，實際產品以各門市販售為準。</p>
+        <p class="text-xs">＊產品圖片僅供參考，實際產品以各門市販售為準。</p>
       </div>
     </div>
   </div>

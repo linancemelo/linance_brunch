@@ -29,10 +29,17 @@ const currentProductList = computed(() =>
 
 const getAllProduct = async () => {
   const { data } = await callApi("products/all", "GET", "");
-  if (data.success) allProductList.value = data.products;
+  if (data.success) {
+    allProductList.value = data.products;
+  }
 };
 const toInfo = (id: string) => {
   router.push(`/Food/${id}`);
+};
+
+const imageLoadedList = ref([false]);
+const onloadImage = (index: number) => {
+  imageLoadedList.value[index] = true;
 };
 
 getAllProduct();
@@ -66,7 +73,7 @@ getAllProduct();
         <hr class="my-3" />
         <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4">
           <div
-            v-for="product in currentProductList"
+            v-for="(product, index) in currentProductList"
             :key="product.id"
             class="bg-base-100 shadow-xl"
           >
@@ -75,13 +82,17 @@ getAllProduct();
               style="padding-top: 90%"
               @click="toInfo(product.id)"
             >
-              <div class="image cursor-pointer">
+              <div class="w-full image cursor-pointer">
                 <div class="cover"></div>
-                <img
-                  :src="product.imageUrl"
-                  alt=""
-                  class="h-full transition-all ease-linear cursor-pointer"
-                />
+                <figure class="aspect-square cursor-pointer" :class="{ skeleton: imageLoadedList[index] }">
+                  <img
+                      :src="product.imageUrl"
+                      alt=""
+                      class="h-full transition-all ease-linear bg-gray-100"
+                      loading="lazy"
+                      @load="onloadImage(index)"
+                  />
+                </figure>
               </div>
             </div>
             <div class="py-5">
