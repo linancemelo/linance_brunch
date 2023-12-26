@@ -15,7 +15,7 @@ import CartInfo from "@/views/front/CartInfo.vue";
 import UserInfo from "@/views/front/UserInfo.vue";
 import OrderInfo from "@/views/front/OrderInfo.vue";
 import About from "@/views/front/About.vue";
-import Booking from "@/views/front/Booking.vue";
+import Reservation from "@/views/front/Reservation.vue";
 
 import { useStore } from "@/store";
 
@@ -125,9 +125,9 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
-        path: "/Booking",
-        component: Booking,
-        name: "Booking",
+        path: "/Reservation",
+        component: Reservation,
+        name: "Reservation",
         meta: {
           title: "Linance | 線上訂位",
         },

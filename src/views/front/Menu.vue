@@ -21,36 +21,63 @@ const categoryList = [
 const allProductList: Ref<ProductInfo[]> = ref([]);
 
 const routeHash = computed(() =>
-    route.hash ? route.hash.split("#")[1] : categoryList[0].enName
+  route.hash ? route.hash.split("#")[1] : categoryList[0].enName
 );
-const currentProductList = computed(() =>
-    allProductList.value.filter((product: ProductInfo) => product.category === routeHash.value)
-);
+const currentProductList = computed(() => {
+  const result = allProductList.value.filter(
+    (product: ProductInfo) => product.category === routeHash.value
+  );
+  imageLoadedList.value = result.map(() => false);
+  return result;
+});
 
+const isLoading = ref(false);
 const getAllProduct = async () => {
+  isLoading.value = true;
   const { data } = await callApi("products/all", "GET", "");
   if (data.success) {
     allProductList.value = data.products;
+    isLoading.value = false;
   }
 };
 const toInfo = (id: string) => {
   router.push(`/Food/${id}`);
 };
 
-const imageLoadedList = ref([false]);
+const imageLoadedList = ref<boolean[]>([]);
 const onloadImage = (index: number) => {
   imageLoadedList.value[index] = true;
 };
 
 getAllProduct();
+
+const currentCategory = ref(categoryList[0].enName);
+watch(currentCategory, (newVal) => {
+  router.push({ hash: `#${newVal}` });
+});
 </script>
 
 <template>
   <MainHeader bgUrl="/assets/img/menu_bg.jpg" title="菜單介紹" />
   <main class="lg:px-24 2xl:px-72 my-8">
-    <div class="md:flex">
-      <div class="md:w-1/5 text-black">
-        <ul class="menu w-full">
+    <div class="lg:flex">
+      <div class="lg:w-1/5 text-black">
+        <div class="px-2 mb-5 lg:hidden">
+          <select
+            class="select select-bordered w-full"
+            v-model="currentCategory"
+          >
+            <option disabled selected :value="null">請選擇類別</option>
+            <option
+              v-for="category in categoryList"
+              :key="category.enName"
+              :value="category.enName"
+            >
+              {{ category.chName }}
+            </option>
+          </select>
+        </div>
+        <ul class="menu w-full lg:block hidden">
           <li
             v-for="category in categoryList"
             :key="category.enName"
@@ -66,12 +93,31 @@ getAllProduct();
           </li>
         </ul>
       </div>
-      <div class="md:w-4/5 px-3">
+      <div class="lg:w-4/5 px-3">
         <h1 class="text-center text-black text-4xl font-bold">
           {{ findObjInArr(categoryList, "enName", routeHash)?.chName }}
         </h1>
         <hr class="my-3" />
         <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4">
+          <template v-if="isLoading">
+            <div v-for="i in 5" :key="i" class="bg-base-100 shadow-xl">
+              <div
+                class="w-full relative overflow-hidden"
+                style="padding-top: 90%"
+              >
+                <div class="w-full image cursor-pointer">
+                  <figure class="aspect-square cursor-pointer skeleton">
+                  </figure>
+                </div>
+              </div>
+              <div class="py-5">
+                <div class="card-title justify-center">
+                  <span class="w-[5rem] h-[1.5rem] skeleton"></span>,
+                  <span class="w-[3rem] h-[1.5rem] skeleton"></span>
+                </div>
+              </div>
+            </div>
+          </template>
           <div
             v-for="(product, index) in currentProductList"
             :key="product.id"
@@ -84,13 +130,16 @@ getAllProduct();
             >
               <div class="w-full image cursor-pointer">
                 <div class="cover"></div>
-                <figure class="aspect-square cursor-pointer" :class="{ skeleton: imageLoadedList[index] }">
+                <figure
+                  class="aspect-square cursor-pointer"
+                  :class="{ skeleton: !imageLoadedList[index] }"
+                >
                   <img
-                      :src="product.imageUrl"
-                      alt=""
-                      class="h-full transition-all ease-linear bg-gray-100"
-                      loading="lazy"
-                      @load="onloadImage(index)"
+                    alt=""
+                    :src="product.imageUrl"
+                    class="h-full transition-all ease-linear bg-gray-100"
+                    loading="lazy"
+                    @load="onloadImage(index)"
                   />
                 </figure>
               </div>

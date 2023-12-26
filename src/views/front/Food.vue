@@ -50,7 +50,7 @@ const addToCart = async () => {
     qty: count.value,
   };
   await callApi("cart", "post", {
-    data
+    data,
   })
     .then((response) => {
       const { title, unit } = response.data.data.product;
@@ -67,6 +67,10 @@ const imageLoaded = ref(false);
 const toastList = ref<string[]>([]);
 
 onMounted(() => {
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
   id.value = route.params.id as string;
   getFoodInfo();
 });
@@ -81,67 +85,102 @@ onMounted(() => {
     </div>
   </template>
   <div
-    class="min-h-[50vh] px-20 lg:px-50 xl:px-60 py-20 flex justify-center items-center bg-no-repeat bg-cover"
+    class="bg-no-repeat bg-cover"
     style="
       background-image: url(http://twjsp.com.tw/styles/images/products/pattern2.jpg);
     "
   >
-    <div class="w-full text-center text-neutral-content md:flex justify-center items-center lg:px-10">
-      <div class="md:w-1/2 relative">
-        <div class="text-sm breadcrumbs absolute left-0 -top-10">
-          <ul>
-            <li><a>美味餐點</a></li>
-            <li class="w-full">
-              <div v-show="!imageLoaded" class="w-12 h-4 skeleton"></div>
-              <span v-show="imageLoaded">{{ foodCategory }}</span>
-            </li>
-          </ul>
-        </div>
-        <figure class="w-full aspect-square bg-gray-100 flex" :class="{ 'skeleton': !imageLoaded }">
-          <img :src="foodInfo.imageUrl" alt="" class="img-fit-cover" @load="imageLoaded = true" />
-        </figure>
-      </div>
-      <div class="md:w-1/2 p-5 flex flex-col justify-center">
-        <div class="title w-full mb-5 flex justify-center">
-          <h1 class="min-h-[2.5rem] w-full md:w-1/2 text-4xl font-bold" :class="{ 'skeleton': !imageLoaded }">
-            <span v-show="imageLoaded">{{ foodInfo.title }}</span>
-          </h1>
-        </div>
-        <div class="price mb-5 flex flex-col items-center">
-          <h5 class="min-h-[1.5rem] w-20 my-1" :class="{ 'skeleton': !imageLoaded }"><span v-show="imageLoaded">原價: {{ foodInfo.origin_price }}</span></h5>
-          <h5 class="min-h-[1.5rem] w-20 my-1" :class="{ 'skeleton': !imageLoaded }"><span v-show="imageLoaded">售價: {{ foodInfo.price }}</span></h5>
-        </div>
-        <div class="flex items-center justify-center count mb-3">
-          <button
-            class="btn btn-square btn-xs"
-            @click="minus"
+    <div
+      class="min-h-[50vh] px-20 lg:px-50 xl:px-60 py-20 flex justify-center items-center"
+    >
+      <div
+        class="w-full text-center text-neutral-content md:flex justify-center items-center lg:px-10"
+      >
+        <div class="md:w-1/2 relative">
+          <div class="text-sm breadcrumbs absolute left-0 -top-10">
+            <ul>
+              <li>
+                <div v-show="!imageLoaded" class="w-12 h-4 skeleton"></div>
+                <a v-show="imageLoaded">美味餐點</a>
+              </li>
+              <li class="w-full">
+                <div v-show="!imageLoaded" class="w-12 h-4 skeleton"></div>
+                <span v-show="imageLoaded">{{ foodCategory }}</span>
+              </li>
+            </ul>
+          </div>
+          <figure
+            class="w-full aspect-square bg-gray-100 flex"
+            :class="{ skeleton: !imageLoaded }"
           >
-            <span class="material-symbols-outlined"> remove </span>
-          </button>
-          <span class="mx-2 w-5">{{ count }}</span>
-          <button class="btn btn-square btn-xs" @click="count++">
-            <span class="material-symbols-outlined"> add </span>
-          </button>
+            <img
+              :src="foodInfo.imageUrl"
+              alt=""
+              class="img-fit-cover"
+              @load="imageLoaded = true"
+            />
+          </figure>
         </div>
-        <div class="to-cart mb-2">
-          <button class="btn btn-sm btn-warning rounded mr-5" @click="addToCart">
-            加入購物車
-          </button>
-          <router-link :to="{ name: 'Cart' }" class="btn btn-sm rounded"
-            >前往購物車</router-link
-          >
+        <div class="md:w-1/2 p-5 flex flex-col justify-center">
+          <div class="title w-full mb-5 flex justify-center">
+            <h1
+              class="min-h-[2.5rem] w-full md:w-1/2 text-4xl font-bold"
+              :class="{ skeleton: !imageLoaded }"
+            >
+              <span v-show="imageLoaded">{{ foodInfo.title }}</span>
+            </h1>
+          </div>
+          <div class="price mb-5 flex flex-col items-center">
+            <h5
+              class="min-h-[1.5rem] w-20 my-1"
+              :class="{ skeleton: !imageLoaded }"
+            >
+              <span v-show="imageLoaded"
+                >原價: {{ foodInfo.origin_price }}</span
+              >
+            </h5>
+            <h5
+              class="min-h-[1.5rem] w-20 my-1"
+              :class="{ skeleton: !imageLoaded }"
+            >
+              <span v-show="imageLoaded">售價: {{ foodInfo.price }}</span>
+            </h5>
+          </div>
+          <div class="flex items-center justify-center count mb-3">
+            <button class="btn btn-square btn-xs" @click="minus">
+              <span class="material-symbols-outlined"> remove </span>
+            </button>
+            <span class="mx-2 w-5">{{ count }}</span>
+            <button class="btn btn-square btn-xs" @click="count++">
+              <span class="material-symbols-outlined"> add </span>
+            </button>
+          </div>
+          <div class="to-cart mb-2">
+            <button
+              class="btn btn-sm btn-warning rounded mr-5"
+              @click="addToCart"
+            >
+              加入購物車
+            </button>
+            <router-link :to="{ name: 'Cart' }" class="btn btn-sm rounded"
+              >前往購物車</router-link
+            >
+          </div>
+          <p class="text-xs">＊產品圖片僅供參考，實際產品以各門市販售為準。</p>
         </div>
-        <p class="text-xs">＊產品圖片僅供參考，實際產品以各門市販售為準。</p>
       </div>
     </div>
-  </div>
-  <div class="collapse collapse-arrow bg-base-200">
-    <input type="radio" name="my-accordion-3" :checked="checked" @click="checked = !checked" />
-    <div class="collapse-title text-xl text-center font-medium">
-      Click to open this one and close others
-    </div>
-    <div class="collapse-content flex justify-center">
-      <p>hello</p>
+    <div class="collapse collapse-arrow">
+      <input
+        type="radio"
+        name="my-accordion-3"
+        :checked="checked"
+        @click="checked = !checked"
+      />
+      <div class="collapse-title text-center text-white">詳情</div>
+      <div class="collapse-content flex justify-center">
+        <p>hello</p>
+      </div>
     </div>
   </div>
 </template>

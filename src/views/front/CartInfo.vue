@@ -10,8 +10,10 @@ const totalAmount = ref(0);
 const finalAmount = ref(0);
 const couponCode = ref("");
 const couponContent = ref("");
+const isLoading = ref(false);
 
 const getCartList = async () => {
+  isLoading.value = true;
   await callApi("cart", "get", "")
     .then((response) => {
       console.log(response);
@@ -21,6 +23,7 @@ const getCartList = async () => {
         totalAmount.value = response.data.data.total;
         finalAmount.value = response.data.data.final_total;
         console.log(cartList.value);
+        isLoading.value = false;
       }
     })
     .catch((error) => {
@@ -96,6 +99,38 @@ onMounted(() => {
     <div class="w-full xl:w-2/3 lg:p-5 mb-5">
       <h1 class="font-bold text-xl">購物車內容</h1>
       <div class="card bg-base-300 shadow-xl p-3">
+        <template v-if="isLoading">
+          <div
+              v-for="item in 3"
+              :key="item"
+              class="p-5 flex flex-row card bg-base-100 my-1"
+          >
+            <div class="w-1/3 flex items-center">
+              <div
+                  class="w-[5rem] h-[5rem] skeleton"
+              />
+            </div>
+            <div class="w-2/3 px-3 flex flex-col sm:flex-row justify-center sm:items-center">
+              <h1 class="sm:w-1/3">
+                <div class="w-[4.5rem] h-[1rem] skeleton"></div>
+              </h1>
+              <div class="sm:w-1/3 my-1"><div class="w-[2rem] h-[1rem] skeleton"></div></div>
+              <div class="sm:w-1/3 join">
+                <button
+                    class="btn btn-square btn-sm join-item text-2xl"
+                >
+                  -
+                </button>
+                <input class="input input-sm join-item w-[3rem] px-0" value="1"  />
+                <button
+                    class="btn btn-square btn-sm join-item text-2xl"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </template>
         <div
           v-for="item in cartList"
           :key="item.id"

@@ -5,13 +5,15 @@ import { useWindowScroll } from "@vueuse/core";
 const route = useRoute();
 const { callApi } = useUnits();
 
+const linkColor = computed(() => route.name === "Home" ? "#fff" : "#000" );
+
 const { y } = useWindowScroll();
 const isScrolled = ref(false);
 // 每當滾動位置改變時，更新 isScrolled
 watch(
   () => y.value,
   (newY) => {
-    isScrolled.value = newY > 200;
+    isScrolled.value = newY > 0;
   }
 );
 
@@ -35,7 +37,7 @@ getCartLength();
   <input id="home-drawer" type="checkbox" class="drawer-toggle" />
   <div
     class="navbar w-full z-10 top-0"
-    :class="[route.name === 'Home' ? 'fixed' : 'sticky', isScrolled ? '' : '']"
+    :class="[route.name === 'Home' ? 'fixed' : 'sticky', isScrolled ? 'glass' : '']"
   >
     <div class="navbar-start">
       <div class="flex-none lg:hidden">
@@ -43,6 +45,7 @@ getCartLength();
           for="home-drawer"
           aria-label="open sidebar"
           class="btn btn-square btn-ghost"
+          :class="isScrolled || route.name !== 'Home' ? 'text-black' : 'text-white'"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +68,7 @@ getCartLength();
         <li class="mx-5">
           <router-link
             :to="{ name: 'Menu' }"
-            class="text-lg hover:text-error"
+            class="text-lg hover:text-error font-bold"
             :class="{ 'text-red-600 font-bold': route.name === 'Menu' }"
             >美味餐點</router-link
           >
@@ -73,9 +76,9 @@ getCartLength();
         <!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">最新消息</router-link></li>-->
         <li class="mx-5">
           <router-link
-            :to="{ name: 'Booking' }"
-            class="text-lg hover:text-error"
-            :class="{ 'text-red-600 font-bold': route.name === 'Booking' }"
+            :to="{ name: 'Reservation' }"
+            class="text-lg hover:text-error font-bold"
+            :class="{ 'text-red-600': route.name === 'Reservation' }"
             >線上訂位</router-link
           >
         </li>
@@ -87,14 +90,14 @@ getCartLength();
         <li class="mx-5">
           <router-link
             :to="{ name: 'About' }"
-            class="text-lg hover:text-error"
-            :class="{ 'text-red-600 font-bold': route.name === 'About' }"
+            class="text-lg hover:text-error font-bold"
+            :class="{ 'text-red-600': route.name === 'About' }"
             >關於我們</router-link
           >
         </li>
         <!--        <li class="mx-5"><router-link :to="{ name: 'Menu' }">常見問題</router-link></li>-->
         <li class="mx-5">
-          <router-link :to="{ name: 'Login' }" class="text-lg hover:text-error"
+          <router-link :to="{ name: 'Login' }" class="text-lg hover:text-error font-bold"
             >後台登入</router-link
           >
         </li>
@@ -106,39 +109,37 @@ getCartLength();
         style="border-radius: 50%"
         >{{ cartLength }}</span
       >
-      <a href="/Cart" class="btn btn-ghost btn-circle btn-outline">
+      <div class="btn btn-circle"
+           :class="route.name === 'Home' ? 'bg-black text-white' : 'bg-white text-black'"
+      >
         <span class="material-symbols-outlined">shopping_cart</span>
-      </a>
+      </div>
     </div>
   </div>
   <div class="drawer-side z-[50] max-h-screen">
     <label for="home-drawer" class="drawer-overlay"></label>
-    <aside class="w-72 min-h-[100vh] bg-neutral-800">
-      <ul class="menu w-full min-h-[100vh] bg-base-200 p-5">
-        <li class="flex justify-center">
-          <router-link :to="{ name: 'Home' }" class="btn normal-case text-xl"
-            >Linance</router-link
-          >
-        </li>
-        <li class="my-1">
-          <router-link :to="{ name: 'Menu' }" class="block text-center"
+    <aside class="w-80 h-[100vh]" :class="route.name === 'Home' ? 'bg-black' : 'bg-white'">
+      <div class="w-full py-5 flex justify-center">
+        <router-link :to="{ name: 'Home' }"><img src="/assets/img/logo_test.png" width="50" /></router-link>
+      </div>
+      <ul class="menu w-full p-5">
+        <li class="my-1 hover:bg-none">
+          <router-link :to="{ name: 'Menu' }" class="block text-center text-lg hover:text-error"
             >美味餐點</router-link
           >
         </li>
-        <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">最新消息</router-link></li>-->
         <li class="my-1">
-          <router-link :to="{ name: 'Booking' }" class="block text-center"
+          <router-link :to="{ name: 'Reservation' }" class="block text-center text-lg hover:text-error"
             >線上訂位</router-link
           >
         </li>
         <li class="my-1">
-          <router-link :to="{ name: 'About' }" class="block text-center"
+          <router-link :to="{ name: 'About' }" class="block text-center text-lg hover:text-error"
             >關於我們</router-link
           >
         </li>
-        <!--      <li class="my-1"><router-link :to="{ name: 'Menu' }" class="block text-center">常見問題</router-link></li>-->
         <li class="my-1">
-          <router-link :to="{ name: 'Login' }" class="block text-center"
+          <router-link :to="{ name: 'Login' }" class="block text-center text-lg hover:text-error"
             >後台登入</router-link
           >
         </li>
@@ -149,6 +150,12 @@ getCartLength();
 
 <style scoped>
 a {
-  color: #fff
+  color: v-bind(linkColor);
+}
+a:hover {
+  color: #ff5e5e;
+}
+.router-link-active, router-link-exact-active  {
+  color: #ff5e5e !important;
 }
 </style>

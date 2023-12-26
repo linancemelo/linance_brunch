@@ -62,7 +62,7 @@ onMounted(() => {
     panel.bg = panel.querySelector(".bg");
 
     gsap.to(panel.bg, {
-      backgroundPosition: `50% ${-innerHeight / 2}px`,
+      backgroundPosition: `50% ${ -innerHeight / 2 }px`,
       ease: "none",
       scrollTrigger: {
         trigger: panel,
@@ -76,7 +76,6 @@ onMounted(() => {
     gsap.from(panel, {
       scrollTrigger: {
         trigger: panel,
-        // markers: true,
         onEnter: () => {
           gsap.fromTo(
             panel,
@@ -133,13 +132,13 @@ onMounted(() => {
         style="background-image: url(/assets/img/home_bg5.jpg)"
       ></div>
       <div class="section">
-        <h1 class="title pt-10 text-[3rem] text-center text-white italic">
+        <h1 class="title text-[3rem] text-center text-white italic my-10">
           Our Service
         </h1>
         <div
-          class="grid grid-cols-1 md:grid-cols-3 p-10 lg:px-20 gap-5"
+          class="grid grid-cols-1 lg:grid-cols-3 gap-5"
         >
-          <div class="card bg-base-100 shadow-xl">
+          <div class="card w-80 bg-base-100 shadow-xl">
             <figure class="px-5 pt-5">
               <img
                 src="/assets/img/e_pay.jpg"
@@ -155,7 +154,7 @@ onMounted(() => {
               </p>
             </div>
           </div>
-          <div class="card bg-base-100 shadow-xl">
+          <div class="card w-80 bg-base-100 shadow-xl">
             <figure class="px-5 pt-5">
               <img
                 src="/assets/img/delivery.jpg"
@@ -170,7 +169,7 @@ onMounted(() => {
               </p>
             </div>
           </div>
-          <div class="card bg-base-100 shadow-xl">
+          <div class="card w-80 bg-base-100 shadow-xl">
             <figure class="px-5 pt-5">
               <img src="/assets/img/gift.jpg" alt="集點卡" class="rounded-xl max-w-[15rem]" />
             </figure>
@@ -261,7 +260,7 @@ onMounted(() => {
         style="background-image: url(/assets/img/home_bg6.jpg)"
       ></div>
       <div class="section hero-content text-center flex-col">
-        <h1 class="title pt-10 text-[3rem] text-center italic">Order Online</h1>
+        <h1 class="title pt-10 text-[3rem] text-center italic">Reservation</h1>
         <div class="card glass">
           <div class="card-body flex flex-col md:flex-row">
             <div class="flex flex-col justify-center items-center">
