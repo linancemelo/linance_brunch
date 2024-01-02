@@ -100,13 +100,17 @@ onMounted(() => {
     });
   });
 });
+
+const getImageUrl = (url) => {
+  return new URL(`/assets/img/${url}`, import.meta.url).href;
+};
 </script>
 
 <template>
   <main class="overflow-clip">
     <div
       class="home hero min-h-screen max-h-screen bg-cover max-w-full"
-      style="background-image: url(/assets/img/tests.png)"
+      style="background-image: url(../../../public/assets/img/tests.png)"
     >
       <div
         class="home-bg absolute top-0 left-0 w-full h-full bg-no-repeat bg-cover bg-center z-20"
@@ -142,7 +146,7 @@ onMounted(() => {
     <div class="hero home-second relative">
       <div
         class="bg"
-        style="background-image: url(/assets/img/home_bg5.jpg)"
+        style="background-image: url(../../../public/assets/img/home_bg5.jpg)"
       ></div>
       <div class="section py-10">
         <h1 class="title text-[3rem] text-center text-white italic my-10">
@@ -200,7 +204,7 @@ onMounted(() => {
     <div class="hero home-second relative">
       <div
         class="bg"
-        style="background-image: url(/assets/img/home_bg3.jpg)"
+        style="background-image: url(../../../public/assets/img/home_bg3.jpg)"
       ></div>
       <div class="section py-10">
         <h1 class="title text-[3rem] text-center text-warning italic">Origin</h1>
@@ -220,7 +224,7 @@ onMounted(() => {
     <div class="hero home-second relative">
       <div
         class="bg"
-        style="background-image: url(/assets/img/home_bg4.png)"
+        style="background-image: url(../../../public/assets/img/home_bg4.png)"
       ></div>
       <div class="section py-10">
         <h1 class="title pt-10 text-[3rem] text-center italic">Hot Sales</h1>
@@ -270,7 +274,7 @@ onMounted(() => {
     <div class="hero home-second relative">
       <div
         class="bg hero-overlay"
-        style="background-image: url(/assets/img/home_bg6.jpg)"
+        style="background-image: url(../../../public/assets/img/home_bg6.jpg)"
       ></div>
       <div class="section hero-content text-center flex-col">
         <h1 class="title pt-10 text-[3rem] text-center italic">Reservation</h1>
