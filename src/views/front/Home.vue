@@ -2,7 +2,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-
 onMounted(() => {
   gsap.to(".home-bg", {
     "--radius": "110%",
@@ -107,7 +106,7 @@ onMounted(() => {
   <main class="overflow-clip">
     <div
       class="home hero min-h-screen max-h-screen bg-cover max-w-full"
-      :style="`background-image: url(${new URL('/assets/img/tests.png', import.meta.url).href})`"
+      style="background-image: url(/assets/img/tests.png)"
     >
       <div
         class="home-bg absolute top-0 left-0 w-full h-full bg-no-repeat bg-cover bg-center z-20"
