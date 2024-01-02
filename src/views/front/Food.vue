@@ -4,7 +4,7 @@ import { useUnits } from "@/composables/units.ts";
 import { ProductInfo } from "@/types/back/product.ts";
 
 const route = useRoute();
-const { callApi, simpleAlert } = useUnits();
+const { callApi } = useUnits();
 
 const id = ref("");
 const foodInfo = ref({} as ProductInfo);
@@ -177,9 +177,9 @@ onMounted(() => {
         :checked="checked"
         @click="checked = !checked"
       />
-      <div class="collapse-title text-center text-white">詳情</div>
-      <div class="collapse-content flex justify-center">
-        <p>hello</p>
+      <div class="collapse-title text-center text-white">商品詳情</div>
+      <div class="collapse-content flex justify-center text-white">
+        <p>{{ foodInfo.description }}</p>
       </div>
     </div>
   </div>

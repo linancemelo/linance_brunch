@@ -141,6 +141,10 @@ const router = createRouter({
   routes,
 });
 router.beforeEach(async (to, from, next) => {
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
   document.title = to.meta.title as string;
 
   const store = useStore();

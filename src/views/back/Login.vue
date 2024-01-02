@@ -6,8 +6,10 @@ const router = useRouter();
 const { setCookie, removeCookie, getCookie, simpleAlert } = useUnits();
 
 const userInfo = ref({
-  username: "liangvuepractice@mail.com",
-  password: "liangxu04vu6",
+  username: "",
+  password: "",
+  // username: "liangvuepractice@mail.com",
+  // password: "liangxu04vu6",
 });
 const rememberAc = ref(false);
 const isLoading = ref(false);

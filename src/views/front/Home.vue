@@ -86,6 +86,20 @@ onMounted(() => {
       },
     });
   });
+  gsap.utils.toArray(".btn-more").forEach((panel) => {
+    gsap.from(panel, {
+      scrollTrigger: {
+        trigger: panel,
+        onEnter: () => {
+          gsap.fromTo(
+              panel,
+              { y: 100, opacity: 0.5 },
+              { y: 0, opacity: 1, ease: "power2.inOut", duration: 1 }
+          );
+        },
+      },
+    });
+  });
 });
 </script>
 
@@ -131,7 +145,7 @@ onMounted(() => {
         class="bg"
         style="background-image: url(/assets/img/home_bg5.jpg)"
       ></div>
-      <div class="section">
+      <div class="section py-10">
         <h1 class="title text-[3rem] text-center text-white italic my-10">
           Our Service
         </h1>
@@ -189,7 +203,7 @@ onMounted(() => {
         class="bg"
         style="background-image: url(/assets/img/home_bg3.jpg)"
       ></div>
-      <div class="section">
+      <div class="section py-10">
         <h1 class="title text-[3rem] text-center text-warning italic">Origin</h1>
         <div class="hero-content text-center text-white">
           <div class="pt-10 md:px-40 lg:px-60 xl:px-80 text-center">
@@ -197,7 +211,7 @@ onMounted(() => {
             <p class="tracking-widest py-5 font-bold">
               以貼心服務、新鮮嚴選食材和創意心思為您打造一個美食饗宴。希望您能享受快樂，吃得安心滿足，在這個充滿溫暖熱情的地方，感受台灣在地的熱情胸懷，早餐店文化。
             </p>
-            <button class="btn btn-warning rounded">了解更多</button>
+            <router-link :to="{ name: 'About' }" class="btn btn-warning btn-more rounded">了解更多</router-link>
           </div>
         </div>
       </div>
@@ -209,47 +223,47 @@ onMounted(() => {
         class="bg"
         style="background-image: url(/assets/img/home_bg4.png)"
       ></div>
-      <div class="section">
+      <div class="section py-10">
         <h1 class="title pt-10 text-[3rem] text-center italic">Hot Sales</h1>
         <div
           class="grid grid-cols-1 md:grid-cols-3 p-10 lg:px-20 gap-10"
         >
             <div>
               <div class="avatar placeholder">
-                <div class="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2">
-                  <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" class="" />
+                <div class="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2 bg-base-300">
+                  <img src="/assets/專案圖片/炒飯/櫻花蝦炒飯.png" class="" />
                 </div>
               </div>
               <div class="text-center">
-                <p class="text-2xl font-bold mt-2">打拋豬炒飯</p>
+                <p class="text-2xl font-bold mt-2">櫻花蝦炒飯</p>
                 <p class="text-xl font-mono">$100</p>
               </div>
             </div>
           <div>
             <div class="avatar placeholder">
-              <div class="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2">
-                <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" class="" />
+              <div class="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2 bg-base-300">
+                <img src="/assets/專案圖片/麵類/蘑菇面.png" class="" />
               </div>
             </div>
             <div class="text-center">
-              <p class="text-2xl font-bold mt-2">打拋豬炒飯</p>
-              <p class="text-xl font-mono">$100</p>
+              <p class="text-2xl font-bold mt-2">蘑菇麵</p>
+              <p class="text-xl font-mono">$45</p>
             </div>
           </div>
           <div>
             <div class="avatar placeholder">
-              <div class="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2">
-                <img src="/assets/專案圖片/炒飯/打拋豬炒飯.png" class="" />
+              <div class="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2 bg-base-300">
+                <img src="/assets/專案圖片/漢堡/德腸蛋堡.jpeg" class="" />
               </div>
             </div>
             <div class="text-center">
-              <p class="text-2xl font-bold mt-2">打拋豬炒飯</p>
-              <p class="text-xl font-mono">$100</p>
+              <p class="text-2xl font-bold mt-2">德腸蛋堡</p>
+              <p class="text-xl font-mono">$50</p>
             </div>
           </div>
         </div>
         <div class="w-full text-center">
-          <button class="btn btn-neutral rounded px-5">立即訂購</button>
+          <router-link :to="{ name: 'Menu' }" class="btn btn-neutral btn-more rounded px-5">立即訂購</router-link>
         </div>
       </div>
     </div>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useUnits } from "@/composables/units.ts";
+import NoData from "@/components/NoData.vue";
 
 const router = useRouter();
-const { callApi } = useUnits();
+const { isEmpty, callApi, simpleAlert } = useUnits();
 
 const cartList = ref([]);
 const finalTotal = ref(0);
@@ -73,7 +74,7 @@ const useCoupon = async () => {
   const result = await callApi("coupon", "post", {
     data: { code: couponCode.value },
   });
-  const { data, success, message } = result.data;
+  const { success, message } = result.data;
   if (success) {
     getCartList();
     couponContent.value = message;
@@ -81,6 +82,10 @@ const useCoupon = async () => {
 };
 
 const openUserInfo = () => {
+  if (isEmpty(cartList.value)) {
+    simpleAlert("快去加入商品", "warning");
+    return;
+  }
   router.push({ name: "UserInfo" });
   window.scroll({
     top: 0,
@@ -129,6 +134,11 @@ onMounted(() => {
                 </button>
               </div>
             </div>
+          </div>
+        </template>
+        <template v-if="cartList.length === 0 && !isLoading">
+          <div>
+            <NoData content="哇！購物車竟然空了！"></NoData>
           </div>
         </template>
         <div

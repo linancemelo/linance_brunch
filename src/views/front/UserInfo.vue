@@ -2,7 +2,7 @@
 import { useUnits } from "@/composables/units.ts";
 import router from "@/router";
 
-const { callApi } = useUnits();
+const { isEmpty, callApi, simpleAlert } = useUnits();
 
 const user = ref({
   name: "",
@@ -13,11 +13,17 @@ const user = ref({
 const message = ref("");
 
 const confirmOrder = async () => {
+  const { isValid, errMsg } = checkValid();
+  if (!isValid) {
+    simpleAlert(errMsg, "error");
+    return;
+  }
+
   const data = {
     user: user.value,
     message: message.value,
   };
-  console.log(data);
+
   await callApi("order", "post", { data })
     .then((response) => {
       if (response.data.success) {
@@ -28,6 +34,17 @@ const confirmOrder = async () => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+const checkValid = () => {
+  const { name, email, tel, address } = user.value;
+
+  if (isEmpty(name)) return { isValid: false, errMsg: "名稱不得為空" };
+  if (isEmpty(email)) return { isValid: false, errMsg: "信箱不得為空" };
+  if (isEmpty(tel)) return { isValid: false, errMsg: "電話不得為空" };
+  if (isEmpty(address)) return { isValid: false, errMsg: "地址不得為空" };
+
+  return { isValid: true, errMsg: "" };
 };
 </script>
 
@@ -89,7 +106,12 @@ const confirmOrder = async () => {
     </div>
     <div class="flex justify-between w-full max-w-lg mt-5">
       <button class="btn rounded w-1/3 md:w-1/4">確認餐點</button>
-      <button class="btn btn-accent rounded w-1/3 md:w-1/4" @click="confirmOrder">送出訂單</button>
+      <button
+        class="btn btn-accent rounded w-1/3 md:w-1/4"
+        @click="confirmOrder"
+      >
+        送出訂單
+      </button>
     </div>
   </div>
 </template>

@@ -2,11 +2,11 @@
 import Navbar from "@/components/front/Navbar.vue";
 import Footer from "@/components/front/Footer.vue";
 import { useWindowScroll } from "@vueuse/core/index";
-import gsap from "gsap";
+// import gsap from "gsap";
 
 const { y } = useWindowScroll();
 const isScrolled = ref(false);
-const showCookies = ref(false);
+// const showCookies = ref(false);
 
 // 每當滾動位置改變時，更新 isScrolled
 watch(
@@ -22,13 +22,13 @@ const scrollToTop = () => {
   });
 };
 
-onMounted(() => {
-  gsap.to(".cookies", {
-    opacity: 1,
-    duration: 1,
-    ease: "power1.in"
-  });
-});
+// onMounted(() => {
+//   gsap.to(".cookies", {
+//     opacity: 1,
+//     duration: 1,
+//     ease: "power1.in"
+//   });
+// });
 </script>
 
 <template>

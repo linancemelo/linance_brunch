@@ -109,11 +109,11 @@ getCartLength();
         style="border-radius: 50%"
         >{{ cartLength }}</span
       >
-      <div class="btn btn-circle"
+      <router-link :to="{ name: 'Cart' }" class="btn btn-circle"
            :class="route.name === 'Home' ? 'bg-black text-white' : 'bg-white text-black'"
       >
         <span class="material-symbols-outlined">shopping_cart</span>
-      </div>
+      </router-link>
     </div>
   </div>
   <div class="drawer-side z-[50] max-h-screen">
