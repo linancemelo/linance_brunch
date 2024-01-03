@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-max-screen h-[250px] lg:h-[350px] relative"
+    class="w-max-screen h-[250px] lg:h-[350px] relative main"
     :style="{ backgroundImage: `url(../../../public${bgUrl})`, backgroundSize: 'cover' }"
   >
     <h1
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   bgUrl: String,
   title: String,
 });
@@ -28,5 +28,10 @@ defineProps({
   color: #fff;
   background: url("/assets/img/menu_center_bg.jpg") no-repeat;
   background-size: cover;
+}
+.main {
+  background: v-bind("props.bgUrl") no-repeat ;
+  background-size: cover
+;
 }
 </style>
