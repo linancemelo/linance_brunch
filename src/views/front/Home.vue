@@ -109,8 +109,7 @@ const getImageUrl = (url) => {
 <template>
   <main class="overflow-clip">
     <div
-      class="home hero min-h-screen max-h-screen bg-cover max-w-full"
-      style="background-image: url(../../../public/assets/img/tests.png)"
+      class="home hero min-h-screen max-h-screen bg-cover max-w-full welcome"
     >
       <div
         class="home-bg absolute top-0 left-0 w-full h-full bg-no-repeat bg-cover bg-center z-20"
@@ -145,8 +144,7 @@ const getImageUrl = (url) => {
     <!-- 提供服務 -->
     <div class="hero home-second relative">
       <div
-        class="bg"
-        style="background-image: url(../../../public/assets/img/home_bg5.jpg)"
+        class="bg service"
       ></div>
       <div class="section py-10">
         <h1 class="title text-[3rem] text-center text-white italic my-10">
@@ -203,8 +201,7 @@ const getImageUrl = (url) => {
     <!-- 品牌故事 -->
     <div class="hero home-second relative">
       <div
-        class="bg"
-        style="background-image: url(../../../public/assets/img/home_bg3.jpg)"
+        class="bg origin"
       ></div>
       <div class="section py-10">
         <h1 class="title text-[3rem] text-center text-warning italic">Origin</h1>
@@ -218,13 +215,11 @@ const getImageUrl = (url) => {
           </div>
         </div>
       </div>
-
     </div>
     <!-- 熱賣商品 -->
     <div class="hero home-second relative">
       <div
-        class="bg"
-        style="background-image: url(../../../public/assets/img/home_bg4.png)"
+        class="bg sales"
       ></div>
       <div class="section py-10">
         <h1 class="title pt-10 text-[3rem] text-center italic">Hot Sales</h1>
@@ -273,8 +268,7 @@ const getImageUrl = (url) => {
     <!-- APP點餐 -->
     <div class="hero home-second relative">
       <div
-        class="bg hero-overlay"
-        style="background-image: url(../../../public/assets/img/home_bg6.jpg)"
+        class="bg hero-overlay reservation"
       ></div>
       <div class="section hero-content text-center flex-col">
         <h1 class="title pt-10 text-[3rem] text-center italic">Reservation</h1>
@@ -303,6 +297,21 @@ const getImageUrl = (url) => {
 </template>
 
 <style scoped>
+.welcome {
+  background-image: url(/assets/img/tests.png);
+}
+.service {
+  background-image: url(/assets/img/home_bg5.jpg);
+}
+.origin {
+  background-image: url(/assets/img/home_bg3.jpg)
+}
+.sales {
+  background-image: url(/assets/img/home_bg4.png)
+}
+.reservation {
+  background-image: url(/assets/img/home_bg6.jpg)
+}
 h1 {
   font-family: Gasoek One, sans-serif;
 }
