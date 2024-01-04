@@ -61,7 +61,7 @@ onMounted(() => {
     panel.bg = panel.querySelector(".bg");
 
     gsap.to(panel.bg, {
-      backgroundPosition: `50% ${ -innerHeight / 2 }px`,
+      // backgroundPosition: `50% ${ -innerHeight / 2 }px`,
       ease: "none",
       scrollTrigger: {
         trigger: panel,
