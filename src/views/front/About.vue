@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import MainHeader from "@/components/front/MainHeader.vue";
+import bgUrl from "../../../public/assets/img/about_bg.jpeg";
+
 </script>
 
 <template>
-  <MainHeader bgUrl="/assets/img/about_bg.jpeg" title="關於我們" />
+  <MainHeader :bgUrl="bgUrl" title="關於我們" />
   <div class="px-5 py-10">
     <div class="lg:flex">
       <div class="hidden w-1/4 lg:flex justify-center items-center">
@@ -23,6 +25,9 @@ import MainHeader from "@/components/front/MainHeader.vue";
       </div>
     </div>
   </div>
+  <img
+      src="../../../../../../../var/folders/ls/6_gr1ht50f1d4lqcz3lmyryr0000gn/T/TemporaryItems/NSIRD_screencaptureui_W16hE0/截圖 2024-01-09 22.18.48.jpg"
+      height="253" width="787"/>
   <div class="px-5 py-10 flex justify-center">
     <img
       src="/assets/img/teamwork-banner.jpeg"

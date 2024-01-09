@@ -4,6 +4,7 @@ import { DatePicker } from "v-calendar";
 import "v-calendar/style.css";
 import moment from "moment";
 import { branchInformation } from "@/data/booking.js";
+import bgUrl from "../../../public/assets/img/reservation.jpg";
 
 const selectDate = ref(new Date());
 
@@ -13,7 +14,7 @@ const formatDate = (date) => {
 </script>
 
 <template>
-  <MainHeader bgUrl="/assets/img/menu_bg.jpg" title="線上訂位" />
+  <MainHeader :bgUrl="bgUrl" title="線上訂位" />
   <div class="px-5 md:px-12 lg:px-24 2xl:px-72 my-8">
     <!--title-->
     <div>

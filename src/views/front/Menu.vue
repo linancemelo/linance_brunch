@@ -3,6 +3,7 @@ import MainHeader from "@/components/front/MainHeader.vue";
 import { Ref } from "vue";
 import { useUnits } from "@/composables/units";
 import type { ProductInfo } from "@/types/back/product.ts";
+import bgUrl from "../../../public/assets/img/menu_bg.jpg";
 
 const route = useRoute();
 const router = useRouter();
@@ -58,7 +59,7 @@ watch(currentCategory, (newVal) => {
 </script>
 
 <template>
-  <MainHeader bgUrl="/assets/img/menu_bg.jpg" title="菜單介紹" />
+  <MainHeader :bgUrl="bgUrl" title="菜單介紹" />
   <main class="lg:px-24 2xl:px-72 my-8">
     <div class="lg:flex">
       <div class="lg:w-1/5 text-black">

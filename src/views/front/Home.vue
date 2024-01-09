@@ -349,4 +349,15 @@ h2 {
   background-size: cover;
   background-attachment: fixed;
 }
+.bg::before{
+  content: "";
+  background-image: inherit;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+}
+
 </style>
