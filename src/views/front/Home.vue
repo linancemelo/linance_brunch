@@ -61,7 +61,7 @@ onMounted(() => {
     panel.bg = panel.querySelector(".bg");
 
     gsap.to(panel.bg, {
-      // backgroundPosition: `50% ${ -innerHeight / 2 }px`,
+      backgroundPosition: `50% -${ innerHeight / 2 }px`,
       ease: "none",
       scrollTrigger: {
         trigger: panel,
@@ -347,7 +347,6 @@ h2 {
   height: 100%;
   background-position: center center;
   background-size: cover;
-  background-repeat: no-repeat !important;
   background-attachment: fixed;
 }
 </style>
