@@ -4,7 +4,7 @@ import { DatePicker } from "v-calendar";
 import "v-calendar/style.css";
 import moment from "moment";
 import { branchInformation } from "@/data/booking.js";
-import bgUrl from "../../../public/assets/img/reservation.jpg";
+import bgUrl from "../../../public/assets/img/reservation_bg.jpg";
 
 const selectDate = ref(new Date());
 

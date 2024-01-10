@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-max-screen h-[250px] lg:h-[350px] relative"
+    class="w-max-screen h-[250px] lg:h-[400px] relative"
   >
     <img class="bg-cover w-full h-full" :src="bgUrl" alt="">
     <h1
