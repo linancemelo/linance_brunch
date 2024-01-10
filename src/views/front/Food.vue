@@ -85,10 +85,7 @@ onMounted(() => {
     </div>
   </template>
   <div
-    class="bg-no-repeat bg-cover"
-    style="
-      background-image: url(http://twjsp.com.tw/styles/images/products/pattern2.jpg);
-    "
+    class="food-bg bg-no-repeat bg-cover"
   >
     <div
       class="min-h-[50vh] px-20 lg:px-50 xl:px-60 py-20 flex justify-center items-center"
@@ -184,4 +181,8 @@ onMounted(() => {
     </div>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+.food-bg {
+  background-image: url(/assets/img/food_bg.jpg);
+}
+</style>
