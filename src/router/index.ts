@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 // 後
 import Login from "@/views/back/Login.vue";
 import Manage from "@/views/back/Manage.vue";
@@ -137,7 +137,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHistory("./"),
+  history: createWebHashHistory(),
   routes,
 });
 router.beforeEach(async (to, from, next) => {

@@ -26,7 +26,7 @@ const routeHash = computed(() =>
 );
 const currentProductList = computed(() => {
   const result = allProductList.value.filter(
-    (product: ProductInfo) => product.category === routeHash.value
+    (product: ProductInfo) => product.category === currentCategory.value
   );
   imageLoadedList.value = result.map(() => false);
   return result;
@@ -83,10 +83,10 @@ watch(currentCategory, (newVal) => {
             v-for="category in categoryList"
             :key="category.enName"
             class="mb-2"
+            @click="currentCategory = category.enName"
           >
             <a
               class="text-lg"
-              :href="`#${category.enName}`"
               :class="{ active: category.enName === routeHash }"
               ><span class="material-symbols-outlined"> arrow_right </span
               >{{ category.chName }}</a
