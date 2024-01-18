@@ -137,14 +137,10 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHistory("/linance_brunch/"),
+  history: createWebHistory("./"),
   routes,
 });
 router.beforeEach(async (to, from, next) => {
-  window.scroll({
-    top: 0,
-    behavior: "smooth",
-  });
   document.title = to.meta.title as string;
 
   const store = useStore();
@@ -160,6 +156,12 @@ router.beforeEach(async (to, from, next) => {
   } else {
     next();
   }
+});
+router.afterEach(() => {
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 export default router;
