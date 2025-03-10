@@ -27,6 +27,9 @@ const formatDate = (date) => {
     <div role="tablist" class="mt-5 py-2 tabs tabs-bordered tab-border-2">
       <a role="tab" class="tab tab-active text-xl">線上訂位</a>
     </div>
+    <div class="font-bold text-4xl text-red-600 text-center py-5">
+      功能尚未開放......
+    </div>
     <section>
       <header class="font-bold text-xl mt-4">選擇訂位時段</header>
       <div class="md:grid md:grid-cols-2 md:gap-1">
@@ -56,7 +59,7 @@ const formatDate = (date) => {
     </section>
     <main class="mt-5">
       <div v-for="(branch, index) in branchInformation" :key="index" class="card md:card-side bg-base-100 shadow-xl my-5">
-        <figure><img src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
+        <figure class="p-5"><img src="../../../public/assets/img/sw_img57.png" alt="Album"/></figure>
         <div class="card-body">
           <h2 class="card-title">{{ branch.name }}</h2>
           <p>{{ branch.address }}</p>

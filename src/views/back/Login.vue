@@ -7,9 +7,8 @@ const { setCookie, removeCookie, getCookie, simpleAlert } = useUnits();
 
 const userInfo = ref({
   username: "",
-  password: "",
-  // username: "liangvuepractice@mail.com",
-  // password: "liangxu04vu6",
+  // password: "",
+  password: "liangxu04vu6",
 });
 const rememberAc = ref(false);
 const isLoading = ref(false);
@@ -18,7 +17,7 @@ onMounted(() => {
   rememberAc.value = getCookie("rememberAc") === "true";
   userInfo.value.username = getCookie("rememberAc")
     ? getCookie("linanceAc")
-    : "";
+    : "liangvuepractice@mail.com";
 });
 // 登入
 const login = () => {
@@ -68,7 +67,7 @@ const login = () => {
                 type="email"
                 id="inputEmail"
                 class="w-full input input-bordered rounded bg-white"
-                placeholder="Email address"
+                placeholder="liangvuepractice@mail.com"
                 required
                 v-model="userInfo.username"
               />
