@@ -1,6 +1,10 @@
 <script setup>
+<<<<<<< HEAD
 console.log("A");
 console.log("B")
+=======
+cosnole.log("C")
+>>>>>>> feat/C
 </script>
 
 <template>
