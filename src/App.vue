@@ -10,6 +10,7 @@ console.log("A1");
 body::-webkit-scrollbar {
   background-color: #fff;
   width: 16px;
+  height: auto;
 }
 
 body::-webkit-scrollbar-track {
