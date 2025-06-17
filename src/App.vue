@@ -1,5 +1,5 @@
 <script setup>
-
+cosnole.log("C")
 </script>
 
 <template>
