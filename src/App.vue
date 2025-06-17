@@ -1,5 +1,6 @@
 <script setup>
-console.log("A1");
+console.log("A");
+cosnole.log("C")
 </script>
 
 <template>
