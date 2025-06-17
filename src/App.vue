@@ -1,5 +1,6 @@
 <script setup>
 console.log("A");
+console.log("B")
 </script>
 
 <template>
