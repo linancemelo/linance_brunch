@@ -1,5 +1,4 @@
 <script setup>
-console.log('test1')
 </script>
 
 <template>
